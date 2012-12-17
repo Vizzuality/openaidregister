@@ -1,0 +1,35 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activemodel:
+    models:
+      project: Project
+    attributes:
+      project:
+        name: 'name'
+        id_in_organization: 'id in the organization'
+        description: 'description'
+        organization_role: 'organization role'
+        language: 'language'
+        sector: 'sector'
+        start_date: 'start date'
+        end_date: 'end date'
+        budget: 'budget'
+        contact_person: 'contact person'
+        url: 'url'
+  projects:
+    form:
+        name: 'name'
+        id_in_organization: 'id in the organization'
+        description: 'description'
+        organization_role: 'organization role'
+        language: 'language'
+        sector: 'sector'
+        start_date: 'start date'
+        end_date: 'end date'
+        budget: 'budget'
+        contact_person: 'contact person'
+        url: 'url'
+
+

@@ -1,0 +1,37 @@
+<%= form_for :project do |f| %>
+
+  <%= f.label :name, t '.name' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :id_in_organization, t '.id_in_organization' %>
+  <%= f.text_field :id_in_organization %>
+
+  <%= f.label :description, t '.description' %>
+  <%= f.text_field :description %>
+
+  <%= f.label :organization_role, t '.organization_role' %>
+  <%= f.text_field :organization_role %>
+
+  <%= f.label :language, t '.language' %>
+  <%= f.select :language %>
+
+  <%= f.label :sector, t '.sector' %>
+  <%= f.select :sector %>
+
+  <%= f.label :start_date, t '.start_date' %>
+  <%= f.text_field :start_date %>
+
+  <%= f.label :end_date, t '.end_date' %>
+  <%= f.text_field :end_date %>
+
+  <%= f.label :budget, t '.budget' %>
+  <%= f.text_field :budget %>
+
+  <%= f.label :contact_person, t '.contact_person' %>
+  <%= f.text_field :contact_person %>
+
+  <%= f.label :url, t '.url' %>
+  <%= f.text_field :url %>
+
+<% end %>
+
