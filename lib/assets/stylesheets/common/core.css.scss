@@ -1,0 +1,20 @@
+
+  @import "compass";
+  @import "vars";
+
+
+  /* DOM elements */
+  body {}
+  p {font:normal 15px $text_fonts; color:#545454;}
+  a {}
+
+  /* Custom DOM elements */
+  div.block {
+    display:block;
+    border-left:1px solid #DDDDDD;
+    border-right:1px solid #DDDDDD;
+  }
+
+  /* Helper classes */
+  .big {font-size:17px;}
+  .bigger {font-size:19px;}
