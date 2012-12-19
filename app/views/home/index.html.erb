@@ -1,1 +1,122 @@
-WADUS!!
+<% content_for(:page_title) do %>OpenAidRegister<% end %>
+
+<%= content_for(:js) do %>
+  <%= javascript_include_tag :application %>
+<% end %>
+
+<%= content_for(:css) do %>
+  <%= stylesheet_link_tag :application, :index, :media => 'all' %>
+<% end %>
+
+<!-- Intro -->
+<section class="bkg">
+  <div class="mesh">
+    <div class="inner">
+      <%= render :partial => 'header' %>
+      <div class="banner">
+        <h2 class="dark"><%= t('index.banner.title') %></h2>
+        <%= link_to t('index.banner.link'), "#", :class => "title bold bigger" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="inner">
+
+  <!-- Goals -->
+  <section class="borders">
+    <h3 class="center block upper darker"><span class="title_line"></span><%= t('index.goal.title') %><span class="title_line"></span></h3>
+    <div class="columns margin45">
+      <div class="column2">
+        <p class="big dark"><%= t('index.goal.p1') %></p>
+      </div>
+      <div class="column2">
+        <p class="big dark"><%= t('index.goal.p2') %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section class="video">
+    <div class="play">
+      <%= link_to "", "#", :class => "play" %>
+    </div>
+    <div class="share">
+      <h4><%= t('index.video.title') %></h4>
+      <p class="big"><%= t('index.video.content') %></p>
+      <div class="social margin25">
+        <%= link_to t('index.video.twitter'), "#", :class => "twitter" %>
+        <%= link_to t('index.video.facebook'), "#", :class => "facebook" %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent_projects -->
+  <section class="recent_projects borders">
+    <h3 class="center block upper darker"><span class="title_line"></span><%= t('index.recent_projects.title') %><span class="title_line"></span></h3>
+    <div class="columns margin40">
+      <div class="column3">
+        <h5><%= link_to t('index.recent_projects.p1.title'), '#', :class => "bigger" %></h5>
+        <span class="info margin20">
+          <p class="left lighter">Global Integrity</p>
+          <p class="right lighter">21500 USD</p>
+        </span>
+        <p class="margin20"><%= t('index.recent_projects.p1.content') %></p>
+        <span class="dates">
+          <p class="smaller lighter start">2008</p>
+          <span class="line"></span>
+          <p class="smaller lighter end">2011</p>
+        </span>
+      </div>
+      <div class="column3">
+        <h5><%= link_to t('index.recent_projects.p1.title'), '#', :class => "bigger" %></h5>
+        <span class="info margin20">
+          <p class="left lighter">Global Integrity</p>
+          <p class="right lighter">21500 USD</p>
+        </span>
+        <p class="margin20"><%= t('index.recent_projects.p1.content') %></p>
+        <span class="dates">
+          <p class="smaller lighter start">2008</p>
+          <span class="line"></span>
+          <p class="smaller lighter end">2011</p>
+        </span>
+      </div>
+      <div class="column3">
+        <h5><%= link_to t('index.recent_projects.p1.title'), '#', :class => "bigger" %></h5>
+        <span class="info margin20">
+          <p class="left lighter">Global Integrity</p>
+          <p class="right lighter">21500 USD</p>
+        </span>
+        <p class="margin20"><%= t('index.recent_projects.p1.content') %></p>
+        <span class="dates">
+          <p class="smaller lighter start">2008</p>
+          <span class="line break"></span>
+          <p class="smaller lighter end">2016</p>
+        </span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Already using OpenAidRegister -->
+<section class="grey_section">
+  <div class="inner">
+    <section class="borders">
+      <h3 class="center block upper dark"><span class="title_line"></span><%= t('index.using') %><span class="title_line"></span></h3>
+      <div class="using_it">
+        <%= link_to image_tag("logos/publish.png", :border=>0), "", :target => "_blank" %>
+        <%= link_to image_tag("logos/engineers.png", :border=>0), "", :target => "_blank" %>
+        <%= link_to image_tag("logos/global_integrity.png", :border=>0), "", :target => "_blank" %>
+        <%= link_to image_tag("logos/indigo.png", :border=>0), "", :target => "_blank" %>
+        <%= link_to image_tag("logos/alliance.png", :border=>0), "", :target => "_blank" %>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- Transparent -->
+<section class="transparent center">
+  <%= link_to t('index.transparent'), "#", :class => "bold bigger title" %>
+</section>
+
+<%= render :partial => 'footer' %>

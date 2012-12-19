@@ -4,17 +4,52 @@
 
 
   /* DOM elements */
-  body {}
+  body {background:white; font-family: $text_fonts; font-size:15px;}
   p {font:normal 15px $text_fonts; color:#545454;}
-  a {}
+  a {color:#FF4C4C; text-decoration:none;}
+  a:hover {text-decoration:underline;}
 
-  /* Custom DOM elements */
-  div.block {
-    display:block;
-    border-left:1px solid #DDDDDD;
-    border-right:1px solid #DDDDDD;
-  }
+  h1, h2, h3, h4, h5, h6 {font-family: $title_fonts; font-weight:bold;}
+  h1 {font-size:23px; font-weight:normal; letter-spacing:-1px}
+  h2 {font-size:41px; letter-spacing:-1px; line-height:45px;}
+  h3 {font-size:21px; font-family: $text_fonts;}
+
+  strong {font-weight:bold;}
+
 
   /* Helper classes */
-  .big {font-size:17px;}
-  .bigger {font-size:19px;}
+
+  // Style
+  .big {font-size:17px; line-height:22px;}
+  .bigger {font-size:19px; line-height:24px;}
+  .small {font-size:13px;}
+  .smaller {font-size:11px;}
+  .dark {color:#545454}
+  .darker {color:#333}
+  .light {color:#999999;}
+  .lighter {color:#AAA;}
+  .bold {font-weight:bold;}
+  .upper {text-transform: uppercase}
+  .down {text-transform: lowercase;}
+  .italic {font-style:italic;}
+  .title {font-family:$title_fonts;}
+  .text {font-family:$text_fonts;}
+  .center {text-align:center;}
+
+  // Position
+  .left {float:left;}
+  .right {float:right;}
+
+  // Measure
+  .block {display:block;}
+
+  // margin
+  .margin5 {margin-top:5px;}
+  .margin10 {margin-top:10px}
+  .margin15 {margin-top:15px}
+  .margin20 {margin-top:25px}
+  .margin25 {margin-top:25px}
+  .margin30 {margin-top:30px}
+  .margin40 {margin-top:40px;}
+  .margin45 {margin-top:45px;}
+  .margin50 {margin-top:50px;}

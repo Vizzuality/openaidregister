@@ -1,0 +1,8 @@
+
+  /*
+   * Image sprites for using in OpenAidRegister
+   */
+  $icons-right_arrow-spacing: 50px;
+  $icons-circle-spacing:50px;
+  @import "icons/*.png";
+  @include all-icons-sprites;

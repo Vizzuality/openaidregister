@@ -1,0 +1,229 @@
+
+  /**
+   *  Specific styles for Open Aid Register home :)
+   */
+
+  @import "compass";
+  @import "./common/sprites";
+
+  // Background with girl
+  section.bkg {
+    div.mesh {
+      display:block;
+      width:100%;
+      height:100%;
+      padding:50px 0 75px;
+      @include background(image-url('layout/mesh.png') repeat-x left top);
+    }
+
+    div.banner {
+      width:600px;
+      margin-top:50px;
+      background:white;
+
+      h2 {
+        display:block;
+        padding:45px 50px;
+        background:white;
+      }
+
+      a {
+        display:block;
+        padding:0 50px;
+        color:white;
+        background-color:#FF4D4D;
+        line-height:115px;
+        @include icons-sprite(right_arrow, $offset-x:520, $offset-y:38);
+      }
+    }
+  }
+
+  // Video
+  section.video {
+    display:block;
+    height:171px;
+    padding:202px 220px;
+    @include background(image-url('layout/video_bkg.jpg'));
+
+    div.play {
+      @include inline-block();
+      width:168px;
+      a.play {
+        @include inline-block();
+        width:168px;
+        height:168px;
+        @include icons-sprite('play');
+
+        &:hover {@include icons-sprite('play', $offset-y:-168);}
+      }
+    }
+
+    div.share {
+      @include inline-block();
+      margin-left:20px;
+      h4 {font-size:33px; color:white; letter-spacing:-1px}
+      p {margin-top:8px; color:white;}
+      
+      div.social {
+        a {
+          @include inline-block();
+          padding:13px 16px;
+          color:white;
+          font-weight:bold;
+          font-size:17px;
+          @include border-radius(3px);
+        }
+
+        a.twitter {background:#0099EF; margin-right:7px;}
+        a.facebook {background:#397DB9;}
+      }
+    }
+  }
+
+  // Recent projects
+  section.recent_projects {
+    
+    div.columns {
+      padding:0 49px;
+
+      div.column3 {
+        width:340px;
+        
+        h5, p {margin:20px 45px 0; padding:0;}
+
+        h5 {
+          height:45px;
+          letter-spacing: -1px;
+        }
+
+        span.info {
+          display:block;
+          height:40px;
+          border:1px solid #DDD;
+          border-left:none;
+          p {
+            width:auto;
+            line-height:40px;
+            margin:0;
+            &:first-child {padding:0 0 0 45px;}
+            &:last-child {padding:0 45px 0 0;}
+          }
+        }
+
+        span.dates {
+          width:250px;
+          margin-top:20px;
+          display:block;
+          letter-spacing: -4px;
+          word-spacing: -4px;
+
+          p, span.line {
+            letter-spacing: 0px;
+            word-spacing: 0px;
+            margin:0;
+          }
+
+          p.start {
+            @include inline-block();
+            width:auto;
+            padding:0 18px 0 0;
+            @include icons-sprite(circle,$offset-x:30, $offset-y:0);
+          }
+
+          span.line {
+            @include inline-block();
+            height:10px;
+            max-width:130px;
+            min-width:30px;
+            @include icons-sprite(date_line, $offset-y:-3px);
+
+            &.break {
+              width:100%;
+              @include icons-sprite(date_break_line, $offset-y:-3px, $offset-x:-10);
+            }
+          }
+
+          p.end {
+            @include inline-block();
+            width:auto;
+            padding:0 0 0 18px;
+            @include icons-sprite(circle,$offset-x:0, $offset-y:0);
+          }
+        }        
+
+        &:first-child {
+          width:295px;
+          h5,p {margin-left:0;}
+          span.info p:first-child {padding:0;}
+          span.dates p:first-child {margin-right:0;}
+        }
+
+        &:last-child {
+          width:295px;
+          span.info p:last-child {padding:0;}
+          h5,p {margin-right:0;}
+          span.info {
+            border-right:none;  
+          }
+          span.dates p:first-child {margin-left:45px;}
+        }
+      }
+    }
+
+  } /* recent projects*/
+
+
+  // Grey section
+  section.grey_section {
+    padding-top:0;
+    padding-bottom:0;
+    background:#F2F2F2;
+    border-top:1px solid #CCC;
+    
+    section.borders {
+      position:relative;
+      overflow:hidden;
+      display:block;
+
+      &:before, &:after {
+        position:absolute;
+        content:'';
+        top:0;
+        left:0;
+        width:100px;
+        height:100%;
+        @include background(linear-gradient(left,rgba(#F2F2F2,1),rgba(#F2F2F2,0)));
+        pointer-events:none;
+      }
+      &:after {
+        left:auto;
+        right:0;
+        @include background(linear-gradient(right,rgba(#F2F2F2,1),rgba(#F2F2F2,0)));
+      }
+    }
+    
+    div.using_it {
+      width:1340px;
+      margin:40px 0 0 -135px;
+
+      a {
+        @include inline-block();
+        vertical-align:middle;
+        margin-right:76px;
+      }
+    }
+  }
+
+
+  // Transparent section (red background)
+  section.transparent {
+    padding:52px 0;
+    @include background(image-url('layout/transparent_bkg.png') repeat-x top center #FF4D4D);
+    a {
+      padding:14px 21px;
+      color:white;
+      border:1px solid #F6A3A3;
+      @include border-radius(50px);
+      &:hover {border-color:white;}
+    }
+  }

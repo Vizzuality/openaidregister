@@ -1,0 +1,49 @@
+
+  /**
+   *  Styles for header block
+   */
+
+  header {
+    height:32px;
+
+    h1 {
+      @include inline-block();
+      margin-left:50px;
+      line-height:normal;
+      
+      a {color:white;}
+    }
+
+    nav {
+      margin:3px 40px 0 0;
+
+      a {
+        @include inline-block();
+        vertical-align: middle;
+        margin-left:24px;
+        color:white;
+        border-top:2px solid transparent;
+        line-height: 22px;
+
+        &:hover {
+          border-top:2px solid white;
+          text-decoration: none;
+        }
+
+        &.round {
+          vertical-align: middle;
+          padding:0 10px;
+          margin:1px 0 0 19px;
+          background:#FF4D4D;
+          line-height:29px;
+          border:none;
+          @include border-radius(30px);
+
+          &:hover {
+            border:none;
+            background:#CF3D3D;
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,27 @@
+  /**
+   *  Styles for footer block
+   */
+
+  footer {
+    background:#222;
+    
+    section.borders {border-color:#444444;}
+    
+    p {@include inline-block(); width:620px; padding:0;}
+
+    div.padding {height:40px;}
+
+    span.right {
+      margin-top:7px;
+      a:first-child {margin-right:20px;}
+    }
+    
+    nav {
+      color:#555555;
+      a {
+        margin:0 5px;
+        color:white;
+        &:first-child {margin-left:0;}
+      }
+    }
+  }

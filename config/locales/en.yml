@@ -2,6 +2,42 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  title_for_html: '<strong>OpenAid</strong>Register'
+  header:
+    home: 'home'
+    organizations: 'organizations'
+    blog: 'blog'
+    about: 'about'
+    sign_in: 'sign in'
+  footer:
+    info: 'Open Aid Register is an initiative to speed up the process of making aid data open. It is part of the global effort to understand who is doing what and where, in terms of aid.'
+    nav:
+      contact: 'Contact'
+      faq: 'FAQ'
+      blog: 'Blog'
+      about: 'About'
+      terms: 'Terms and conditions'
+  index:
+    banner:
+      title: 'We help you publish your aid data using the most common data standard for aid, IATI, and ensure that this data remain open.'
+      link: 'Make your organization transparent'
+    goal:
+      title: 'Our goal'
+      p1: 'All organizations committed to aid projects should strive to keep their data open and transparent. Open Aid Register’s goal is to assist non-profits and NGOs in making this happen by helping them publish their data in the standard known as IATI (the International Aid Transparency Initiative). By publishing data in this IATI'
+      p2: 'common data standard, organizations can be sure that their aid information can be shared, understood, and used by donors, other NGOs helping in similar sectors or locations, those recipients of aid throughout the world, and the general public.'
+    video:
+      title: 'Take a look to our video'
+      content: 'And if you like it, spread the word'
+      twitter: 'Twitter'
+      facebook: 'Facebook'
+    using: 'Who is already using OpenAidRegister'
+    transparent: 'Make your organization transparent'
+    recent_projects:
+      title: 'Recently published projects'
+      p1:
+        title: 'Water team: small-business solutions for repair and...'
+        content: 'Mapping water points is a critical step towards improving clean water access for rural families in Malawi. Using an innovative tool we created to monitor the lifecycle of hand pumps, wells and boreholes, EWB volunteers have documented the location of water points across the country. With this information...'
+
   activemodel:
     models:
       project: Project
@@ -31,5 +67,3 @@ en:
         budget: 'budget'
         contact_person: 'contact person'
         url: 'url'
-
-

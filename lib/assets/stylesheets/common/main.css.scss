@@ -1,0 +1,103 @@
+  
+  @import "compass";
+  @import "compass/reset";
+  @import "vars";
+  @import "core";
+  
+  @import "header";
+
+
+  body {
+    background:white;
+
+
+    // Wrap block
+    div.inner {
+      width:$app_width;
+      margin:0 auto;
+    } /* inner */
+
+
+    // Blocks
+    section {
+      display:block;
+      padding:50px 0;
+
+      // With background
+      &.bkg {
+        padding:0;
+        @include background(image-url('layout/girl_bkg.jpg') repeat-x top center);
+      }
+
+      // With lateral padding
+      &.padding {
+        padding-right:50px;
+        padding-left:50px;
+      }
+
+      // With lateral borders
+      &.borders {
+        border-left:1px solid #DDDDDD;
+        border-right:1px solid #DDDDDD;
+
+        &.padding {
+          padding-right:49px;
+          padding-left:49px;
+        }
+      }
+    } /* section */
+
+
+
+    // Columns
+    div.columns {
+      display:block;
+      width:100%;
+      letter-spacing:-4px;
+      word-spacing:-4px;
+
+      div.column2, div.column3 {letter-spacing:0px; word-spacing:0px;}
+
+      // 2 Columns
+      div.column2 {
+        @include inline-block();
+        vertical-align:top;
+        width:50%;
+
+        h3,h4,h5,p {
+          padding:0 49px;
+        }
+
+        &:first-child {
+          h3,h4,h5,p {padding:0 24px 0 49px;}
+        }
+        &:last-child {
+          h3,h4,h5,p {padding:0 49px 0 24px;}
+        }
+      }
+
+      // 3 Columns
+      div.column3 {
+        @include inline-block();
+        vertical-align:top;
+        width:33%;
+
+        h3,h4,h5,p {
+          padding:0 49px;
+        }
+      }      
+    }
+
+
+    // Title line
+    span.title_line {
+      @include inline-block();
+      vertical-align: bottom;
+      width:25px;
+      height:20px;
+      margin:0 9px;
+      @include background(image-url('layout/title_line.png') repeat-x center center);
+    }
+  }
+
+  @import "footer";
