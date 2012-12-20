@@ -8,6 +8,7 @@
 
   // Background with girl
   section.bkg {
+
     div.mesh {
       display:block;
       width:100%;
@@ -84,6 +85,8 @@
   section.recent_projects {
     
     div.columns {
+      width:auto!important;
+      display:block;
       padding:0 49px;
 
       div.column3 {
@@ -153,14 +156,14 @@
         }        
 
         &:first-child {
-          width:295px;
+          width:294px;
           h5,p {margin-left:0;}
           span.info p:first-child {padding:0;}
           span.dates {margin-left:0;}
         }
 
         &:last-child {
-          width:295px;
+          width:294px;
           span.info p:last-child {padding:0;}
           h5,p {margin-right:0;}
           span.info {
