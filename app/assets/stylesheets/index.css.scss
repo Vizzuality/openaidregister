@@ -112,7 +112,8 @@
 
         span.dates {
           width:250px;
-          margin-top:20px;
+          margin:20px 45px 0;
+
           display:block;
           letter-spacing: -4px;
           word-spacing: -4px;
@@ -155,7 +156,7 @@
           width:295px;
           h5,p {margin-left:0;}
           span.info p:first-child {padding:0;}
-          span.dates p:first-child {margin-right:0;}
+          span.dates {margin-left:0;}
         }
 
         &:last-child {
@@ -165,7 +166,7 @@
           span.info {
             border-right:none;  
           }
-          span.dates p:first-child {margin-left:45px;}
+          span.dates {margin-right:0;}
         }
       }
     }
