@@ -55,15 +55,21 @@ en:
         contact_person: 'contact person'
         url: 'url'
   projects:
+    new:
+      title: 'Create new project'
+      info:
+        title: 'Start with the basics'
+        description: 'This information is enought for registering it in IATI, it takes less than 1 minute.'
     form:
-        name: 'name'
-        id_in_organization: 'id in the organization'
-        description: 'description'
-        organization_role: 'organization role'
-        language: 'language'
-        sector: 'sector'
-        start_date: 'start date'
-        end_date: 'end date'
-        budget: 'budget'
-        contact_person: 'contact person'
-        url: 'url'
+        name: 'Project name'
+        id_in_organization: 'Project ID on your Org.'
+        description: 'Project description'
+        organization_role: "Organization's role in this project"
+        language: 'Project language'
+        sector: 'Sector'
+        add_button: 'Add'
+        start_end_date: 'Project start / end dates'
+        budget: 'Budget'
+        contact_person: 'Contact person'
+        someone_different: 'Someone different?'
+        url: 'Project URL'

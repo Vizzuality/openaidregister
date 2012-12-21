@@ -1,37 +1,65 @@
 <%= form_for :project do |f| %>
 
-  <%= f.label :name, t '.name' %>
-  <%= f.text_field :name %>
+  <div class="field name">
+    <%= f.label :name, t('.name') %>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label :id_in_organization, t '.id_in_organization' %>
-  <%= f.text_field :id_in_organization %>
+  <div class="field id_in_organization">
+    <%= f.label :id_in_organization, t('.id_in_organization') %>
+    <%= f.text_field :id_in_organization %>
+    <div class="hint">
+      <p>Wadus</p>
+    </div>
+  </div>
 
-  <%= f.label :description, t '.description' %>
-  <%= f.text_field :description %>
+  <div class="field description">
+    <%= f.label :description, t('.description') %>
+    <%= f.text_field :description %>
+  </div>
 
-  <%= f.label :organization_role, t '.organization_role' %>
-  <%= f.text_field :organization_role %>
+  <div class="field organization_role">
+    <%= f.label :organization_role, t('.organization_role') %>
+    <%= f.select :organization_role, OrganizationRole.to_select_options %>
+  </div>
 
-  <%= f.label :language, t '.language' %>
-  <%= f.select :language %>
+  <div class="field language">
+    <%= f.label :language, t('.language') %>
+    <%= f.select :language, Language.to_select_options %>
+  </div>
 
-  <%= f.label :sector, t '.sector' %>
-  <%= f.select :sector %>
+  <div class="field sector">
+    <%= f.label :sector, t('.sector') %>
 
-  <%= f.label :start_date, t '.start_date' %>
-  <%= f.text_field :start_date %>
+    <%= f.select :sector, Sector.to_select_options,       :include_blank => true %>
+    <%= f.select :subsector, Subsector.to_select_options, :include_blank => true %>
 
-  <%= f.label :end_date, t '.end_date' %>
-  <%= f.text_field :end_date %>
+    <%= f.button t('.add_button') %>
+  </div>
 
-  <%= f.label :budget, t '.budget' %>
-  <%= f.text_field :budget %>
 
-  <%= f.label :contact_person, t '.contact_person' %>
-  <%= f.text_field :contact_person %>
+  <div class="field start_date">
+    <%= f.label :start_date, t('.start_end_date') %>
+    <%= f.text_field :start_date %>
+    <%= f.text_field :end_date %>
+  </div>
 
-  <%= f.label :url, t '.url' %>
-  <%= f.text_field :url %>
+  <div class="field budget">
+    <%= f.label :budget, t('.budget') %>
+    <%= f.text_field :budget %>
+    <%= f.select :budget_currency, Currency.to_select_options %>
+  </div>
+
+  <div class="field contact_person">
+    <%= f.label :contact_person, t('.contact_person') %>
+    <%= f.text_field :contact_person %>
+    <%= link_to t('.someone_different'), '#' %>
+  </div>
+
+  <div class="field url">
+    <%= f.label :url, t('.url') %>
+    <%= f.text_field :url %>
+  </div>
 
 <% end %>
 

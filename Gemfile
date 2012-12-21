@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
+gem 'cartodb-rb-client', :git => 'git@github.com:Vizzuality/cartodb-rb-client.git'
+
 group :assets do
   gem 'turbo-sprockets-rails3'
   gem 'uglifier', '>= 1.0.3'

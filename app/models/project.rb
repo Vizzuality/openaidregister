@@ -1,4 +1,4 @@
-class Project
+class Project < CartodbModel
   include ActiveModel::Validations
 
   attr_accessor :name,
@@ -7,9 +7,11 @@ class Project
                 :organization_role,
                 :language,
                 :sector,
+                :subsector,
                 :start_date,
                 :end_date,
                 :budget,
+                :budget_currency,
                 :contact_person,
                 :url
 
