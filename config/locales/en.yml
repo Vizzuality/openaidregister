@@ -60,7 +60,7 @@ en:
       info:
         title: 'Start with the basics'
         description: 'This information is enought for registering it in IATI, it takes less than 1 minute.'
-    form:
+    form_basic:
         name: 'Project name'
         id_in_organization: 'Project ID on your Org.'
         description: 'Project description'
@@ -73,3 +73,6 @@ en:
         contact_person: 'Contact person'
         someone_different: 'Someone different?'
         url: 'Project URL'
+        save: 'Save project'
+        cancel: 'Cancel'
+    form_advanced:

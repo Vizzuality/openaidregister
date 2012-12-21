@@ -1,8 +1,8 @@
 class CartodbModel
 
-  def self.all
+  #def self.all
 
-  end
+  #end
 
   def self.create
 
