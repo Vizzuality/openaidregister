@@ -99,7 +99,21 @@ describe "IATI basic form", :type => :feature do
 
   describe 'submission' do
     before do
+      class Project
 
+        def self.records
+          @@records ||= []
+        end
+
+        def save
+          Project.records << OpenStruct.new(attributes)
+        end
+
+        def self.all
+          Project.records
+        end
+
+      end
     end
 
     it 'creates a new project' do
@@ -107,7 +121,6 @@ describe "IATI basic form", :type => :feature do
       fill_in 'Project ID on your Org.', :with => '0123456789'
       fill_in 'Project description',     :with => lorem_ipsum
 
-      peich
       select 'Wadus',   :from => "Organization's role in this project"
       select 'English', :from => 'Project language'
 
@@ -130,6 +143,21 @@ describe "IATI basic form", :type => :feature do
       end.to change{ Project.all.size }.by(1)
 
       created_project = Project.all.first
+      pp created_project.inspect
+      created_project.name.should               be == 'IATI test project'
+      created_project.id_in_organization.should be == '0123456789'
+      created_project.description.should        be == lorem_ipsum
+      created_project.organization_role.should  be == '1'
+      created_project.language.should           be == '1'
+      created_project.sector.should             be == ''
+      created_project.subsector.should          be == ''
+      created_project.start_date.should         be == ''
+      created_project.end_date.should           be == ''
+      created_project.budget.should             be == '100000'
+      created_project.budget_currency.should    be == '1'
+      created_project.contact_person.should     be == 'You'
+      created_project.url.should                be == 'http://www.myiatiproject.org'
+
 
     end
 
