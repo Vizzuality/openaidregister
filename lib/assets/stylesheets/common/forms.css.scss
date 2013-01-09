@@ -1,0 +1,107 @@
+
+
+  /**
+   *  Custom forms elements
+   */
+
+  @import "compass";
+  @import "vars";
+  @import "sprites";
+
+  @mixin text-focus() {
+    @include transform-style("linear");
+    @include transition-property("border,box-shadow");
+    @include transition-duration(300ms);
+
+    &:focus {
+      outline:none;
+      border-color:#AAA;
+      @include box-shadow(rgba(black,0.1) 0 0 5px 3px);
+    }
+  }
+
+  @mixin default-form() {
+    
+    div.field {
+      position:relative;
+      @include inline-block();
+      letter-spacing: 0;
+      word-spacing: 0;
+
+      // Label
+      label {
+        display:block;
+        padding-left:20px;
+        font:bold 15px $title_fonts;
+        color:#333333;
+      }
+
+      // Input
+      input[type="text"] {
+        margin-top:8px;
+        padding:11px 20px;
+        border:1px solid #CCCCCC;
+        @include border-radius(20px);
+        font:normal 15px $text_fonts;
+        line-height:normal;
+        color:#333333;
+        @include text-focus();
+
+        // text input types
+        &.short {width:178px;}
+        &.med   {width:355px;}
+        &.long  {width:594px;}
+      }
+
+      // Textarea
+      textarea {
+        display:block;
+        width:594px;
+        padding:11px 20px;
+        margin-top:8px;
+        min-height:128px;
+        max-height:128px;
+        font:normal 15px $text_fonts;
+        line-height:normal;
+        color:#333333;
+        border:1px solid #CCCCCC;
+        @include border-radius(20px);
+        resize:none;
+        @include text-focus();
+      }
+
+      // Select wrapper
+      div.select_wrapper {
+        display:block;
+        margin-top:8px;
+        line-height:42px;
+        border:1px solid #CCCCCC;
+        @include border-radius(20px);
+      }
+
+      // Hint
+      a.hint {
+        position:absolute;
+        padding:0;
+        width:16px;
+        height:16px;
+        @include icons-sprite(hint);
+        z-index:2;
+
+        &:focus {outline:none;}
+        &:hover {@include icons-sprite(hint, $offset-y:-16px)}
+      }
+
+
+      // margin for several fields in the same line
+      &.margin {
+        margin-left:18px;
+      }
+
+      // div.field types
+      &.short {width:220px;}
+      &.med   {width:397px;}
+      &.long  {width:636px;}
+
+    } /* div.field */
+  }

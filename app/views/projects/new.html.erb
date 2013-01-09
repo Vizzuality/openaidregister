@@ -1,8 +1,26 @@
-<h1><%= t('.title') %></h1>
+<% content_for(:page_title) do %>OpenAidRegister | New project<% end %>
 
-<div class="info">
-  <h2><%= t('.info.title') %></h2>
-  <p><%= t('.info.description') %></p>
-</div>
+<%= content_for(:js) do %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :application, :new %>
+<% end %>
 
-<%= render 'form_basic' %>
+<%= content_for(:css) do %>
+  <%= stylesheet_link_tag :application, 'https://www.google.com/cse/style/look/default.css', :new, :media => 'all' %>
+<% end %>
+
+<section class="borders">
+  <div class="inner">
+    <h3 class="center upper"><span class="title_line"></span><%= t('.title') %><span class="title_line"></span></h1>
+  </div>
+</section>
+
+<section class="borders grey_section">
+  <div class="inner center">
+    <h4 class="dark"><%= t('.info.title') %></h4>
+    <p class="margin5"><%= t('.info.description') %></p>
+  </div>
+</section>
+
+<section class="borders">
+  <%= render 'form_basic' %>
+</section>
