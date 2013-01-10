@@ -1,0 +1,6 @@
+<li class="transaction">
+  <span class="type"><%= transaction_type(@transaction) %></span>
+  <span class="provider_receiver"><%= @transaction.provider %> > <%= @transaction.receiver %></span>
+  <span class="value"><%= transaction_value(@transaction) %></span>
+  <%= link_to '', '#', :id => 'remove' %>
+</li>

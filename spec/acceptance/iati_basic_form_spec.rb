@@ -2,13 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 describe "IATI basic form", :type => :feature do
 
-  before do
+  before(:suite) do
     Sector.stub(:all)           { [OpenStruct.new(:id => 1, :name => 'Agriculture')]   }
     Subsector.stub(:all)        { [OpenStruct.new(:id => 1, :name => 'Food security')] }
     OrganizationRole.stub(:all) { [OpenStruct.new(:id => 1, :name => 'Wadus')]         }
     Language.stub(:all)         { [OpenStruct.new(:id => 1, :name => 'English')]       }
     Currency.stub(:all)         { [OpenStruct.new(:id => 1, :name => 'USD')]           }
 
+  end
+
+  before do
     visit new_project_path
   end
 
@@ -98,7 +101,7 @@ describe "IATI basic form", :type => :feature do
   end
 
   describe 'submission' do
-    before do
+    before(:all) do
       class Project
 
         def self.records
@@ -143,7 +146,6 @@ describe "IATI basic form", :type => :feature do
       end.to change{ Project.all.size }.by(1)
 
       created_project = Project.all.first
-      pp created_project.inspect
       created_project.name.should               be == 'IATI test project'
       created_project.id_in_organization.should be == '0123456789'
       created_project.description.should        be == lorem_ipsum

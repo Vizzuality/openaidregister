@@ -5,8 +5,13 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
-    @url     = projects_path
+    @project            = Project.new
+    @url                = projects_path
+    @organization_roles = OrganizationRole.all
+    @languages          = Language.all
+    @sectors            = Sector.all
+    @subsectors         = Subsector.all
+    @currencies         = Currency.all
   end
 
   def create

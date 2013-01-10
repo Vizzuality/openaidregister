@@ -16,6 +16,14 @@ module CustomMatchers
     end
   end
 
+  def have_subtitle(subtitle)
+    have_selector('h3', :text => subtitle)
+  end
+
+  def have_section_title(title)
+    have_selector('h4', :text => title)
+  end
+
   matcher :have_sector do |sector, subsector|
     match_for_should { |node| node.has_selector?(".sector", :text => text) }
     match_for_should_not { |node| node.has_no_selector?(".comment", :text => text) }

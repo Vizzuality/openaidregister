@@ -1,8 +1,17 @@
 class CartodbModel
   include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
 
-  def initialize(params = {})
-    @attributes = params
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value) rescue nil
+    end
+    @attributes = attributes
+  end
+
+  def persisted?
+    false
   end
 
   def self.all
@@ -11,12 +20,18 @@ class CartodbModel
     []
   end
 
-  def save
-    CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
+  def self.where(where_clause)
+    sql = "SELECT * FROM #{self.class.name.tableize}"
+    sql << " WHERE #{where_clause};"
+
+    result = CartoDB::Connection.query(sql)
+
+    return results.rows || [] if result
+    []
   end
 
-  def self.to_select_options
-    all.map{|record| [record.name, record.id]}
+  def save
+    CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
   end
 
   private

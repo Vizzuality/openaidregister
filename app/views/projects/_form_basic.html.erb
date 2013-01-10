@@ -19,22 +19,23 @@
   <div class="field organization_role med margin20">
     <%= f.label :organization_role, t('.organization_role') %>
     <div class="select_wrapper">
-      <%= f.select :organization_role, OrganizationRole.to_select_options, { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+      <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
     </div>
   </div>
 
   <div class="field language margin short margin20">
     <%= f.label :language, t('.language') %>
     <div class="select_wrapper">
-      <%= f.select :language, Language.to_select_options %>
+      <%= f.select :language, to_select_options(@languages) %>
     </div>
   </div>
 
   <div class="field sector long margin20">
     <%= f.label :sector, t('.sector') %>
     <div class="select_wrapper">
-      <%= f.select :sector, Sector.to_select_options,       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
-      <%= f.select :subsector, Subsector.to_select_options, { :include_blank => true }, { 'data-placeholder' => "Subsector..." }%>
+      <%= f.select :sector, to_select_options(@sectors),       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
+      <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => true }, { 'data-placeholder' => "Subsector..." } %>
+
       <%= f.button t('.add_button') %>
     </div>
   </div>
@@ -49,7 +50,7 @@
   <div class="field budget short margin20">
     <%= f.label :budget, t('.budget') %>
     <%= f.text_field :budget %>
-    <%= f.select :budget_currency, Currency.to_select_options %>
+    <%= f.select :budget_currency, to_select_options(@currencies) %>
   </div>
 
   <div class="field locations margin20">
