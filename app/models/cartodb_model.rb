@@ -15,8 +15,8 @@ class CartodbModel
   end
 
   def self.all
-    result = CartoDB::Connection.query("SELECT * FROM #{self.class.name.tableize}")
-    return results.rows || [] if result
+    result = CartoDB::Connection.query("SELECT * FROM #{self.name.tableize}")
+    return result.rows || [] if result
     []
   end
 
@@ -26,7 +26,7 @@ class CartodbModel
 
     result = CartoDB::Connection.query(sql)
 
-    return results.rows || [] if result
+    return result.rows || [] if result
     []
   end
 

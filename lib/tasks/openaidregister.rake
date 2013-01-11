@@ -48,10 +48,41 @@ task :setup => :environment do
     {:name => 'description',    :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('transactions')
 
-  %w(sector subsector language organization_role transaction_type currency).each do |table_name|
-    CartoDB::Connection.create_table table_name unless tables_list.tables.map(&:name).include?(table_name)
+  %w(sectors subsectors languages organization_roles transaction_types currencies).each do |table_name|
+    CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
+    CartoDB::Connection.create_table table_name
   end
 
+  puts '... done!'
+
+
+  puts
+  puts 'Generating seed data...'
+
+    CartoDB::Connection.insert_row 'sectors', {
+      'cartodb_id' => 1,
+      'name'       => 'Agriculture'
+    }
+    CartoDB::Connection.insert_row 'subsectors', {
+      'cartodb_id' => 1,
+      'name'       => 'Food security'
+    }
+    CartoDB::Connection.insert_row 'organization_roles', {
+      'cartodb_id' => 1,
+      'name'       => 'Wadus'
+    }
+    CartoDB::Connection.insert_row 'languages', {
+      'cartodb_id' => 1,
+      'name'       => 'English'
+    }
+    CartoDB::Connection.insert_row 'transaction_types', {
+      'cartodb_id' => 1,
+      'name'       => 'Acquisition'
+    }
+    CartoDB::Connection.insert_row 'currencies', {
+      'cartodb_id' => 1,
+      'name'       => '$USD'
+    }
   puts '... done!'
 
 end
