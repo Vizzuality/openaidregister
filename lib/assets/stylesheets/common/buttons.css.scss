@@ -1,0 +1,40 @@
+
+  /**
+   *  Buttons view
+   */
+
+  @import "compass";
+  @import "vars";
+
+  a.button,
+  button,
+  input[type="submit"] {
+
+    &.round {
+      padding:12px 18px;
+      line-height:normal;
+      border:none;
+      @include border-radius(20px);
+      color:white;
+
+      &:hover {cursor:pointer;}
+
+      // Grey type
+      &.grey {
+        background:#444444;
+        font:bold 15px $button_fonts;
+        text-transform: uppercase;
+        &:hover {background:#343434;}
+        &:active {background:#121212;}
+      }
+
+      // Red type
+      &.red {
+        background:#FF4D4D;
+        font:bold 19px $text_fonts;
+        letter-spacing: -1px;
+        &:hover {background:#F44848;}
+        &:active {background:#DC4141;}
+      }
+    }
+  }

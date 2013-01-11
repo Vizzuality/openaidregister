@@ -12,7 +12,35 @@
   // Default form
   @include default-form();
 
+  // Custom fields
   div.field {
+
+    &.sector {
+      div.grey_wrapper {
+        width:486px;
+        padding:2px;
+        margin-top:8px;
+        background: #EDEDED;
+        @include border-radius(20px);
+
+        div.select_wrapper {
+          @include inline-block();
+          width:405px;
+          margin-top:0;
+          
+          div.column {
+            @include inline-block();
+            width:200px;
+            letter-spacing: 0;
+            word-spacing: 0;
+          }
+        }
+
+        button {
+          @include inline-block();
+        }
+      }
+    }
 
     // Map
     &.locations {
@@ -31,6 +59,7 @@
       }
     }
   }
+
 
   // Grey block
   section.grey_section {
