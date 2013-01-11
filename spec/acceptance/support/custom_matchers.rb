@@ -5,8 +5,9 @@ module CustomMatchers
     have_selector('label', :text => text)
   end
 
-  def have_hint(text)
-    have_selector('.hint', :text => text)
+  def should_have_hint(text)
+    hint = find('.hint')
+    hint['data-hint'].should be == text
   end
 
   def have_sector(sector, subsector)
@@ -14,6 +15,14 @@ module CustomMatchers
       have_selector('.sectors_to_add_sector',    :text => sector)
       have_selector('.sectors_to_add_subsector', :text => sector)
     end
+  end
+
+  def have_subtitle(subtitle)
+    have_selector('h3', :text => subtitle)
+  end
+
+  def have_section_title(title)
+    have_selector('h4', :text => title)
   end
 
   matcher :have_sector do |sector, subsector|

@@ -1,5 +1,4 @@
 class Project < CartodbModel
-  include ActiveModel::Validations
 
   attr_accessor :name,
                 :id_in_organization,

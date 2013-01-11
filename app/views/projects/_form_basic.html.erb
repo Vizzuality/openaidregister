@@ -1,4 +1,4 @@
-<%= form_for :project do |f| %>
+<%= form_for :project, :url => @url, :method => (@method || :post) do |f| %>
 
   <div class="field name long">
     <%= f.label :name, t('.name') %>
@@ -19,14 +19,14 @@
   <div class="field organization_role med margin20">
     <%= f.label :organization_role, t('.organization_role') %>
     <div class="select_wrapper">
-      <%= f.select :organization_role, OrganizationRole.to_select_options, { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+      <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
     </div>
   </div>
 
   <div class="field language margin short margin20">
     <%= f.label :language, t('.language') %>
     <div class="select_wrapper">
-      <%= f.select :language, Language.to_select_options %>
+      <%= f.select :language, to_select_options(@languages) %>
     </div>
   </div>
 
@@ -35,10 +35,10 @@
     <div class="grey_wrapper">
       <div class="select_wrapper">
         <div class="column">
-          <%= f.select :sector, Sector.to_select_options,     { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
+          <%= f.select :sector, to_select_options(@sectors),       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
         </div>
         <div class="column">
-        <%= f.select :subsector, Subsector.to_select_options, { :include_blank => true }, { 'data-placeholder' => "Subsector..." }%>
+          <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => true }, { 'data-placeholder' => "Subsector..." } %>
         </div>
       </div>
       <%= f.button t('.add_button'), :class => "round grey right" %>
@@ -55,7 +55,7 @@
   <div class="field budget short margin20">
     <%= f.label :budget, t('.budget') %>
     <%= f.text_field :budget %>
-    <%= f.select :budget_currency, Currency.to_select_options %>
+    <%= f.select :budget_currency, to_select_options(@currencies) %>
   </div>
 
   <div class="field locations margin20">

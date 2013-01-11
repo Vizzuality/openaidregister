@@ -1,0 +1,2 @@
+class TransactionType < CartodbModel
+end

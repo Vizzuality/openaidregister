@@ -1,5 +1,48 @@
 <%= form_for :project do |f| %>
 
+  <div class="header">
+    <h3><%= t('.header.congrats') %></h3>
+    <p><%= t('.header.basic_information') %></p>
+
+    <%= link_to t('.header.complete_information') %>
+    <span><%= t('.header.or') %></span>
+    <%= link_to t('.header.add_another_project') %>
+  </div>
+
+  <ul>
+    <li class="transactions">
+      <h4><%= t('.transactions.title') %></h4>
+      <div class="hint">
+        <p>Wadus</p>
+      </div>
+      <div class="no-results"><%= t('.transactions.no_records') %></div>
+      <%= link_to t('.transactions.add'), new_transaction_path %>
+    </li>
+    <li class="involved-organizations">
+      <h4><%= t('.involved_organizations') %></h4>
+      <div class="hint">
+        <p>Wadus</p>
+      </div>
+      <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
+      <%= link_to t('.involved_organizations.add') %>
+    </li>
+    <li class="related-documents">
+      <h4><%= t('.related_documents.title') %></h4>
+      <div class="hint">
+        <p>Wadus</p>
+      </div>
+      <div class="no-results"><%= t('.related_documents.no_records') %></div>
+      <%= link_to t('.related_documents.add') %>
+    </li>
+    <li class="project-results">
+      <h4><%= t('.project_results.title') %></h4>
+      <div class="hint">
+        <p>Wadus</p>
+      </div>
+      <div class="no-results"><%= t('.project_results.no_records') %></div>
+      <%= link_to t('.project_results.add') %>
+    </li>
+  </ul>
 
 <% end %>
 

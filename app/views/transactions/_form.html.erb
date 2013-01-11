@@ -1,0 +1,39 @@
+<%= form_for @transaction, :html => {:class => "#{action_name}_transaction"} do |f| %>
+
+  <div class="field type">
+    <%= f.label :type, t('.type') %>
+    <%= f.select :type, to_select_options(@transaction_types) %>
+  </div>
+
+  <div class="field date">
+    <%= f.label :date, t('.date') %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="field value">
+    <%= f.label :value, t('.value') %>
+    <%= f.text_field :value %>
+    <%= f.select :value_currency, to_select_options(@currencies) %>
+  </div>
+
+  <div class="field provider">
+    <%= f.label :provider, t('.provider') %>
+    <%= f.text_field :provider %>
+  </div>
+
+  <div class="field receiver">
+    <%= f.label :receiver, t('.receiver') %>
+    <%= f.text_field :receiver %>
+  </div>
+
+  <div class="field description">
+    <%= f.label :description, t('.description') %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>

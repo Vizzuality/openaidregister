@@ -2,6 +2,32 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  date:
+    formats:
+      month_day_year: '%b %e, %Y'
+  custom_ammounts:
+    thousand:
+      one: 'K'
+      other: 'K'
+    million:
+      one: 'M'
+      other: 'M'
+  activemodel:
+    models:
+      project: Project
+    attributes:
+      project:
+        name: 'name'
+        id_in_organization: 'id in the organization'
+        description: 'description'
+        organization_role: 'organization role'
+        language: 'language'
+        sector: 'sector'
+        start_date: 'start date'
+        end_date: 'end date'
+        budget: 'budget'
+        contact_person: 'contact person'
+        url: 'url'
   title_for_html: '<strong>OpenAid</strong>Register'
   header:
     home: 'home'
@@ -38,22 +64,6 @@ en:
         title: 'Water team: small-business solutions for repair and...'
         content: 'Mapping water points is a critical step towards improving clean water access for rural families in Malawi. Using an innovative tool we created to monitor the lifecycle of hand pumps, wells and boreholes, EWB volunteers have documented the location of water points across the country. With this information...'
 
-  activemodel:
-    models:
-      project: Project
-    attributes:
-      project:
-        name: 'name'
-        id_in_organization: 'id in the organization'
-        description: 'description'
-        organization_role: 'organization role'
-        language: 'language'
-        sector: 'sector'
-        start_date: 'start date'
-        end_date: 'end date'
-        budget: 'budget'
-        contact_person: 'contact person'
-        url: 'url'
   projects:
     new:
       title: 'Create new project'
@@ -76,3 +86,38 @@ en:
         save: 'Save project'
         cancel: 'Cancel'
     form_advanced:
+      header:
+        congrats: 'Congrats, your projects has been registered!'
+        basic_information: 'The basic information has been registered. However, we encorage you to provide more.'
+        complete_information: 'complete information'
+        or: 'or'
+        add_another_project: 'add another project'
+      transactions:
+        title: 'Transactions:'
+        no_records: 'No transactions provided yet.'
+        add: 'Add'
+      involved_organizations:
+        title: 'Involved organizations:'
+        no_records: 'No organizations informed yet.'
+        add: 'Add'
+      related_documents:
+        title: 'Related documents:'
+        no_records: 'No documents provided yet.'
+        add: 'Add'
+      project_results:
+        title: 'Project results:'
+        no_records: 'No project results informed yet.'
+        add: 'Add'
+  transactions:
+    form:
+      type: 'Type'
+      date: 'Date'
+      value: 'Value'
+      provider: 'Provider'
+      receiver: 'Receiver'
+      description: 'Description'
+      add: 'Add'
+      cancel: 'Cancel'
+    create:
+      transaction_type: '%{type} on %{at}'
+      transaction_value: '%{value} %{currency}'

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '~> 3.2.11'
 
 gem 'cartodb-rb-client', :git => 'git@github.com:Vizzuality/cartodb-rb-client.git'
 
@@ -15,6 +15,7 @@ gem 'jquery-rails'
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'rspec-rails'
   gem 'launchy'
 end
