@@ -3,9 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 describe "IATI advanced form", :type => :feature do
 
   before do
-    TransactionType.stub(:all) { [OpenStruct.new(:id => 1, :name => 'Acquisition')] }
-    Currency.stub(:all) { [OpenStruct.new(:id => 1, :name => '$USD')] }
-
     visit edit_project_path(:id => 1)
   end
 

@@ -6,9 +6,7 @@ class Transaction < CartodbModel
                 :value_currency,
                 :provider,
                 :receiver,
-                :description,
-                :add,
-                :cancel
+                :description
 
   def transaction_type
     (TransactionType.all.select{|t| t.id == type.to_i} || []).first if type

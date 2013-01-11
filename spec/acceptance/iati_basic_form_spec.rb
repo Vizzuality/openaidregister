@@ -2,15 +2,6 @@ require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 
 describe "IATI basic form", :type => :feature do
 
-  before(:suite) do
-    Sector.stub(:all)           { [OpenStruct.new(:id => 1, :name => 'Agriculture')]   }
-    Subsector.stub(:all)        { [OpenStruct.new(:id => 1, :name => 'Food security')] }
-    OrganizationRole.stub(:all) { [OpenStruct.new(:id => 1, :name => 'Wadus')]         }
-    Language.stub(:all)         { [OpenStruct.new(:id => 1, :name => 'English')]       }
-    Currency.stub(:all)         { [OpenStruct.new(:id => 1, :name => 'USD')]           }
-
-  end
-
   before do
     visit new_project_path
   end
@@ -30,7 +21,7 @@ describe "IATI basic form", :type => :feature do
   describe 'Project ID On your Org. field' do
     subject { find('.field.id_in_organization') }
 
-    it { should have_hint 'Wadus' }
+    it { should_have_hint 'Wadus' }
   end
 
   it { should have_field 'Project description' }
@@ -101,23 +92,6 @@ describe "IATI basic form", :type => :feature do
   end
 
   describe 'submission' do
-    before(:all) do
-      class Project
-
-        def self.records
-          @@records ||= []
-        end
-
-        def save
-          Project.records << OpenStruct.new(attributes)
-        end
-
-        def self.all
-          Project.records
-        end
-
-      end
-    end
 
     it 'creates a new project' do
       fill_in 'Project name',            :with => 'IATI test project'
@@ -136,7 +110,7 @@ describe "IATI basic form", :type => :feature do
       select_date 'project_end_date',   1.month.since
 
       fill_in 'project_budget', :with => 100000
-      select 'USD',             :from => 'project_budget_currency'
+      select '$USD',             :from => 'project_budget_currency'
 
       fill_in 'project_url',            :with => 'http://www.myiatiproject.org'
       fill_in 'project_contact_person', :with => 'You'
