@@ -93,19 +93,19 @@ en:
         or: 'or'
         add_another_project: 'add another project'
       transactions:
-        title: 'Transactions:'
+        title: 'Transactions'
         no_records: 'No transactions provided yet.'
         add: 'Add'
       involved_organizations:
-        title: 'Involved organizations:'
+        title: 'Involved organizations'
         no_records: 'No organizations informed yet.'
         add: 'Add'
       related_documents:
-        title: 'Related documents:'
+        title: 'Related documents'
         no_records: 'No documents provided yet.'
         add: 'Add'
       project_results:
-        title: 'Project results:'
+        title: 'Project results'
         no_records: 'No project results informed yet.'
         add: 'Add'
   transactions:

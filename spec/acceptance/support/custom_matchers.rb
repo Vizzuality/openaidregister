@@ -34,7 +34,7 @@ module CustomMatchers
   def should_have_a_transactions_section
     within '.transactions' do
 
-      page.should have_section_title('Transactions:')
+      page.should have_section_title('Transactions')
       find('.hint')['data-hint'].should be == 'Wadus'
       page.should have_content 'No transactions provided yet.'
       page.should have_link 'Add'
@@ -75,7 +75,7 @@ module CustomMatchers
   def should_have_an_involved_organizations_section
     within '.involved-organizations' do
 
-      page.should have_section_title('Involved organizations:')
+      page.should have_section_title('Involved organizations')
       find('.hint')['data-hint'].should be == 'Wadus'
       page.should have_content 'No organizations informed yet.'
       page.should have_link 'Add'
@@ -109,7 +109,7 @@ module CustomMatchers
   def should_have_a_related_documents_section
     within '.related-documents' do
 
-      page.should have_section_title('Related documents:')
+      page.should have_section_title('Related documents')
       find('.hint')['data-hint'].should be == 'Wadus'
       page.should have_content 'No documents provided yet.'
       page.should have_link 'Add'
@@ -144,7 +144,7 @@ module CustomMatchers
   def should_have_a_project_results_section
     within '.project-results' do
 
-      page.should have_section_title('Project results:')
+      page.should have_section_title('Project results')
       find('.hint')['data-hint'].should be == 'Wadus'
       page.should have_content 'No project results informed yet.'
       page.should have_link 'Add'
@@ -176,7 +176,6 @@ module CustomMatchers
       page.should have_content 'Use free-text description instead?'
       page.should have_link 'free-text description'
 
-      peich
       page.should have_css 'p', :text => 'Use tabbed result description instead?', :visible => false
       page.should have_link 'tabbed result description', :visible => false
 

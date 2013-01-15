@@ -58,6 +58,15 @@ task :setup => :environment do
     {:name => 'tipe_id', :type => 'numeric'}
   ] unless tables_list.tables.map(&:name).include?('documents')
 
+  CartoDB::Connection.create_table 'project_results', [
+     {:name => 'concept',     :type => 'text'},
+     {:name => 'current',     :type => 'numeric'},
+     {:name => 'target',      :type => 'numeric'},
+     {:name => 'start_date',  :type => 'date'},
+     {:name => 'end_date',    :type => 'date'},
+     {:name => 'description', :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('project_results')
+
   %w(sectors subsectors languages organization_roles transaction_types currencies document_types).each do |table_name|
     CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
     CartoDB::Connection.create_table table_name
