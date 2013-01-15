@@ -121,3 +121,28 @@ en:
     create:
       transaction_type: '%{type} on %{at}'
       transaction_value: '%{value} %{currency}'
+  organizations:
+    form:
+      name: 'Organization name'
+      role_id: 'Role'
+      add: 'Add'
+      cancel: 'Cancel'
+  documents:
+    form:
+      file: 'Document file'
+      type_id: 'Document type'
+      add: 'Add'
+      cancel: 'Cancel'
+  project_results:
+    form:
+      concept: 'Concept'
+      current: 'Current'
+      target: 'Target'
+      start_date: 'Start date'
+      end_date: 'End date'
+      description: 'Results description'
+      freetext_toggle_html: 'Use %{link} instead?'
+      freetext_link: 'free-text description'
+      tabbed_result_link: 'tabbed result description'
+      add: 'Add'
+      cancel: 'Cancel'

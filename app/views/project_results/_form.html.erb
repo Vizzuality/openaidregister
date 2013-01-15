@@ -1,0 +1,41 @@
+<%= form_for @project_result, :html => {:class => "#{action_name}-project-result"} do |f| %>
+
+  <div class="field concept">
+    <%= f.label :concept, t('.concept') %>
+    <%= f.text_field :concept %>
+    <p class="free-text"><%= t('.freetext_toggle_html', :link => link_to(t('.freetext_link'), '#')) %></p>
+    <p class="tabbed-result"><%= t('.freetext_toggle_html', :link => link_to(t('.tabbed_result_link'), '#')) %></p>
+  </div>
+
+  <div class="field current">
+    <%= f.label :current, t('.current') %>
+    <%= f.text_field :current %>
+  </div>
+
+  <div class="field target">
+    <%= f.label :target, t('.target') %>
+    <%= f.text_field :target %>
+  </div>
+
+  <div class="field start_date">
+    <%= f.label :start_date, t('.start_date') %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field end_date">
+    <%= f.label :end_date, t('.end_date') %>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div class="field description">
+    <%= f.label :description, t('.description') %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>
+

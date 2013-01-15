@@ -1,0 +1,18 @@
+<%= form_for @document, :multipart => true, :html => {:class => "#{action_name}-document"} do |f| %>
+
+  <div class="field file">
+    <%= f.label :file, t('.file') %>
+    <%= f.file_field :file %>
+  </div>
+
+  <div class="field type-id">
+    <%= f.label :type_id, t('.type_id') %>
+    <%= f.select :type_id, to_select_options(@types) %>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>

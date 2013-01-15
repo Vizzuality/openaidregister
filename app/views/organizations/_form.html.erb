@@ -1,0 +1,18 @@
+<%= form_for @organization, :html => {:class => "#{action_name}-organization"} do |f| %>
+
+  <div class="field name">
+    <%= f.label :name, t('.name') %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field role-id">
+    <%= f.label :role_id, t('.role_id') %>
+    <%= f.select :role_id, to_select_options(@roles) %>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>

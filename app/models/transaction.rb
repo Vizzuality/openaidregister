@@ -9,11 +9,11 @@ class Transaction < CartodbModel
                 :description
 
   def transaction_type
-    (TransactionType.all.select{|t| t.id == type.to_i} || []).first if type
+    (TransactionType.all.select{|t| t.cartodb_id == type.to_i} || []).first if type
   end
 
   def currency
-    (Currency.all.select{|c| c.id == value_currency.to_i} || []).first if value_currency
+    (Currency.all.select{|c| c.cartodb_id == value_currency.to_i} || []).first if value_currency
   end
 
   def date

@@ -1,0 +1,2 @@
+class DocumentType < CartodbModel
+end
