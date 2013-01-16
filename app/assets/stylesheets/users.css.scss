@@ -1,0 +1,91 @@
+
+
+  /**
+   *  Specific styles for Open Aid Register users view
+   */
+
+  @import "compass";
+  @import "common/forms";
+  @import "common/vars";
+
+  // Default form
+  @include default-form(auto,100px);
+
+  // Sections styles and defaults
+  section {
+    // Styles
+    &.bottom {border-bottom:1px solid #DDDDDD;}
+    &.top {border-top:1px solid #DDDDDD;}
+
+    &.compact {
+      display:block;
+      padding:20px 50px;
+    }
+
+    // Tools section
+    &.tools {
+      height:32px;
+      label {text-transform:capitalize; margin:9px 10px 0 0;}
+      a:last-child {margin-left:8px;}
+    }
+
+    // Map section
+    &.map {
+      padding:0;
+      div#projects_map {width:100%; height:450px; margin:0; padding:0;}
+    }
+
+    // List filters
+    &.list_filters {
+      padding:35px 50px;
+      div.field input[type="text"] {width:520px; margin:0;}
+      div.filter_selector {
+        margin-top:5px;
+        label {text-transform:capitalize; margin:9px 10px 0 0;}
+        a {
+          margin-right:8px;
+          &:last-child {margin-right:0px;} 
+        }
+      }
+    }
+
+    // List
+    &.list {
+      padding:0 50px;
+      
+      ul {
+        width:100%;
+        display:block;
+        padding-bottom:30px;
+
+        li {
+          display:block;
+          width:100%;
+          padding:25px 0;
+          border-bottom:1px solid #DDDDDD;
+
+          p {
+            @include inline-block();
+            
+            &.name {
+              width:640px;
+              padding-right:50px;
+              text-overflow:ellipsis; 
+              overflow:hidden;
+              white-space:nowrap;
+
+              a {text-transform:capitalize; font-weight:bold; font-size:19px;}
+            }
+
+            &.status {
+              text-transform: capitalize;
+              &.past {color:#CCCCCC;}
+            }
+          }
+
+          &:last-child {border:none;}
+        }
+      }
+    }
+  }
+

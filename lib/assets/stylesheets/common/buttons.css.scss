@@ -19,11 +19,6 @@
 
       &:hover {cursor:pointer;}
 
-      // Styles
-      &.uppercase {
-        text-transform: uppercase;
-      }
-
       // Grey type
       &.grey {
         background:#444444;
@@ -49,6 +44,33 @@
         letter-spacing: -1px;
         &:hover {background:#BABABA;}
         &:active {background:#AAA;} 
+      }
+
+      // White
+      &.white {
+        padding:10px 16px;
+        background:white;
+        font:bold 15px $text_fonts;
+        color:#FF4C4C;
+        letter-spacing: -1px;
+        border:1px solid #FF4C4C;
+        &:hover {color:#F44848; border-color:#F44848;}
+        &:active {color:#DC4141; border-color:#DC4141;} 
+        &.selected {color:#666666; border-color:#666666; cursor:default; text-decoration:none;}
+      }
+
+
+      // STYLES
+      &.uppercase {
+        text-transform: uppercase;
+      }
+
+      &.small {
+        padding:8px 15px;
+        font-size:13px;
+        letter-spacing:0;
+
+        &.white {padding:7px 15px;}
       }
     }
   }

@@ -1,1 +1,67 @@
-Dashboard
+<% content_for(:page_title) do %>OpenAidRegister | Dashboard<% end %>
+
+<%= content_for(:js) do %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :application, :users %>
+<% end %>
+
+<%= content_for(:css) do %>
+  <%= stylesheet_link_tag :application, :users, :media => 'all' %>
+<% end %>
+
+<%= render :partial => 'header' %>
+
+<!-- edit tools -->
+<div class="inner">
+  <section class="compact borders tools">
+    <a href="#<%= t('users.publish.add_new_project') %>" class="left button uppercase round red small"><%= t('users.publish.add_new_project') %></a>
+    <div class="right">
+      <label class="small dark left"><%= t('users.publish.label') %></label>
+      <a href="#<%= t('users.publish.export') %>" class="button uppercase round white small left"><%= t('users.publish.export') %></a>
+      <a href="#<%= t('users.publish.share') %>" class="button uppercase round white small left"><%= t('users.publish.share') %></a>
+    </div>
+  </section>
+</div>
+
+<!-- map -->
+<section class="top bottom map">
+  <div id="projects_map"></div>
+</section>
+
+<!-- list -->
+<div class="inner">
+  <section class="borders bottom compact list_filters">
+    <form>
+      <div class="field med">
+        <input type="text" placeholder="<%= t('users.filters.search', :projects => '13') %>"id="projects_search" />
+      </div>
+      <div class="right filter_selector">
+        <label class="dark small left"><%= t('users.filters.label') %></label>
+        <a href="#" class="selected uppercase button round white small left"><%= t('users.filters.all') %></a>
+        <a href="#ongoing" class="button uppercase round white small left"><%= t('users.filters.ongoing') %></a>
+        <a href="#past" class="button uppercase round white small left"><%= t('users.filters.past') %></a>
+      </div>
+    </form>
+  </section>
+  <section class="borders bottom list">
+    <ul id="projects_list">
+      <li data-position="43.3,-3.0">
+        <p class="name"><a href="#ey">first list item</a></p>
+        <p class="status past">past</p>
+      </li>
+      <li data-position="1.3,-3.0">
+        <p class="name"><a href="#ey">second list item</a></p>
+        <p class="status outgoing">ongoing</p>
+      </li>
+      <li data-position="42.3,-3.7">
+        <p class="name"><a href="#ey">third list item</a></p>
+        <p class="status past">past</p>
+      </li>
+      <li data-position="41.3,-3.9">
+        <p class="name"><a href="#ey">fourth list item</a></p>
+        <p class="status past">past</p>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<%= render :partial => 'layouts/footer' %>

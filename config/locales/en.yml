@@ -63,6 +63,18 @@ en:
       p1:
         title: 'Water team: small-business solutions for repair and...'
         content: 'Mapping water points is a critical step towards improving clean water access for rural families in Malawi. Using an innovative tool we created to monitor the lifecycle of hand pumps, wells and boreholes, EWB volunteers have documented the location of water points across the country. With this information...'
+  users:
+    publish:
+      add_new_project: 'add new project'
+      label: 'publishing tools'
+      export: 'export'
+      share: 'share'
+    filters:
+      search: 'Search in %{projects} projects...'
+      past: 'past'
+      ongoing: 'ongoing'
+      all: 'all'
+      label: 'view'
 
   projects:
     new:
