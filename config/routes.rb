@@ -1,5 +1,7 @@
 Openaidregister::Application.routes.draw do
 
+  resources :users
+
   resources :projects
   resources :transactions
   resources :organizations
