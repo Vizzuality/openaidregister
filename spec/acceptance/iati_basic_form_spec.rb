@@ -12,7 +12,7 @@ describe "IATI basic form", :type => :feature do
 
   it { should have_content 'Start with the basics' }
 
-  it { should have_content 'This information is enought for registering it in IATI, it takes less than 1 minute.' }
+  it { should have_content 'This information is enough for registering it in IATI, it takes less than 1 minute.' }
 
   it { should have_field 'Project name' }
 

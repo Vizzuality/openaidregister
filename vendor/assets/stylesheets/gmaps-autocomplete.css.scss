@@ -1,0 +1,38 @@
+
+  /**
+   *  Gmaps v3 autocomplete styles
+   */
+
+  @import "compass";
+  @import "common/vars";
+
+
+  .pac-container {
+    margin-top:5px;
+    padding:20px 0 10px;
+    background:white;
+    @include border-radius(20px);
+    border:1px solid #CCC; // IE
+    border:1px solid rgba(black,0.10);
+    font:normal 15px $text_fonts;
+
+    .pac-item {
+      padding:0 20px;
+      margin-bottom:5px;
+      color:#858585;
+      text-overflow:ellipsis; 
+      overflow:hidden;
+      white-space:nowrap;
+
+      b {font-weight:bold;}
+    }
+
+    .pac-selected {
+      background:none;
+      color:#333333;
+    }
+
+    &::after {
+      margin-right:20px;
+    }
+  }

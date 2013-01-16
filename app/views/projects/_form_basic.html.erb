@@ -1,88 +1,115 @@
-<%= form_for :project, :url => @url, :method => (@method || :post) do |f| %>
+  <%= form_for :project, :url => @url, :method => (@method || :post) do |f| %>
 
-  <div class="field name long">
-    <%= f.label :name, t('.name') %>
-    <%= f.text_field :name, :class => "long" %>
-  </div>
+    <div class="form_wrapper">
+      <div class="field name long">
+        <%= f.label :name, t('.name') %>
+        <%= f.text_field :name, :class => "long" %>
+      </div>
 
-  <div class="field id_in_organization long margin20">
-    <%= f.label :id_in_organization, t('.id_in_organization') %>
-    <%= f.text_field :id_in_organization, :class => "short" %>
-    <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-  </div>
+      <div class="field id_in_organization long margin20">
+        <%= f.label :id_in_organization, t('.id_in_organization') %>
+        <%= f.text_field :id_in_organization, :class => "short" %>
+        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+      </div>
 
-  <div class="field description long margin20">
-    <%= f.label :description, t('.description') %>
-    <%= f.text_area :description %>
-  </div>
+      <div class="field description long margin20">
+        <%= f.label :description, t('.description') %>
+        <%= f.text_area :description %>
+      </div>
 
-  <div class="field organization_role med margin20">
-    <%= f.label :organization_role, t('.organization_role') %>
-    <div class="select_wrapper">
-      <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
-    </div>
-  </div>
-
-  <div class="field language margin short margin20">
-    <%= f.label :language, t('.language') %>
-    <div class="select_wrapper">
-      <%= f.select :language, to_select_options(@languages) %>
-    </div>
-  </div>
-
-  <div class="field sector long margin20">
-    <%= f.label :sector, t('.sector') %>
-    <div class="grey_wrapper">
-      <div class="select_wrapper">
-        <div class="column">
-          <%= f.select :sector, to_select_options(@sectors),       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
-        </div>
-        <div class="column">
-          <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => true }, { 'data-placeholder' => "Subsector..." } %>
+      <div class="field organization_role med margin20">
+        <%= f.label :organization_role, t('.organization_role') %>
+        <div class="select_wrapper">
+          <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
         </div>
       </div>
-      <%= f.button t('.add_button'), :class => "round grey right" %>
+
+      <div class="field language margin short margin20">
+        <%= f.label :language, t('.language') %>
+        <div class="select_wrapper">
+          <%= f.select :language, to_select_options(@languages) %>
+        </div>
+      </div>
+
+      <div class="field sector long margin20">
+        <%= f.label :sector, t('.sector') %>
+        <div class="grey_wrapper">
+          <div class="select_wrapper">
+            <div class="column">
+              <%= f.select :sector, to_select_options(@sectors),       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
+              <span class="sptor"></span>
+            </div>
+            <div class="column">
+              <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => true }, { 'data-placeholder' => "Subsector..." } %>
+            </div>
+          </div>
+          <%= f.button t('.add_button'), :class => "round grey right add" %>
+        </div>
+        <select id="sectors_list" multiple>
+          <option value="Agriculture,Food Security" selected>Agriculture,Food Security</option>
+        </select>
+      </div>
+
+      <div class="field start_date long margin20">
+        <%= f.label :start_date, t('.start_end_date') %>
+        <div class="select_wrapper">
+          <div class="column">
+            <%= f.text_field :start_date, :class => 'short inner_input' %>
+            <span class="sptor"></span>
+          </div>
+          <div class="column">
+            <%= f.text_field :end_date, :class => 'short inner_input' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field budget short margin20">
+        <%= f.label :budget, t('.budget') %>
+        <div class="select_wrapper">
+          <div class="column">
+            <%= f.text_field :budget, :class => 'tiny inner_input' %>
+            <span class="sptor"></span>
+          </div>
+          <div class="column">
+            <%= f.select :budget_currency, to_select_options(@currencies), :style => "width:30px" %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
+    <div class="field locations margin20">
+      <div class="form_wrapper">
+        <%= f.label :locations, t('.locations') %>
+        <p class="small light right margin5"><%= t('.location.desc') %></p>
+      </div>
+      <div class="form">
+        <input id="geocomplete" type="text" placeholder="<%= t('.location.geocomplete') %>" />
+        <input type="submit" value=""/>
+      </div>
+      <div id="locations_map"></div>
+      <input type="hidden" id="location" />
+      <select id="locations_list" multiple>
+        <option value="43.001,-3.00" selected>(43.001,-3.00)</option>
+        <option value="5.001,43.00" selected>(5.001,43.00)</option>
+        <option value="8.001,3.00" selected>(8.001,3.00)</option>
+      </select>
+    </div>
 
-  <div class="field start_date med margin20">
-    <%= f.label :start_date, t('.start_end_date') %>
-    <%= f.text_field :start_date %>
-    <%= f.text_field :end_date %>
-  </div>
+    <div class="form_wrapper">
+      <div class="field url long margin20">
+        <%= f.label :url, t('.url') %>
+        <%= f.text_field :url, :class => "med" %>
+      </div>
 
-  <div class="field budget short margin20">
-    <%= f.label :budget, t('.budget') %>
-    <%= f.text_field :budget %>
-    <%= f.select :budget_currency, to_select_options(@currencies) %>
-  </div>
+      <div class="field contact_person med margin20">
+        <%= f.label :contact_person, t('.contact_person') %>
+        <%= f.text_field :contact_person %>
+        <%= link_to t('.someone_different'), '#' %>
+      </div>
 
-  <div class="field locations margin20">
-    <%= f.label :locations, t('.locations') %>
-    <input id="geocomplete" type="text" placeholder="Type in an address" />
-    <div id="locations_map"></div>
-    <select multiple>
-      <option label="Address" selected>Madrid</option>
-      <option label="Address" selected>Alabama</option>
-      <option label="Point" selected>(43.001, -3.00)</option>
-    </select>
-  </div>
-
-  <div class="field url long margin20">
-    <%= f.label :url, t('.url') %>
-    <%= f.text_field :url, :class => "med" %>
-  </div>
-
-  <div class="field contact_person med margin20">
-    <%= f.label :contact_person, t('.contact_person') %>
-    <%= f.text_field :contact_person %>
-    <%= link_to t('.someone_different'), '#' %>
-  </div>
-
-  <div class="field long margin40">
-    <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
-    <%= f.submit t('.save'), :class => "button round red right" %>
-  </div>
-<% end %>
-
+      <div class="field long margin40">
+        <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
+        <%= f.submit t('.save'), :class => "button round red right" %>
+      </div>
+    </div>
+  <% end %>

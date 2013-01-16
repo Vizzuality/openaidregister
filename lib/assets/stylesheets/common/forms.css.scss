@@ -20,8 +20,28 @@
     }
   }
 
-  @mixin default-form() {
-    
+  @mixin no-text-focus() {
+    &:focus {
+      outline:none;
+      border:none;
+      @include box-shadow(none);
+    }
+  }
+
+  @mixin default-form($width:736px,$padding:40px) {
+
+    // Define form size
+    div.form_inner {
+      margin:0 auto;
+      width:736px;
+    }
+
+    // Define form wrapper padding
+    div.form_wrapper {
+      padding:0 $padding;
+    }
+
+    // Field customization
     div.field {
       position:relative;
       @include inline-block();
@@ -48,9 +68,18 @@
         @include text-focus();
 
         // text input types
+        &.tiny  {width:100px;}
         &.short {width:178px;}
         &.med   {width:355px;}
         &.long  {width:594px;}
+
+        // inner input (no borders, no focus)
+        &.inner_input {
+          padding:0;
+          margin:0;
+          @include border-radius(0);
+          @include no-text-focus();
+        }
       }
 
       // Textarea
@@ -96,7 +125,7 @@
 
       // margin for several fields in the same line
       &.margin {
-        margin-left:18px;
+        margin-left:13px;
       }
 
       // div.field types
@@ -105,4 +134,25 @@
       &.long  {width:636px;}
 
     } /* div.field */
+
+    ul.addons_list {
+      display:block;
+      padding:15px 0 10px;
+
+      li {
+        display:block;
+        padding:2px 2px 2px 20px;
+        margin-top:5px;
+        background: #EDEDED;
+        @include border-radius(25px);
+        letter-spacing: -4px;
+        word-spacing: -4px;
+
+        * {letter-spacing: 0; word-spacing: 0;}
+
+        div.label, p, a {@include inline-block(); vertical-align: middle;}
+        div.label {width:567px;}
+        a {@include border-radius(25px)}
+      }
+    }
   }

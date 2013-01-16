@@ -69,7 +69,7 @@ en:
       title: 'Create new project'
       info:
         title: 'Start with the basics'
-        description: 'This information is enought for registering it in IATI, it takes less than 1 minute.'
+        description: 'This information is enough for registering it in IATI, it takes less than 1 minute.'
     form_basic:
         name: 'Project name'
         id_in_organization: 'Project ID on your Org.'
@@ -81,6 +81,10 @@ en:
         start_end_date: 'Project start / end dates'
         budget: 'Budget'
         contact_person: 'Contact person'
+        location:
+          label: ''
+          desc: 'Click on the map to add them. Specify as many locations as you need'
+          geocomplete: 'Type in an address'
         someone_different: 'Someone different?'
         url: 'Project URL'
         save: 'Save project'

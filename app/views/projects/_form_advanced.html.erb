@@ -1,14 +1,19 @@
 <%= form_for :project do |f| %>
 
-  <div class="header">
-    <h3><%= t('.header.congrats') %></h3>
-    <p><%= t('.header.basic_information') %></p>
+  <section class="borders grey_section">
+    <div class="center">
+      <h4 class="dark"><%= t('.header.congrats') %></h4>
+      <p class="margin5"><%= t('.header.basic_information') %></p>
+    </div>
+    <div class="center margin40">
+      <%= link_to t('.header.complete_information'), "", :class => "button round red" %>
+      <span><%= t('.header.or') %></span>
+      <%= link_to t('.header.add_another_project'), "", :class => "button round light-grey uppercase" %>
+    </div>
+  </section>
 
-    <%= link_to t('.header.complete_information') %>
-    <span><%= t('.header.or') %></span>
-    <%= link_to t('.header.add_another_project') %>
-  </div>
 
+  <section class="form_center">
   <ul>
     <li class="transactions">
       <h4><%= t('.transactions.title') %></h4>
@@ -43,6 +48,6 @@
       <%= link_to t('.project_results.add') %>
     </li>
   </ul>
+  </section>
 
 <% end %>
-

@@ -19,11 +19,15 @@
 
       &:hover {cursor:pointer;}
 
+      // Styles
+      &.uppercase {
+        text-transform: uppercase;
+      }
+
       // Grey type
       &.grey {
         background:#444444;
         font:bold 15px $button_fonts;
-        text-transform: uppercase;
         &:hover {background:#343434;}
         &:active {background:#121212;}
       }
@@ -35,6 +39,16 @@
         letter-spacing: -1px;
         &:hover {background:#F44848;}
         &:active {background:#DC4141;}
+      }
+
+      // Light grey
+      &.light-grey {
+        background:#DFDFDF;
+        font:bold 15px $text_fonts;
+        color:#333;
+        letter-spacing: -1px;
+        &:hover {background:#BABABA;}
+        &:active {background:#AAA;} 
       }
     }
   }
