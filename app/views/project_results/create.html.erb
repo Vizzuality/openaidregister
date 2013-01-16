@@ -1,0 +1,12 @@
+<li class="project-result">
+  <span class="concept"><%= @project_result.concept %></span>
+  <% if @project_result.description.blank? %>
+  <span class="current_target"><%= "%s%" % @project_result.current %> > <%= "%s%" % @project_result.target %></span>
+  <span class="time"><%= distance_of_time_in_words(@project_result.start_date, @project_result.end_date) %></span>
+  <% else %>
+  <span class="description"><%= @project_result.description %></span>
+  <% end %>
+
+  <%= link_to '', '#', :id => 'remove' %>
+</li>
+

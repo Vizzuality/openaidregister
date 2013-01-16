@@ -97,19 +97,19 @@ en:
         or: 'or'
         add_another_project: 'add another project'
       transactions:
-        title: 'Transactions:'
+        title: 'Transactions'
         no_records: 'No transactions provided yet.'
         add: 'Add'
       involved_organizations:
-        title: 'Involved organizations:'
+        title: 'Involved organizations'
         no_records: 'No organizations informed yet.'
         add: 'Add'
       related_documents:
-        title: 'Related documents:'
+        title: 'Related documents'
         no_records: 'No documents provided yet.'
         add: 'Add'
       project_results:
-        title: 'Project results:'
+        title: 'Project results'
         no_records: 'No project results informed yet.'
         add: 'Add'
   transactions:
@@ -125,3 +125,28 @@ en:
     create:
       transaction_type: '%{type} on %{at}'
       transaction_value: '%{value} %{currency}'
+  organizations:
+    form:
+      name: 'Organization name'
+      role_id: 'Role'
+      add: 'Add'
+      cancel: 'Cancel'
+  documents:
+    form:
+      file: 'Document file'
+      type_id: 'Document type'
+      add: 'Add'
+      cancel: 'Cancel'
+  project_results:
+    form:
+      concept: 'Concept'
+      current: 'Current'
+      target: 'Target'
+      start_date: 'Start date'
+      end_date: 'End date'
+      description: 'Results description'
+      freetext_toggle_html: 'Use %{link} instead?'
+      freetext_link: 'free-text description'
+      tabbed_result_link: 'tabbed result description'
+      add: 'Add'
+      cancel: 'Cancel'

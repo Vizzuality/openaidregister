@@ -23,6 +23,7 @@ RSpec.configure do |config|
     Language.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => 'English')]       }
     TransactionType.stub(:all)  { [OpenStruct.new(:cartodb_id => 1, :name => 'Acquisition')]   }
     Currency.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => '$USD')]          }
+    DocumentType.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]          }
   end
 
 end

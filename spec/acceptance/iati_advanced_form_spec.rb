@@ -15,72 +15,22 @@ describe "IATI advanced form", :type => :feature do
       page.should have_link 'add another project'
     end
 
-    within '.transactions' do
+    should_have_a_transactions_section
 
-      page.should have_section_title('Transactions')
-      page.should have_hint 'Wadus'
-      page.should have_content 'No transactions provided yet.'
-      page.should have_link 'Add'
+    should_have_an_involved_organizations_section
 
-      click_link 'Add'
+    should_have_a_related_documents_section
 
-    end
+    should_have_a_project_results_section
 
-    within '.new_transaction' do
+    should_create_a_new_transaction
 
-      select   'Acquisition', :from => 'Type'
-      select   '2013',        :from => 'transaction_date_1i'
-      select   'January',     :from => 'transaction_date_2i'
-      select   '1',           :from => 'transaction_date_3i'
-      fill_in  'Value',       :with => '1000000'
-      fill_in  'Provider',    :with => 'Wadus provider'
-      fill_in  'Receiver',    :with => 'Wadus receiver'
-      fill_in  'Description', :with => 'Wadus description'
+    should_create_a_new_involved_organization
 
-      page.should have_link   'Cancel'
+    should_create_a_new_related_document
 
-      click_on 'Add'
-    end
+    should_create_a_new_project_result
 
-    within '.transaction' do
-      page.should have_selector '.type',              :text => 'Acquisition on Jan 1, 2013'
-      page.should have_selector '.provider_receiver', :text => 'Wadus provider > Wadus receiver'
-      page.should have_selector '.value',             :text => '1M $USD'
-      page.should have_link     'remove'
-    end
-
-    #context 'involved organizations' do
-
-      #subject { find('.involved-organizations') }
-
-      #it { should have_section_title('involved-organizations', 'Involved organizations') }
-      #it { should have_hint 'Wadus' }
-      #it { should have_content 'No organizations informed yet.' }
-      #it { should have_link 'Add' }
-
-    #end
-
-    #context 'related documents' do
-
-      #subject { find('.related-documents') }
-
-      #it { should have_section_title('related-documents', 'Related documents') }
-      #it { should have_hint 'Wadus' }
-      #it { should have_content 'No documents provided yet.' }
-      #it { should have_link 'Add' }
-
-    #end
-
-    #context 'project results' do
-
-      #subject { find('.project-results') }
-
-      #it { should have_section_title('project-results', 'Project results') }
-      #it { should have_hint 'Wadus' }
-      #it { should have_content 'No project results informed yet.' }
-      #it { should have_link 'Add' }
-
-    #end
   end
 
 end

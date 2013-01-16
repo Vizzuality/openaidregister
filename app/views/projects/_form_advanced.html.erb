@@ -17,35 +17,27 @@
   <ul>
     <li class="transactions">
       <h4><%= t('.transactions.title') %></h4>
-      <div class="hint">
-        <p>Wadus</p>
-      </div>
+      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
       <div class="no-results"><%= t('.transactions.no_records') %></div>
       <%= link_to t('.transactions.add'), new_transaction_path %>
     </li>
     <li class="involved-organizations">
-      <h4><%= t('.involved_organizations') %></h4>
-      <div class="hint">
-        <p>Wadus</p>
-      </div>
+      <h4><%= t('.involved_organizations.title') %></h4>
+      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
       <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
-      <%= link_to t('.involved_organizations.add') %>
+      <%= link_to t('.involved_organizations.add'), new_organization_path %>
     </li>
     <li class="related-documents">
       <h4><%= t('.related_documents.title') %></h4>
-      <div class="hint">
-        <p>Wadus</p>
-      </div>
+      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
       <div class="no-results"><%= t('.related_documents.no_records') %></div>
-      <%= link_to t('.related_documents.add') %>
+      <%= link_to t('.related_documents.add'), new_document_path %>
     </li>
     <li class="project-results">
       <h4><%= t('.project_results.title') %></h4>
-      <div class="hint">
-        <p>Wadus</p>
-      </div>
+      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
       <div class="no-results"><%= t('.project_results.no_records') %></div>
-      <%= link_to t('.project_results.add') %>
+      <%= link_to t('.project_results.add'), new_project_result_path %>
     </li>
   </ul>
   </section>

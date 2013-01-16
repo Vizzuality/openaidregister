@@ -48,7 +48,26 @@ task :setup => :environment do
     {:name => 'description',    :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('transactions')
 
-  %w(sectors subsectors languages organization_roles transaction_types currencies).each do |table_name|
+  CartoDB::Connection.create_table 'organizations', [
+    {:name => 'name',    :type => 'text'},
+    {:name => 'role_id', :type => 'numeric'}
+  ] unless tables_list.tables.map(&:name).include?('organizations')
+
+  CartoDB::Connection.create_table 'documents', [
+    {:name => 'file',    :type => 'text'},
+    {:name => 'tipe_id', :type => 'numeric'}
+  ] unless tables_list.tables.map(&:name).include?('documents')
+
+  CartoDB::Connection.create_table 'project_results', [
+     {:name => 'concept',     :type => 'text'},
+     {:name => 'current',     :type => 'numeric'},
+     {:name => 'target',      :type => 'numeric'},
+     {:name => 'start_date',  :type => 'date'},
+     {:name => 'end_date',    :type => 'date'},
+     {:name => 'description', :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('project_results')
+
+  %w(sectors subsectors languages organization_roles transaction_types currencies document_types).each do |table_name|
     CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
     CartoDB::Connection.create_table table_name
   end
@@ -82,6 +101,10 @@ task :setup => :environment do
     CartoDB::Connection.insert_row 'currencies', {
       'cartodb_id' => 1,
       'name'       => '$USD'
+    }
+    CartoDB::Connection.insert_row 'document_types', {
+      'cartodb_id' => 1,
+      'name'       => 'Undefined'
     }
   puts '... done!'
 
