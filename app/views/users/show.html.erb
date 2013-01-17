@@ -25,10 +25,15 @@
 <!-- map -->
 <section class="top bottom map">
   <div id="projects_map"></div>
+  <div id="zoom"><a class="zoom_in">+</a><a class="zoom_out">-</a></div>
+  <div class="empty_map">
+    <p class="darker center bold bigger left"><%= t('users.map.empty.title') %></p>
+    <p class="center left margin15"><a href="#add" class="button red round"><%= t('users.map.empty.button') %></a></p>
+  </div>
 </section>
 
 <!-- list -->
-<div class="inner">
+<div class="inner list">
   <section class="borders bottom compact list_filters">
     <form>
       <div class="field med">

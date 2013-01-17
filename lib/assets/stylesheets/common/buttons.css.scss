@@ -9,6 +9,7 @@
   a.button,
   button,
   input[type="submit"] {
+    @include inline-block();
 
     &.round {
       padding:12px 18px;

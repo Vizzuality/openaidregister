@@ -69,6 +69,10 @@ en:
       label: 'publishing tools'
       export: 'export'
       share: 'share'
+    map:
+      empty:
+        title: 'You don’t have any projects yet'
+        button: 'Add your first project'
     filters:
       search: 'Search in %{projects} projects...'
       past: 'past'

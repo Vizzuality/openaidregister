@@ -7,6 +7,7 @@
   @import "compass";
   @import "common/forms";
   @import "common/vars";
+  @import "common/maps";
 
   // Default form
   @include default-form(auto,100px);
@@ -31,8 +32,22 @@
 
     // Map section
     &.map {
+      position:relative;
       padding:0;
       div#projects_map {width:100%; height:450px; margin:0; padding:0;}
+      div.empty_map {
+        position:absolute;
+        display:none;
+        top:120px;
+        left:50%;
+        width:360px;
+        margin-left:-240px;
+        padding:50px 60px;
+        background:white;
+        border:1px solid #CCC\9;
+        @include box-shadow(rgba(black,0.6) 0 0 1px 0);
+        p {display:block; width:100%; &.bigger {font-size:23px;}}
+      }
     }
 
     // List filters
@@ -81,6 +96,10 @@
               text-transform: capitalize;
               &.past {color:#CCCCCC;}
             }
+          }
+
+          &.empty {
+            p {display:block; &.bigger {letter-spacing: -1px}}
           }
 
           &:last-child {border:none;}
