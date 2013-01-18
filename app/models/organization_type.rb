@@ -1,0 +1,3 @@
+class OrganizationType < CartodbModel
+
+end

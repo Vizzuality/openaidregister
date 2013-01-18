@@ -4,6 +4,9 @@ gem 'rails', '~> 3.2.11'
 
 gem 'cartodb-rb-client', :git => 'git@github.com:Vizzuality/cartodb-rb-client.git'
 
+gem 'warden'
+gem 'valid_email'
+
 group :assets do
   gem 'turbo-sprockets-rails3'
   gem 'uglifier', '>= 1.0.3'

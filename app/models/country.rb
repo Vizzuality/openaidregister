@@ -1,0 +1,3 @@
+class Country < CartodbModel
+
+end

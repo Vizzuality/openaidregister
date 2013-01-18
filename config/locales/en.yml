@@ -166,3 +166,17 @@ en:
       tabbed_result_link: 'tabbed result description'
       add: 'Add'
       cancel: 'Cancel'
+  users:
+    new:
+      create_your_account: 'Create your account'
+      name: 'Your name'
+      email: 'Your email'
+      password: 'Your password'
+      organization:
+        name: "Organization's name"
+        website: "Organization's website"
+        type_id: "Organization's type"
+        country_id: "Organization's country"
+        government_id: "Government ID"
+      continue: 'Continue'
+      save: 'Save'

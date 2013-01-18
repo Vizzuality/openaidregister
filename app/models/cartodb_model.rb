@@ -3,6 +3,9 @@ class CartodbModel
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
+  attr_accessor :cartodb_id
+  alias :id :cartodb_id
+
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value) rescue nil
@@ -11,7 +14,7 @@ class CartodbModel
   end
 
   def persisted?
-    false
+    cartodb_id.present?
   end
 
   def self.all
@@ -27,6 +30,12 @@ class CartodbModel
     result = CartoDB::Connection.query(sql)
 
     return result.rows || [] if result
+    []
+  end
+
+  def self.count
+    result = CartoDB::Connection.query("SELECT count(cartodb_id) as count FROM #{self.name.tableize}")
+    return result.rows[0]['count'] || 0 if result && result.rows.present?
     []
   end
 

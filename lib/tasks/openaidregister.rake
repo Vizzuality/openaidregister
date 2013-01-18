@@ -48,10 +48,10 @@ task :setup => :environment do
     {:name => 'description',    :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('transactions')
 
-  CartoDB::Connection.create_table 'organizations', [
+  CartoDB::Connection.create_table 'external_organizations', [
     {:name => 'name',    :type => 'text'},
     {:name => 'role_id', :type => 'numeric'}
-  ] unless tables_list.tables.map(&:name).include?('organizations')
+  ] unless tables_list.tables.map(&:name).include?('external_organizations')
 
   CartoDB::Connection.create_table 'documents', [
     {:name => 'file',    :type => 'text'},
@@ -67,7 +67,33 @@ task :setup => :environment do
      {:name => 'description', :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('project_results')
 
-  %w(sectors subsectors languages organization_roles transaction_types currencies document_types).each do |table_name|
+  CartoDB::Connection.create_table 'users', [
+     {:name => 'email',    :type => 'text'},
+     {:name => 'password', :type => 'text'},
+     {:name => 'name',     :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('users')
+
+  CartoDB::Connection.create_table 'organizations', [
+     {:name => 'name',          :type => 'text'},
+     {:name => 'website',       :type => 'text'},
+     {:name => 'type_id',       :type => 'numeric'},
+     {:name => 'country_id',    :type => 'numeric'},
+     {:name => 'government_id', :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('organizations')
+
+
+
+  %w(
+    sectors
+    subsectors
+    languages
+    organization_roles
+    transaction_types
+    currencies
+    document_types
+    organization_types
+    countries
+  ).each do |table_name|
     CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
     CartoDB::Connection.create_table table_name
   end
@@ -105,6 +131,14 @@ task :setup => :environment do
     CartoDB::Connection.insert_row 'document_types', {
       'cartodb_id' => 1,
       'name'       => 'Undefined'
+    }
+    CartoDB::Connection.insert_row 'organization_types', {
+      'cartodb_id' => 1,
+      'name'       => 'Wadus'
+    }
+    CartoDB::Connection.insert_row 'countries', {
+      'cartodb_id' => 1,
+      'name'       => 'Spain'
     }
   puts '... done!'
 
