@@ -81,8 +81,6 @@ task :setup => :environment do
      {:name => 'government_id', :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('organizations')
 
-
-
   %w(
     sectors
     subsectors
@@ -90,10 +88,10 @@ task :setup => :environment do
     languages
     transaction_types
     collaboration_types
-	tied_statuses
-	aid_types
-	flow_types
-	finance_types
+    tied_statuses
+    aid_types
+    flow_types
+    finance_types
     currencies
     document_types
     organization_document_types
@@ -286,7 +284,7 @@ task :setup => :environment do
       'cartodb_id' => 15,
       'name'       => 'Refugees in donor countries'
     }
- 
+
 
 
 
@@ -603,5 +601,36 @@ task :setup => :environment do
     }
   puts '... done!'
 
+end
+
+
+desc 'Drops all tables in the cartodb account'
+task :drop_all_tables => :environment do
+  %w(
+    projects
+    transactions
+    external_organizations
+    documents
+    project_results
+    users
+    organizations
+    sectors
+    subsectors
+    organization_roles
+    languages
+    transaction_types
+    collaboration_types
+    tied_statuses
+    aid_types
+    flow_types
+    finance_types
+    currencies
+    document_types
+    organization_document_types
+    organization_types
+    countries
+  ).each do |table_name|
+    CartoDB::Connection.drop_table table_name
+  end
 end
 

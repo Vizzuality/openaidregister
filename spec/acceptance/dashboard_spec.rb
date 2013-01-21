@@ -13,26 +13,25 @@ describe "Dashboard", :type => :feature do
     it 'shows a map and a list of projects' do
       log_in_as @user
 
-      peich
-      page.should have_link 'Add new project'
+      page.should have_link 'add new project'
 
       within '.publishing-tools' do
-        page.should have_content 'Publishing tools'
-        page.should have_link 'Export'
-        page.should have_link 'Share'
+        page.should have_content 'publishing tools'
+        page.should have_link 'export'
+        page.should have_link 'share'
       end
 
-      page.should have_css '#map'
+      page.should have_css '#projects_map'
 
       within '.search-form' do
-        page.should have_field 'search-field'
+        page.should have_field 'projects_search'
         page.should have_content 'view'
-        page.should have_link 'All'
-        page.should have_link 'Ongoing'
-        page.should have_link 'Past'
+        page.should have_link 'all'
+        page.should have_link 'ongoing'
+        page.should have_link 'past'
       end
 
-      page.should have_css 'ul.projects-list li', :length => 10
+      all('ul#projects_list li').length.should be == 10
 
       Project.all.each do |project|
         page.should have_css 'ul li .name', :text => project.name
