@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def show
+    @projects = current_user.projects
+  end
+
   def new
     @user               = User.new
     @user.organization  = Organization.new

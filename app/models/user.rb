@@ -16,6 +16,10 @@ class User < CartodbModel
     User.where(:name => name).first
   end
 
+  def projects
+    Project.where(:user_id => cartodb_id)
+  end
+
   def save
     super
     organization.save if organization

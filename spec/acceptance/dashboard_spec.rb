@@ -8,6 +8,18 @@ describe "Dashboard", :type => :feature do
       @user = User.create( :name     => 'pepe smith',
                            :email    => 'pepe@wadus.com',
                            :password => 'wadus' )
+
+      10.times do |i|
+        Project.create(
+          :user_id    => @user.cartodb_id,
+          :name       => "Wadus #{i}",
+          :start_date => 1.year.ago,
+          :end_date   => [1.day.since, 1.day.ago, Time.now].sample,
+          :lat        => [*-90..90].sample,
+          :lon        => [*-180..180].sample
+        )
+      end
+
     end
 
     it 'shows a map and a list of projects' do
@@ -34,8 +46,12 @@ describe "Dashboard", :type => :feature do
       all('ul#projects_list li').length.should be == 10
 
       Project.all.each do |project|
-        page.should have_css 'ul li .name', :text => project.name
-        page.should have_css 'ul li .state', :text => project.state
+        find("ul li#project_#{project.cartodb_id}")['data-position'].should be == project.coords
+        find("ul li#project_#{project.cartodb_id}")
+        within "ul li#project_#{project.cartodb_id}" do
+          page.should have_css '.name',   :text => project.name
+          page.should have_css '.status', :text => project.state
+        end
       end
 
     end
