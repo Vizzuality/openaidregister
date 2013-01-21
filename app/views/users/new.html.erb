@@ -1,0 +1,67 @@
+<h2><%= t('.create_your_account') %></h2>
+
+<%= form_for(@user) do |f| %>
+
+  <div class="user">
+    <div class="field">
+      <%= f.label :name, t('.name') %>
+      <%= f.email_field :name, :autofocus => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, t('.email') %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, t('.password') %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.button t('.continue'), :type => 'button' %>
+    </div>
+  </div>
+
+  <div class="organization">
+
+    <%= f.fields_for @user.organization do |ff| %>
+      <div class="field">
+        <%= ff.label :name, t('.organization.name') %>
+        <%= ff.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= ff.label :website, t('.organization.website') %>
+        <%= ff.text_field :website %>
+      </div>
+
+      <div class="field">
+        <%= ff.label :type_id, t('.organization.type_id') %>
+        <div class="select_wrapper">
+          <%= ff.select :type_id, to_select_options(@organization_types), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= ff.label :country_id, t('.organization.country_id') %>
+        <div class="select_wrapper">
+          <%= ff.select :country_id, to_select_options(@countries), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= ff.label :government_id, t('.organization.government_id') %>
+        <%= ff.text_field :government_id %>
+      </div>
+
+    <% end %>
+
+
+    <div class="field">
+      <%= f.submit t('.save') %>
+    </div>
+
+  </div>
+
+<% end %>

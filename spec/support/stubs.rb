@@ -1,19 +1,3 @@
-class Project
-
-  def self.records
-    @@records ||= []
-  end
-
-  def save
-    Project.records << OpenStruct.new(attributes)
-  end
-
-  def self.all
-    Project.records
-  end
-
-end
-
 RSpec.configure do |config|
 
   config.before do
@@ -23,7 +7,9 @@ RSpec.configure do |config|
     Language.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => 'English')]       }
     TransactionType.stub(:all)  { [OpenStruct.new(:cartodb_id => 1, :name => 'Acquisition')]   }
     Currency.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => '$USD')]          }
-    DocumentType.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]          }
+    DocumentType.stub(:all)     { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]    }
+    OrganizationType.stub(:all) { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]    }
+    Country.stub(:all)          { [OpenStruct.new(:cartodb_id => 1, :name => 'Spain')]         }
   end
 
 end
