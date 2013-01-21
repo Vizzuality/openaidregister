@@ -128,6 +128,17 @@ en:
         title: 'Project results'
         no_records: 'No project results informed yet.'
         add: 'Add'
+    help:
+      project_name:
+        title: 'Project name'
+        desc: 'A short, human-readable title of the project/activity'
+        url: 'http://iatistandard.org/activities-standard/basic-activity-information/activity-title'
+        examples: 'Small-business solutions for repair and parts in water sources'
+      project_id:
+        title: 'Project id'
+        desc: "This is a globally unique organization's identifier for this project/activity. If the organization doesnt use identifiers for projects, it can be also just a number starting in 1,2,3... "
+        url: 'http://iatistandard.org/activities-standard/identification/iati-activity-identifier'
+        examples: '1235'
   transactions:
     form:
       type: 'Type'

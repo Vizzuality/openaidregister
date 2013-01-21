@@ -2,14 +2,27 @@
 
     <div class="form_wrapper">
       <div class="field name long">
-        <%= f.label :name, t('.name') %>
+        <div class="block">
+          <%= f.label :name, t('.name'), :class => "with_hint" %>
+          <span class="hint"
+            data-title="<%= t('projects.help.project_name.title') %>"
+            data-description="<%= t('projects.help.project_name.desc') %>"
+            data-url="<%= t('projects.help.project_name.url') %>"
+            data-examples="<%= t('projects.help.project_name.examples') %>"></span>
+        </div>
         <%= f.text_field :name, :class => "long" %>
       </div>
 
       <div class="field id_in_organization long margin20">
-        <%= f.label :id_in_organization, t('.id_in_organization') %>
+        <div class="block">
+          <%= f.label :id_in_organization, t('.id_in_organization'), :class => "with_hint" %>
+          <span class="hint"
+            data-title="<%= t('projects.help.project_id.title') %>"
+            data-description="<%= t('projects.help.project_id.desc') %>"
+            data-url="<%= t('projects.help.project_id.url') %>"
+            data-examples="<%= t('projects.help.project_id.examples') %>"></span>
+        </div>
         <%= f.text_field :id_in_organization, :class => "short" %>
-        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
       </div>
 
       <div class="field description long margin20">

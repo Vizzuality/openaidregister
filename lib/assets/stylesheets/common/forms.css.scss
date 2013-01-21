@@ -54,6 +54,8 @@
         padding-left:20px;
         font:bold 15px $title_fonts;
         color:#333333;
+
+        &.with_hint {@include inline-block();}
       }
 
       // Input
@@ -110,16 +112,49 @@
       }
 
       // Hint
-      a.hint {
-        position:absolute;
-        padding:0;
+      span.hint {
+        position:relative;
+        @include inline-block();
         width:16px;
         height:16px;
+        padding:0;
         @include icons-sprite(hint);
         z-index:2;
 
+        div.tooltip {
+          position:absolute;
+          display:none;
+          left:50%;
+          bottom:23px;
+          width:268px;
+          padding:25px;
+          margin-left:-164px;
+          background:#232323; // IE
+          background: rgba(black,0.85);
+          @include border-radius(20px);
+
+          label {padding:0; color:white;}
+          a {position:absolute; top:27px; right:25px; z-index:2;}
+
+          span.b {
+            position:absolute;
+            bottom:-10px;
+            left:50%;
+            width:0;
+            height:0;
+            margin-left:-5px;
+            border-left:10px solid transparent;
+            border-right:10px solid transparent;
+            border-top:10px solid #232323; // IE
+            border-top:10px solid rgba(black,0.85);
+          }
+        }
+
         &:focus {outline:none;}
-        &:hover {@include icons-sprite(hint, $offset-y:-16px)}
+        &:hover {
+          @include icons-sprite(hint, $offset-y:-16px); cursor:pointer;
+          div.tooltip {display:block;}
+        }
       }
 
 

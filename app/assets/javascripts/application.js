@@ -5,4 +5,3 @@
 //= require backbone.min
 
 //= require select2
-//= require tipsy
