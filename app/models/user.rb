@@ -8,6 +8,14 @@ class User < CartodbModel
   validates :email, :presence => true, :email => true
   validates :password, :presence => true
 
+  def self.with_credentials(email, password)
+    User.where(:email => email, :password => password).first
+  end
+
+  def self.find_by_name(name)
+    User.where(:name => name).first
+  end
+
   def save
     super
     organization.save if organization

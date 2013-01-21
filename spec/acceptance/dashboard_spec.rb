@@ -4,13 +4,16 @@ describe "Dashboard", :type => :feature do
 
   context "with existing projects" do
 
-    before(:all) do
-
+    before do
+      @user = User.create( :name     => 'pepe smith',
+                           :email    => 'pepe@wadus.com',
+                           :password => 'wadus' )
     end
 
     it 'shows a map and a list of projects' do
-      visit user_path(:id => 1)
+      log_in_as @user
 
+      peich
       page.should have_link 'Add new project'
 
       within '.publishing-tools' do

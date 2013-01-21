@@ -23,9 +23,9 @@ class CartodbModel
     []
   end
 
-  def self.where(where_clause)
+  def self.where(filters)
     sql = "SELECT * FROM #{self.class.name.tableize}"
-    sql << " WHERE #{where_clause};"
+    sql << " WHERE #{filters.map{|k, v| "#{k} = #{v}"}.join(' AND ')};"
 
     result = CartoDB::Connection.query(sql)
 

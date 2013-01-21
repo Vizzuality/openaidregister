@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
 
+      warden.set_user(@user)
+
       redirect_to @user
     else
       @organization_types = OrganizationType.all

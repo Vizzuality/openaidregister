@@ -17,6 +17,28 @@ module CapybaraHelpers
   def wadus_document_file_path
     Rails.root.join('spec/support/data/wadus.pdf')
   end
+
+  def log_in_as(user)
+    visit root_path
+
+    click_on 'sign in'
+
+    page.should have_content 'Sign in '
+
+    page.should have_link "Don't have an account yet? Sign up"
+
+    within 'form' do
+      fill_in 'Your email',    :with => user.email
+      fill_in 'Your password', :with => user.password
+
+      click_on 'Sign in'
+    end
+
+    current_path.should be == '/users/1'
+
+    page.should have_content user.name
+
+  end
 end
 
 RSpec.configure{ |config| config.include CapybaraHelpers }

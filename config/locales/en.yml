@@ -191,3 +191,9 @@ en:
         government_id: "Government ID"
       continue: 'Continue'
       save: 'Save'
+  sessions:
+    new:
+      sign_in: 'Sign in'
+      email: 'Your email'
+      password: 'Your password'
+      dont_have_an_account: "Don't have an account yet? Sign up"
