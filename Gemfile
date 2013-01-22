@@ -4,7 +4,7 @@ gem 'rails', '~> 3.2.11'
 
 gem 'cartodb-rb-client', :git => 'git@github.com:Vizzuality/cartodb-rb-client.git'
 
-gem 'warden'
+gem 'rails_warden'
 gem 'valid_email'
 
 group :assets do
@@ -26,4 +26,9 @@ end
 group :development, :test do
   gem 'zeus'
   gem 'debugger'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end

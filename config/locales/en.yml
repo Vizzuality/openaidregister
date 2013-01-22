@@ -63,23 +63,6 @@ en:
       p1:
         title: 'Water team: small-business solutions for repair and...'
         content: 'Mapping water points is a critical step towards improving clean water access for rural families in Malawi. Using an innovative tool we created to monitor the lifecycle of hand pumps, wells and boreholes, EWB volunteers have documented the location of water points across the country. With this information...'
-  users:
-    publish:
-      add_new_project: 'add new project'
-      label: 'publishing tools'
-      export: 'export'
-      share: 'share'
-    map:
-      empty:
-        title: 'You don’t have any projects yet'
-        button: 'Add your first project'
-    filters:
-      search: 'Search in %{projects} projects...'
-      past: 'past'
-      ongoing: 'ongoing'
-      all: 'all'
-      label: 'view'
-
   projects:
     new:
       title: 'Create new project'
@@ -178,6 +161,21 @@ en:
       add: 'Add'
       cancel: 'Cancel'
   users:
+    publish:
+      add_new_project: 'add new project'
+      publishing_tools: 'publishing tools'
+      export: 'export'
+      share: 'share'
+    map:
+      empty:
+        title: 'You don’t have any projects yet'
+        button: 'Add your first project'
+    filters:
+      search: 'Search in %{projects} projects...'
+      past: 'past'
+      ongoing: 'ongoing'
+      all: 'all'
+      label: 'view'
     new:
       create_your_account: 'Create your account'
       name: 'Your name'
@@ -191,3 +189,9 @@ en:
         government_id: "Government ID"
       continue: 'Continue'
       save: 'Save'
+  sessions:
+    new:
+      sign_in: 'Sign in'
+      email: 'Your email'
+      password: 'Your password'
+      dont_have_an_account: "Don't have an account yet? Sign up"

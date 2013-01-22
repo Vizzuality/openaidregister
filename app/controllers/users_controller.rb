@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def show
+    @projects = current_user.projects
+  end
+
   def new
     @user               = User.new
     @user.organization  = Organization.new
@@ -12,6 +16,8 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+
+      warden.set_user(@user)
 
       redirect_to @user
     else

@@ -13,11 +13,11 @@
 <!-- edit tools -->
 <div class="inner">
   <section class="compact borders tools">
-    <a href="#<%= t('users.publish.add_new_project') %>" class="left button uppercase round red small"><%= t('users.publish.add_new_project') %></a>
-    <div class="right">
-      <label class="small dark left"><%= t('users.publish.label') %></label>
-      <a href="#<%= t('users.publish.export') %>" class="button uppercase round white small left"><%= t('users.publish.export') %></a>
-      <a href="#<%= t('users.publish.share') %>" class="button uppercase round white small left"><%= t('users.publish.share') %></a>
+    <%= link_to t('users.publish.add_new_project'), '#', :class => 'left button uppercase round red small' %>
+    <div class="publishing-tools right">
+      <label class="small dark left"><%= t('users.publish.publishing_tools') %></label>
+      <%= link_to t('users.publish.export'), '#', :class => 'button uppercase round white small left' %>
+      <%= link_to t('users.publish.share'), '#', :class => 'button uppercase round white small left' %>
     </div>
   </section>
 </div>
@@ -35,7 +35,7 @@
 <!-- list -->
 <div class="inner list">
   <section class="borders bottom compact list_filters">
-    <form>
+    <form class="search-form">
       <div class="field med">
         <input type="text" placeholder="<%= t('users.filters.search', :projects => '13') %>"id="projects_search" />
       </div>
@@ -49,22 +49,16 @@
   </section>
   <section class="borders bottom list">
     <ul id="projects_list">
-      <li data-position="43.3,-3.0">
-        <p class="name"><a href="#ey">first list item</a></p>
-        <p class="status past">past</p>
-      </li>
-      <li data-position="1.3,-3.0">
-        <p class="name"><a href="#ey">second list item</a></p>
-        <p class="status outgoing">ongoing</p>
-      </li>
-      <li data-position="42.3,-3.7">
-        <p class="name"><a href="#ey">third list item</a></p>
-        <p class="status past">past</p>
-      </li>
-      <li data-position="41.3,-3.9">
-        <p class="name"><a href="#ey">fourth list item</a></p>
-        <p class="status past">past</p>
-      </li>
+      <% @projects.each do |project| %>
+        <li id="project_<%= project.cartodb_id %>" data-position="<%= project.coords %>">
+          <p class="name">
+            <%= link_to project.name, edit_project_path(project) %>
+          </p>
+          <p class="status <%= project.state %>">
+            <%= project.state %>
+          </p>
+        </li>
+      <% end %>
     </ul>
   </section>
 </div>

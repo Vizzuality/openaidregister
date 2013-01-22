@@ -10,7 +10,7 @@ class CartodbModel
     attributes.each do |name, value|
       send("#{name}=", value) rescue nil
     end
-    @attributes = attributes
+    @attributes = attributes.select{|k, v| !v.is_a?(Hash) && !v.is_a?(Array)}
   end
 
   def persisted?
@@ -23,9 +23,9 @@ class CartodbModel
     []
   end
 
-  def self.where(where_clause)
-    sql = "SELECT * FROM #{self.class.name.tableize}"
-    sql << " WHERE #{where_clause};"
+  def self.where(filters)
+    sql = "SELECT * FROM #{name.tableize}"
+    sql << " WHERE #{filters.map{|k, v| "#{k} = '#{v}'"}.join(' AND ')};"
 
     result = CartoDB::Connection.query(sql)
 
@@ -40,7 +40,9 @@ class CartodbModel
   end
 
   def save
-    CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
+    inserted_row = CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
+    self.cartodb_id = inserted_row.cartodb_id
+    self
   end
 
   private

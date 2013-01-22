@@ -12,6 +12,25 @@ class Project < CartodbModel
                 :budget,
                 :budget_currency,
                 :contact_person,
-                :url
+                :url,
+                :lat,
+                :lon
 
+  def state
+    if end_date.present?
+      if end_date > Time.now
+        return 'ongoing'
+      else
+        return 'past'
+      end
+    end
+  end
+
+  def coords
+    "#{lat}, #{lon}"
+  end
+
+  def to_param
+    cartodb_id
+  end
 end

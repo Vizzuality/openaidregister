@@ -10,6 +10,8 @@ RSpec.configure do |config|
     DocumentType.stub(:all)     { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]    }
     OrganizationType.stub(:all) { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]    }
     Country.stub(:all)          { [OpenStruct.new(:cartodb_id => 1, :name => 'Spain')]         }
+
+    CartodbModel.records = nil
   end
 
 end
