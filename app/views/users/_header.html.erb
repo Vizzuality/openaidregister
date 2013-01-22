@@ -9,7 +9,7 @@
         <%= link_to t('header.about'),          "#", :class => 'upper bold small' %>
         <span class="round grey">
           <%= link_to current_user.name,        "#profile", :class => 'upper bold small' %>
-          <%= link_to "remove",                 "#remove", :class => '' %>
+          <%= button_to "remove",                 session_path(current_user), :method => :delete, :class => '' %>
         </span>
 
       </nav>

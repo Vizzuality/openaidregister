@@ -3,6 +3,11 @@ require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 describe "IATI basic form", :type => :feature do
 
   before do
+    @user = User.create( :name     => 'pepe smith',
+                         :email    => 'pepe@wadus.com',
+                         :password => 'wadus' )
+    log_in_as @user
+
     visit new_project_path
   end
 
@@ -21,7 +26,7 @@ describe "IATI basic form", :type => :feature do
   describe 'Project ID On your Org. field' do
     subject { find('.field.id_in_organization') }
 
-    it { should_have_hint 'Wadus' }
+    it { should_have_hint "This is a globally unique organization's identifier for this project/activity. If the organization doesnt use identifiers for projects, it can be also just a number starting in 1,2,3... " }
   end
 
   it { should have_field 'Project description' }

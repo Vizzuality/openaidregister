@@ -23,19 +23,20 @@ task :setup => :environment do
   tables_list = CartoDB::Connection.tables
 
   CartoDB::Connection.create_table 'projects', [
-    {:name => 'name',               :type => 'text'},
-    {:name => 'id_in_organization', :type => 'numeric'},
-    {:name => 'description',        :type => 'text'},
-    {:name => 'organization_role',  :type => 'numeric'},
-    {:name => 'language',           :type => 'numeric'},
-    {:name => 'sector',             :type => 'numeric'},
-    {:name => 'subsector',          :type => 'numeric'},
-    {:name => 'start_date',         :type => 'date'},
-    {:name => 'end_date',           :type => 'date'},
-    {:name => 'budget',             :type => 'numeric'},
-    {:name => 'budget_currency',    :type => 'numeric'},
-    {:name => 'contact_person',     :type => 'text'},
-    {:name => 'url',                :type => 'text'}
+    {:name => 'user_id',            :type => 'numeric' } ,
+    {:name => 'name',               :type => 'text'    } ,
+    {:name => 'id_in_organization', :type => 'numeric' } ,
+    {:name => 'description',        :type => 'text'    } ,
+    {:name => 'organization_role',  :type => 'numeric' } ,
+    {:name => 'language',           :type => 'numeric' } ,
+    {:name => 'sector',             :type => 'numeric' } ,
+    {:name => 'subsector',          :type => 'numeric' } ,
+    {:name => 'start_date',         :type => 'date'    } ,
+    {:name => 'end_date',           :type => 'date'    } ,
+    {:name => 'budget',             :type => 'numeric' } ,
+    {:name => 'budget_currency',    :type => 'numeric' } ,
+    {:name => 'contact_person',     :type => 'text'    } ,
+    {:name => 'url',                :type => 'text'    }
   ] unless tables_list.tables.map(&:name).include?('projects')
 
   CartoDB::Connection.create_table 'transactions', [
@@ -102,7 +103,7 @@ task :setup => :environment do
     flow_types
     finance_types
   ).each do |table_name|
-    CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
+    CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name) rescue nil
     CartoDB::Connection.create_table table_name
   end
 
@@ -618,6 +619,8 @@ end
 
 desc 'Drops all tables in the cartodb account'
 task :drop_all_tables => :environment do
+  account_tables = CartoDB::Connection.tables.tables.map(&:name)
+
   %w(
     projects
     transactions
@@ -646,7 +649,10 @@ task :drop_all_tables => :environment do
     flow_types
     finance_types
   ).each do |table_name|
-    CartoDB::Connection.drop_table table_name
+    begin
+      CartoDB::Connection.drop_table(table_name) if account_tables.include?(table_name)
+    rescue
+    end
   end
 end
 

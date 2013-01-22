@@ -71,6 +71,8 @@ describe "OpenAidRegister", :type => :feature do
       Organization.count.should be == 0
     end
 
+    it "with an existing mail"
+
     it "with invalid password" do
 
       visit root_path

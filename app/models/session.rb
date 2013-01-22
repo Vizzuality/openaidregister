@@ -3,20 +3,32 @@ class Session
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :email, :password
+  attr_accessor :email, :password, :user
+
+  validate :email,    :presence => true
+  validate :password, :presence => true
+  validate :credentials_must_be_valid
 
   def persisted?
     false
   end
 
-  def self.create(attributes)
-    email    = attributes[:email]
-    password = attributes[:password]
+  def initialize(attributes = {})
+    self.email    = attributes[:email]
+    self.password = attributes[:password]
+  end
 
+  private
+
+  def credentials_must_be_valid
     if email.present? && password.present?
-      return User.with_credentials(email, password)
-    end
 
-    false
+      self.user = User.with_credentials(email, password)
+
+      unless self.user.present? && self.user.persisted?
+        errors.add :email,    'Invalid email'
+        errors.add :password, 'Invalid password'
+      end
+    end
   end
 end

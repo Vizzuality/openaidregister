@@ -16,6 +16,8 @@ RSpec.configure do |config|
     FinanceType.stub(:all)       { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus finance type')]       }
 
     CartodbModel.records = nil
+
+    Project.stub(:for_user){ |user_id| Project.all.select{|p| p.user_id = user_id} }
   end
 
 end

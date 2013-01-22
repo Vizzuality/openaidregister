@@ -7,10 +7,12 @@ class CartodbModel
   alias :id :cartodb_id
 
   def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value) rescue nil
+    if attributes.present?
+      attributes.each do |name, value|
+        send("#{name}=", value) rescue nil
+      end
+      @attributes = attributes.select{|k, v| !v.is_a?(Hash) && !v.is_a?(Array)}
     end
-    @attributes = attributes.select{|k, v| !v.is_a?(Hash) && !v.is_a?(Array)}
   end
 
   def persisted?
@@ -44,8 +46,6 @@ class CartodbModel
     self.cartodb_id = inserted_row.cartodb_id
     self
   end
-
-  private
 
   def attributes
     @attributes || {}

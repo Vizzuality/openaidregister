@@ -7,7 +7,7 @@ module CustomMatchers
 
   def should_have_hint(text)
     hint = find('.hint')
-    hint['data-hint'].should be == text
+    hint['data-description'].should be == text
   end
 
   def have_sector(sector, subsector)

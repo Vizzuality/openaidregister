@@ -21,6 +21,17 @@ class Project < CartodbModel
                 :lat,
                 :lon
 
+  def self.for_user(user_id)
+    result = CartoDB::Connection.query(<<-SQL)
+      SELECT *
+      FROM projects
+      WHERE user_id = #{user_id};
+    SQL
+
+    return result.rows || [] if result
+    []
+  end
+
   def state
     if end_date.present?
       if end_date > Time.now

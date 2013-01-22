@@ -3,11 +3,13 @@
 <%= form_for(@session) do |f| %>
 
   <div class="field">
+    <%= error_message(@session, :email) %>
     <%= f.label :email, t('.email') %>
     <%= f.email_field :email %>
   </div>
 
   <div class="field">
+    <%= error_message(@session, :password) %>
     <%= f.label :password, t('.password') %>
     <%= f.password_field :password %>
   </div>
