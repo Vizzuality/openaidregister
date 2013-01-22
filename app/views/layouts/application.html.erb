@@ -8,8 +8,9 @@
   <meta name = "viewport" content = "width = 1020">
 
   <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Open+Sans:400,700" %>
-  <%= yield :css %>
-  <%= yield :js %>
+  <%= stylesheet_link_tag :application,    :media => 'all' %>
+  <%= stylesheet_link_tag controller_name, :media => 'all' %>
+  <%= javascript_include_tag :application %>
   <%= csrf_meta_tags %>
 </head>
 <body>
