@@ -34,10 +34,6 @@ module CapybaraHelpers
       click_on 'Sign in'
     end
 
-    current_path.should be == '/users/1'
-
-    page.should have_content user.name
-
   end
 end
 

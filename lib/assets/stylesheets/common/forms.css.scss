@@ -48,6 +48,9 @@
       letter-spacing: 0;
       word-spacing: 0;
 
+      // Errors
+      span.error {display:none;}
+
       // Label
       label {
         display:block;
@@ -168,6 +171,16 @@
       &.med   {width:397px;}
       &.long  {width:636px;}
       &.block {width:100%;}
+
+      &.error {
+        input {
+          color:red;
+          border-color:red;
+          &:focus {
+            border-color:red;
+          }
+        }
+      }
 
     } /* div.field */
 

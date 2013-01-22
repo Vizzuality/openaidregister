@@ -18,10 +18,12 @@
     
     <%= form_for(@session) do |f| %>
       <div class="field block margin35">
+        <%= error_message(@session, :email) %>
         <%= f.email_field :email, :placeholder => t('.email'), :class => "med" %>
       </div>
 
       <div class="field block margin15">
+        <%= error_message(@session, :password) %>
         <%= f.password_field :password, :placeholder => t('.password'), :class => "med" %>
       </div>
 

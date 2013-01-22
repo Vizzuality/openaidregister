@@ -7,7 +7,7 @@ module CustomMatchers
 
   def should_have_hint(text)
     hint = find('.hint')
-    hint['data-hint'].should be == text
+    hint['data-description'].should be == text
   end
 
   def have_sector(sector, subsector)
@@ -18,7 +18,7 @@ module CustomMatchers
   end
 
   def have_subtitle(subtitle)
-    have_selector('h3', :text => subtitle)
+    have_selector('h4', :text => subtitle)
   end
 
   def have_section_title(title)

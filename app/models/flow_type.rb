@@ -1,0 +1,3 @@
+class FlowType < CartodbModel
+
+end

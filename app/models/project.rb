@@ -12,9 +12,25 @@ class Project < CartodbModel
                 :budget,
                 :budget_currency,
                 :contact_person,
+                :collaboration_type,
+                :tied_status,
+                :aid_type,
+                :flow_type,
+                :finance_type,
                 :url,
                 :lat,
                 :lon
+
+  def self.for_user(user_id)
+    result = CartoDB::Connection.query(<<-SQL)
+      SELECT *
+      FROM projects
+      WHERE user_id = #{user_id};
+    SQL
+
+    return result.rows || [] if result
+    []
+  end
 
   def state
     if end_date.present?

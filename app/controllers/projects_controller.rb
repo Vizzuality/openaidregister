@@ -31,7 +31,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.new
+    @project             = Project.new
+    @collaboration_types = CollaborationType.all
+    @aid_types           = AidType.all
+    @flow_types          = FlowType.all
+    @finance_types       = FinanceType.all
   end
 
 end

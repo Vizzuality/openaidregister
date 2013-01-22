@@ -1,0 +1,3 @@
+class CollaborationType < CartodbModel
+
+end

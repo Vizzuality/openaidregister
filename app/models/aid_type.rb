@@ -1,0 +1,3 @@
+class AidType < CartodbModel
+
+end

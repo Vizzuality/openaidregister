@@ -25,8 +25,8 @@ class CartodbModel
   end
 
   def save
-    self.cartodb_id = self.class.count + 1
-    self.class.records << self
+    self.cartodb_id = self.attributes[:cartodb_id] = self.class.count + 1
+    self.class.records << CartoDB::Types::Metadata.from_hash(self.attributes)
   end
 
   def self.all
