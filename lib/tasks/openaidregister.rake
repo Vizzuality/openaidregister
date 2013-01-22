@@ -97,6 +97,10 @@ task :setup => :environment do
     organization_document_types
     organization_types
     countries
+    collaboration_types
+    aid_types
+    flow_types
+    finance_types
   ).each do |table_name|
     CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name)
     CartoDB::Connection.create_table table_name
@@ -599,6 +603,14 @@ task :setup => :environment do
       'cartodb_id' => 1,
       'name'       => 'Spain'
     }
+
+
+
+    #collaboration_types
+    #aid_types
+    #flow_types
+    #finance_types
+
   puts '... done!'
 
 end
@@ -629,6 +641,10 @@ task :drop_all_tables => :environment do
     organization_document_types
     organization_types
     countries
+    collaboration_types
+    aid_types
+    flow_types
+    finance_types
   ).each do |table_name|
     CartoDB::Connection.drop_table table_name
   end

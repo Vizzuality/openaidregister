@@ -111,6 +111,20 @@ en:
         title: 'Project results'
         no_records: 'No project results informed yet.'
         add: 'Add'
+      organization_information:
+        title: 'organization information'
+        collaboration_type: 'Collaboration type'
+        tied_status:
+          legend: 'Tied status'
+          unknown: 'Unknown'
+          partially_tied: 'Partially tied'
+          tied: 'Tied'
+          untied: 'Untied'
+        aid_type: 'Aid type'
+        flow_type: 'Flow type'
+        finance_type: 'Finance type'
+      cancel: 'Cancel'
+      save_changes: 'Save changes'
     help:
       project_name:
         title: 'Project name'
@@ -135,7 +149,7 @@ en:
     create:
       transaction_type: '%{type} on %{at}'
       transaction_value: '%{value} %{currency}'
-  organizations:
+  external_organizations:
     form:
       name: 'Organization name'
       role_id: 'Role'

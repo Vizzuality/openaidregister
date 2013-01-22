@@ -1,0 +1,3 @@
+class FinanceType < CartodbModel
+
+end

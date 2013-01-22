@@ -1,6 +1,6 @@
 <%= form_for :project do |f| %>
 
-  <section class="borders grey_section">
+  <section class="header borders grey_section">
     <div class="center">
       <h4 class="dark"><%= t('.header.congrats') %></h4>
       <p class="margin5"><%= t('.header.basic_information') %></p>
@@ -14,32 +14,87 @@
 
 
   <section class="form_center">
-  <ul>
-    <li class="transactions">
-      <h4><%= t('.transactions.title') %></h4>
-      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-      <div class="no-results"><%= t('.transactions.no_records') %></div>
-      <%= link_to t('.transactions.add'), new_transaction_path %>
-    </li>
-    <li class="involved-organizations">
-      <h4><%= t('.involved_organizations.title') %></h4>
-      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-      <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
-      <%= link_to t('.involved_organizations.add'), new_organization_path %>
-    </li>
-    <li class="related-documents">
-      <h4><%= t('.related_documents.title') %></h4>
-      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-      <div class="no-results"><%= t('.related_documents.no_records') %></div>
-      <%= link_to t('.related_documents.add'), new_document_path %>
-    </li>
-    <li class="project-results">
-      <h4><%= t('.project_results.title') %></h4>
-      <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-      <div class="no-results"><%= t('.project_results.no_records') %></div>
-      <%= link_to t('.project_results.add'), new_project_result_path %>
-    </li>
-  </ul>
+    <ul>
+      <li class="transactions">
+        <h4><%= t('.transactions.title') %></h4>
+        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+        <div class="no-results"><%= t('.transactions.no_records') %></div>
+        <%= link_to t('.transactions.add'), new_transaction_path %>
+      </li>
+      <li class="involved-organizations">
+        <h4><%= t('.involved_organizations.title') %></h4>
+        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+        <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
+        <%= link_to t('.involved_organizations.add'), new_external_organization_path %>
+      </li>
+      <li class="related-documents">
+        <h4><%= t('.related_documents.title') %></h4>
+        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+        <div class="no-results"><%= t('.related_documents.no_records') %></div>
+        <%= link_to t('.related_documents.add'), new_document_path %>
+      </li>
+      <li class="project-results">
+        <h4><%= t('.project_results.title') %></h4>
+        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+        <div class="no-results"><%= t('.project_results.no_records') %></div>
+        <%= link_to t('.project_results.add'), new_project_result_path %>
+      </li>
+    </ul>
+  </section>
+
+  <section class="organization-information">
+    <h3><%= t('.organization_information.title') %></h3>
+
+    <div class="field collaboration_type">
+      <%= f.label :collaboration_type, t('.organization_information.collaboration_type') %>
+      <div class="select_wrapper">
+        <%= f.select :collaboration_type, to_select_options(@collaboration_types), { :include_blank => 'Not specified' } %>
+      </div>
+    </div>
+
+    <div class="field tied_status">
+      <fieldset>
+        <legend><%= t('.organization_information.tied_status.legend') %></legend>
+
+        <%= f.radio_button :tied_status, 1 %>
+        <%= f.label :tied_status_1, t('.organization_information.tied_status.unknown') %>
+
+        <%= f.radio_button :tied_status, 2 %>
+        <%= f.label :tied_status_2, t('.organization_information.tied_status.partially_tied') %>
+
+        <%= f.radio_button :tied_status, 3 %>
+        <%= f.label :tied_status_3, t('.organization_information.tied_status.tied') %>
+
+        <%= f.radio_button :tied_status, 4 %>
+        <%= f.label :tied_status_4, t('.organization_information.tied_status.untied') %>
+      </fieldset>
+    </div>
+
+    <div class="field aid_type">
+      <%= f.label :aid_type, t('.organization_information.aid_type') %>
+      <div class="select_wrapper">
+        <%= f.select :aid_type, to_select_options(@aid_types), { :include_blank => 'Not specified' } %>
+      </div>
+    </div>
+
+    <div class="field flow_type">
+      <%= f.label :flow_type, t('.organization_information.flow_type') %>
+      <div class="select_wrapper">
+        <%= f.select :flow_type, to_select_options(@flow_types), { :include_blank => 'Not specified' } %>
+      </div>
+    </div>
+
+    <div class="field finance_type">
+      <%= f.label :finance_type, t('.organization_information.finance_type') %>
+      <div class="select_wrapper">
+        <%= f.select :finance_type, to_select_options(@finance_types), { :include_blank => 'Not specified' } %>
+      </div>
+    </div>
+
+    <div class="field long margin40">
+      <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
+      <%= f.submit t('.save_changes'), :class => "button round red right" %>
+    </div>
   </section>
 
 <% end %>

@@ -18,7 +18,7 @@ module CustomMatchers
   end
 
   def have_subtitle(subtitle)
-    have_selector('h3', :text => subtitle)
+    have_selector('h4', :text => subtitle)
   end
 
   def have_section_title(title)

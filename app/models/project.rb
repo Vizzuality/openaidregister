@@ -12,6 +12,11 @@ class Project < CartodbModel
                 :budget,
                 :budget_currency,
                 :contact_person,
+                :collaboration_type,
+                :tied_status,
+                :aid_type,
+                :flow_type,
+                :finance_type,
                 :url,
                 :lat,
                 :lon

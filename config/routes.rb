@@ -5,7 +5,7 @@ Openaidregister::Application.routes.draw do
 
   resources :projects
   resources :transactions
-  resources :organizations
+  resources :external_organizations
   resources :documents
   resources :project_results
 

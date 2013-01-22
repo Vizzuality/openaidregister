@@ -33,7 +33,7 @@
       <div class="field organization_role med margin20">
         <%= f.label :organization_role, t('.organization_role') %>
         <div class="select_wrapper">
-          <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+          <%= f.select :organization_role, to_select_options(@organization_roles), { :include_blank => 'Not specified' }, { 'data-placeholder' => "Not defined..." } %>
         </div>
       </div>
 
@@ -49,11 +49,11 @@
         <div class="grey_wrapper">
           <div class="select_wrapper">
             <div class="column">
-              <%= f.select :sector, to_select_options(@sectors),       { :include_blank => true }, { 'data-placeholder' => "Sector..." } %>
+              <%= f.select :sector, to_select_options(@sectors),       { :include_blank => 'Not specified' }, { 'data-placeholder' => "Sector..." } %>
               <span class="sptor"></span>
             </div>
             <div class="column">
-              <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => true }, { 'data-placeholder' => "Subsector..." } %>
+              <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => 'Not specified' }, { 'data-placeholder' => "Subsector..." } %>
             </div>
           </div>
           <%= f.button t('.add_button'), :class => "round grey right add" %>

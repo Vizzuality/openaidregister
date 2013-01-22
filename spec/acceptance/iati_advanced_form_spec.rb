@@ -31,6 +31,24 @@ describe "IATI advanced form", :type => :feature do
 
     should_create_a_new_project_result
 
+    within '.organization-information' do
+      page.should have_content 'organization information'
+
+      select 'Wadus collaboration type',   :from => 'Collaboration type'
+
+      within 'fieldset' do
+        page.should have_content 'Tied status'
+
+        choose 'Tied'
+      end
+
+      select 'Wadus aid type',   :from => 'Aid type'
+      select 'Wadus flow type',   :from => 'Flow type'
+      select 'Wadus finance type',   :from => 'Finance type'
+    end
+
+    click_on 'Save changes'
+
   end
 
 end
