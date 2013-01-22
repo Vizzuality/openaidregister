@@ -1,24 +1,39 @@
-<h2><%= t('.sign_in') %></h2>
+<% content_for(:page_title) do %>OpenAidRegister | Login<% end %>
 
-<%= form_for(@session) do |f| %>
-
-  <div class="field">
-    <%= f.label :email, t('.email') %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, t('.password') %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.submit t('.sign_in') %>
-  </div>
-
-  <div>
-    <%= link_to t('.dont_have_an_account'), new_user_path %>
-  </div>
-
+<%= content_for(:js) do %>
+  <%= javascript_include_tag :application, :sessions %>
 <% end %>
 
+<%= content_for(:css) do %>
+  <%= stylesheet_link_tag :application, :sessions, :media => 'all' %>
+<% end %>
+
+<div class="bkg"><div class="mesh"></div></div>
+
+<div class="inner">
+  <h1 class="center margin60"><%= link_to t('title_for_html'), "/" %></h1>
+
+  <section class="sessions small">
+    <h3 class="center block upper darker"><span class="title_line"></span><%= t('.sign_in') %><span class="title_line"></span></h3>
+    
+    <%= form_for(@session) do |f| %>
+      <div class="field block margin35">
+        <%= f.email_field :email, :placeholder => t('.email'), :class => "med" %>
+      </div>
+
+      <div class="field block margin15">
+        <%= f.password_field :password, :placeholder => t('.password'), :class => "med" %>
+      </div>
+
+      <div class="field block margin35">
+        <%= f.submit t('.sign_in'), :class => 'center button red round' %>
+      </div>
+      
+    <% end %>
+  </section>
+  <div class="bottom">
+    <%= link_to t('.dont_have_an_account'), new_user_path, :class => "bigger red bold" %>
+  </div>
+</div>
+
+<%= render :partial => 'layouts/sessions_footer' %>

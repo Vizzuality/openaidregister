@@ -8,10 +8,11 @@
   @import "header";
 
   html, body {
-    display:block;
+    @include inline-block();
     background:white;
     width:100%;
     height:100%;
+    margin:0; padding:0;
   }
 
   body {
