@@ -67,5 +67,7 @@ module Openaidregister
 
     config.assets.initialize_on_precompile = false
 
+    config.assets.precompile += ['home.css', 'projects.css', 'users.css']
+
   end
 end
