@@ -450,15 +450,15 @@ task :setup => :environment do
     }
     CartoDB::Connection.insert_row 'finance_types', {
       'cartodb_id' => 35,
-      'name'       => 'Unicode Encode Error'
+      'name'       => 'Debt rescheduling: OOF claim (DSR - original loan principal)'
     }
     CartoDB::Connection.insert_row 'finance_types', {
       'cartodb_id' => 36,
-      'name'       => 'Unicode Encode Error'
+      'name'       => 'Debt rescheduling: OOF claim (DSR - original loan interest)'
     }
     CartoDB::Connection.insert_row 'finance_types', {
       'cartodb_id' => 37,
-      'name'       => 'Unicode Encode Error'
+      'name'       => 'Debt rescheduling: Private claim (DSR - original loan principal)'
     }
     CartoDB::Connection.insert_row 'finance_types', {
       'cartodb_id' => 38,
