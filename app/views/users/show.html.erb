@@ -29,7 +29,7 @@
   <section class="borders bottom compact list_filters">
     <form class="search-form">
       <div class="field med">
-        <input type="text" placeholder="<%= t('users.filters.search', :projects => '13') %>"id="projects_search" />
+        <input type="text" placeholder="<%= t('users.filters.search', :projects => @projects.size) %>"id="projects_search" />
       </div>
       <div class="right filter_selector">
         <label class="dark small left"><%= t('users.filters.label') %></label>
@@ -43,12 +43,8 @@
     <ul id="projects_list">
       <% @projects.each do |project| %>
         <li id="project_<%= project.cartodb_id %>" data-position="<%= project.coords %>">
-          <p class="name">
-            <%= link_to project.name, edit_project_path(project) %>
-          </p>
-          <p class="status <%= project.state %>">
-            <%= project.state %>
-          </p>
+          <p class="name"><%= link_to project.name, edit_project_path(project) %></p>
+          <p class="status <%= project.state %>"><%= project.state %></p>
         </li>
       <% end %>
     </ul>
