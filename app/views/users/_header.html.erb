@@ -7,11 +7,10 @@
         <%= link_to t('header.organizations'),  "#", :class => 'upper bold small' %>
         <%= link_to t('header.blog'),           "#", :class => 'upper bold small' %>
         <%= link_to t('header.about'),          "#", :class => 'upper bold small' %>
-        <span class="round grey">
-          <%= link_to current_user.name,        "#profile", :class => 'upper bold small' %>
-          <%= button_to "remove",                 session_path(current_user), :method => :delete, :class => '' %>
+        <span class="user_options">
+          <%= link_to t('header.your_profile'), user_path(current_user), :class => 'upper bold small' %>
+          <%= button_to "logout",               session_path(current_user), :method => :delete, :class => '' %>
         </span>
-
       </nav>
     </header>
   </section>

@@ -35,6 +35,7 @@ en:
     blog: 'blog'
     about: 'about'
     sign_in: 'sign in'
+    your_profile: 'your profile'
   footer:
     info: 'Open Aid Register is an initiative to speed up the process of making aid data open. It is part of the global effort to understand who is doing what and where, in terms of aid.'
     nav:

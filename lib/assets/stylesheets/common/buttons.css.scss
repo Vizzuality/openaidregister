@@ -73,5 +73,17 @@
 
         &.white {padding:7px 15px;}
       }
+
+      &.disabled {
+        border-color:#CCCCCC;
+        color:#CCCCCC;
+        &:hover, &:active {
+          border-color:#CCCCCC;
+          color:#CCCCCC;
+          cursor:default;
+          text-decoration:none;
+        }
+      }
     }
+
   }

@@ -1,12 +1,4 @@
-<% content_for(:page_title) do %>OpenAidRegister | Dashboard<% end %>
-
-<%= content_for(:js) do %>
-  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :application, :users %>
-<% end %>
-
-<%= content_for(:css) do %>
-  <%= stylesheet_link_tag :application, :users, :media => 'all' %>
-<% end %>
+<% content_for(:page_title) do %>OpenAidRegister | <%= current_user.name %><% end %>
 
 <%= render :partial => 'header' %>
 
@@ -16,8 +8,8 @@
     <%= link_to t('users.publish.add_new_project'), '#', :class => 'left button uppercase round red small' %>
     <div class="publishing-tools right">
       <label class="small dark left"><%= t('users.publish.publishing_tools') %></label>
-      <%= link_to t('users.publish.export'), '#', :class => 'button uppercase round white small left' %>
-      <%= link_to t('users.publish.share'), '#', :class => 'button uppercase round white small left' %>
+      <%= link_to t('users.publish.export'), '#export', :class => 'button uppercase round white small left export' %>
+      <%= link_to t('users.publish.share'), '#share', :class => 'button uppercase round white small left share' %>
     </div>
   </section>
 </div>

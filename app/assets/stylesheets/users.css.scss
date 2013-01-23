@@ -12,6 +12,12 @@
   // Default form
   @include default-form(auto,100px);
 
+  // Whole list with its filters and search
+  .inner.list {
+    display:none;
+  }
+
+
   // Sections styles and defaults
   section {
     // Styles
@@ -47,6 +53,7 @@
         border:1px solid #CCC\9;
         @include box-shadow(rgba(black,0.6) 0 0 1px 0);
         p {display:block; width:100%; &.bigger {font-size:23px;}}
+        a {padding-left:25px; padding-right:25px; @include border-radius(30px)}
       }
     }
 

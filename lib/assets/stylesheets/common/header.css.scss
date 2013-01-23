@@ -3,6 +3,9 @@
    *  Styles for header block
    */
 
+  @import "compass";
+  @import "common/vars";
+
   section {
     header {
       height:32px;
@@ -54,7 +57,49 @@
 
       header {
         h1 a {color:#333333;}
-        nav a {color:#333; &:hover {border-top-color:#333;}}
+
+        nav {
+          margin:3px 50px 0 0;
+
+          a, input[type="submit"], button {
+            color:#333;
+            border:none;
+            border-top:2px solid transparent;
+            
+            &:hover {
+              border-top-color:#333;
+              cursor:pointer;
+            }
+          }
+
+          span.user_options {
+            margin-left:24px;
+            border-left: 1px solid #DDDDDD;
+            
+            a, input[type="submit"]  {font-weight:normal}
+
+            form {
+              @include inline-block();
+              vertical-align: middle;
+              width:auto;
+              margin-left:20px;
+              line-height: 22px;
+              
+              div {display:inline; width:auto;}
+              input[type="submit"],button {
+                @include inline-block();
+                vertical-align: middle;
+                margin:0;
+                padding:0;
+                color:#333333;
+                line-height:22px!important;
+                background:none;
+                text-transform:uppercase;
+                font:normal 13px $text_fonts;
+              }
+            }
+          }
+        }
       }
     }
   }
