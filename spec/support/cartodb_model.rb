@@ -12,13 +12,11 @@ class CartodbModel
   def self.where(filters)
     records.select do |record|
       filters.inject{|key_value, result| result && record.send(key_value.first) == key_value.last }
-    end
+    end.map{|r| self.new(r)}
   end
 
   def self.find_by_id(id)
-    record = where(:cartodb_id => id).first
-
-    self.new(record) if record
+    where(:cartodb_id => id).first
   end
 
   def self.all

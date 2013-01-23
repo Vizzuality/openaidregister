@@ -25,7 +25,6 @@ describe "Embedded map", :type => :feature do
 
     click_on 'share'
 
-    peich
     page.should have_css '.map'
     projects_json = page.evaluate_script('projects');
     Project.all.each do |project|
