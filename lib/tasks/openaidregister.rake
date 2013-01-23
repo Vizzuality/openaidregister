@@ -23,20 +23,21 @@ task :setup => :environment do
   tables_list = CartoDB::Connection.tables
 
   CartoDB::Connection.create_table 'projects', [
-    {:name => 'user_id',            :type => 'numeric' } ,
-    {:name => 'name',               :type => 'text'    } ,
-    {:name => 'id_in_organization', :type => 'numeric' } ,
-    {:name => 'description',        :type => 'text'    } ,
-    {:name => 'organization_role',  :type => 'numeric' } ,
-    {:name => 'language',           :type => 'numeric' } ,
-    {:name => 'sector',             :type => 'numeric' } ,
-    {:name => 'subsector',          :type => 'numeric' } ,
-    {:name => 'start_date',         :type => 'date'    } ,
-    {:name => 'end_date',           :type => 'date'    } ,
-    {:name => 'budget',             :type => 'numeric' } ,
-    {:name => 'budget_currency',    :type => 'numeric' } ,
-    {:name => 'contact_person',     :type => 'text'    } ,
-    {:name => 'url',                :type => 'text'    }
+    {:name => 'the_geom',            :type => 'geometry' } ,
+    {:name => 'user_id',            :type => 'numeric'   } ,
+    {:name => 'name',               :type => 'text'      } ,
+    {:name => 'id_in_organization', :type => 'numeric'   } ,
+    {:name => 'description',        :type => 'text'      } ,
+    {:name => 'organization_role',  :type => 'numeric'   } ,
+    {:name => 'language',           :type => 'numeric'   } ,
+    {:name => 'sector',             :type => 'numeric'   } ,
+    {:name => 'subsector',          :type => 'numeric'   } ,
+    {:name => 'start_date',         :type => 'date'      } ,
+    {:name => 'end_date',           :type => 'date'      } ,
+    {:name => 'budget',             :type => 'numeric'   } ,
+    {:name => 'budget_currency',    :type => 'numeric'   } ,
+    {:name => 'contact_person',     :type => 'text'      } ,
+    {:name => 'url',                :type => 'text'      }
   ] unless tables_list.tables.map(&:name).include?('projects')
 
   CartoDB::Connection.create_table 'transactions', [
@@ -98,10 +99,6 @@ task :setup => :environment do
     organization_document_types
     organization_types
     countries
-    collaboration_types
-    aid_types
-    flow_types
-    finance_types
   ).each do |table_name|
     CartoDB::Connection.drop_table table_name if tables_list.tables.map(&:name).include?(table_name) rescue nil
     CartoDB::Connection.create_table table_name
@@ -112,6 +109,20 @@ task :setup => :environment do
 
   puts
   puts 'Generating seed data...'
+
+    unless Rails.env.production?
+      user = User.create( :name     => 'pepe smith',
+                         :email    => 'pepe@wadus.com',
+                         :password => 'wadus' )
+      10.times do |i|
+        Project.create(
+          :user_id    => user.cartodb_id,
+          :name       => "Wadus #{i}",
+          :start_date => 1.year.ago,
+          :end_date   => [1.day.since, 1.day.ago, Time.now].sample
+        )
+      end
+    end
 
 
     CartoDB::Connection.insert_row 'sectors', {
@@ -644,10 +655,6 @@ task :drop_all_tables => :environment do
     organization_document_types
     organization_types
     countries
-    collaboration_types
-    aid_types
-    flow_types
-    finance_types
   ).each do |table_name|
     begin
       CartoDB::Connection.drop_table(table_name) if account_tables.include?(table_name)

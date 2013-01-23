@@ -19,7 +19,23 @@ class Project < CartodbModel
                 :flow_type,
                 :finance_type,
                 :url,
-                :the_geom
+                :the_geom,
+                :lat,
+                :lon
+
+  def initialize(attributes)
+    super(attributes)
+    self.lat = the_geom.y if the_geom.present?
+    self.lon = the_geom.x if the_geom.present?
+  end
+
+  def lat=(value)
+    attributes[:lat] = value
+  end
+
+  def lon=(value)
+    attributes[:lon] = value
+  end
 
   def self.for_user(user_id)
     query(<<-SQL)
@@ -44,10 +60,20 @@ class Project < CartodbModel
   end
 
   def coords
-    "#{[*-90..90].sample}, #{[*-180..180].sample}"
+    "#{lat}, #{lon}"
   end
 
   def to_param
     cartodb_id
+  end
+
+  def as_json(options = {})
+    options[:only] ||= [:cartodb_id,
+                        :name,
+                        :start_date,
+                        :end_date,
+                        :lat,
+                        :lon]
+    super(options)
   end
 end

@@ -73,8 +73,8 @@ class CartodbModel
     @attributes || {}
   end
 
-  def to_json(options = {})
+  def as_json(options = {})
     options[:except] ||= [:attributes]
-    super(options)
+    attributes.as_json(options)
   end
 end
