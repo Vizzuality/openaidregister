@@ -23,7 +23,7 @@ class Project < CartodbModel
                 :lat,
                 :lon
 
-  def initialize(attributes)
+  def initialize(attributes = {})
     super(attributes)
     self.lat = the_geom.y if the_geom.present?
     self.lon = the_geom.x if the_geom.present?

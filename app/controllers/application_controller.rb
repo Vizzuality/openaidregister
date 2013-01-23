@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
       @user = User.find_by_id(params[:user_id])
     end
   end
+
+  def layout_if_ajax?
+    unless request.xhr?
+      'application'
+    else
+      false
+    end
+  end
 end

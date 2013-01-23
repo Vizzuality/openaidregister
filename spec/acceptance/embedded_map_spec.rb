@@ -28,7 +28,7 @@ describe "Embedded map", :type => :feature do
     page.should have_css '.map'
     projects_json = page.evaluate_script('projects');
     Project.all.each do |project|
-      projects_json.should include(project.to_json)
+      projects_json.should include(project.as_json)
     end
   end
 

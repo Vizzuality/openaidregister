@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_filter :get_user, :only => :index
 
+  layout :layout_if_ajax?
+
   def index
     @projects = if @user.present? && @user.persisted?
                   @user.projects

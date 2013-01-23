@@ -1,5 +1,11 @@
 <% content_for(:page_title) do %>OpenAidRegister | <%= current_user.name %><% end %>
 
+<% if flash[:info] %>
+  <script type="text/javascript">
+    var newProjectFormPath = '<%= flash[:info] %>';
+  </script>
+<% end %>
+
 <%= render :partial => 'header' %>
 
 <!-- edit tools -->
