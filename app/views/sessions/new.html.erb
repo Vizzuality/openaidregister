@@ -8,22 +8,18 @@
 
   <section class="sessions small">
     <h3 class="center block upper darker"><span class="title_line"></span><%= t('.sign_in') %><span class="title_line"></span></h3>
-    
     <%= form_for(@session) do |f| %>
       <div class="field block margin35">
         <%= error_message(@session, :email) %>
         <%= f.email_field :email, :placeholder => t('.email'), :class => "med" %>
       </div>
-
       <div class="field block margin15">
         <%= error_message(@session, :password) %>
         <%= f.password_field :password, :placeholder => t('.password'), :class => "med" %>
       </div>
-
       <div class="field block margin35">
         <%= f.submit t('.sign_in'), :class => 'center button red round' %>
       </div>
-      
     <% end %>
   </section>
   <div class="bottom">

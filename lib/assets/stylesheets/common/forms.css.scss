@@ -20,6 +20,16 @@
     }
   }
 
+  // No text mixin
+  @mixin user-select($val) {
+    -webkit-touch-callout: $val;
+    -webkit-user-select: $val;
+    -khtml-user-select: $val;
+    -moz-user-select: $val;
+    -ms-user-select: $val;
+    user-select: $val;  
+  }
+
   @mixin no-text-focus() {
     &:focus {
       outline:none;
@@ -102,6 +112,19 @@
         @include border-radius(20px);
         resize:none;
         @include text-focus();
+      }
+
+      // Placeholder label
+      label.placeholder {
+        position:absolute;
+        top:0;
+        left:0;
+        pointer-events:none;
+        color:#CCCCCC;
+        font-style:italic;
+        font-weight:normal;
+        @include user-select(none);
+        z-index:1;
       }
 
       // Select wrapper

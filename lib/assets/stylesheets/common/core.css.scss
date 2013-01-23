@@ -16,6 +16,12 @@
 
   strong {font-weight:bold;}
 
+  // Remove webkit mobile shit
+  input, textarea {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+  }
+
 
   /* Helper classes */
 

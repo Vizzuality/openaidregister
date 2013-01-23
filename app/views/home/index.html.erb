@@ -96,11 +96,11 @@
     <section class="borders">
       <h3 class="center block upper dark"><span class="title_line"></span><%= t('index.using') %><span class="title_line"></span></h3>
       <div class="using_it">
-        <%= link_to image_tag("logos/publish.png", :border=>0), "", :target => "_blank" %>
-        <%= link_to image_tag("logos/engineers.png", :border=>0), "", :target => "_blank" %>
-        <%= link_to image_tag("logos/global_integrity.png", :border=>0), "", :target => "_blank" %>
-        <%= link_to image_tag("logos/indigo.png", :border=>0), "", :target => "_blank" %>
-        <%= link_to image_tag("logos/alliance.png", :border=>0), "", :target => "_blank" %>
+        <%= link_to image_tag("logos/publish.png", :border=>0),           "http://www.publishwhatyoufund.org/", :target => "_blank" %>
+        <%= link_to image_tag("logos/engineers.png", :border=>0),         "http://www.ewb.ca/",                 :target => "_blank" %>
+        <%= link_to image_tag("logos/global_integrity.png", :border=>0),  "http://www.globalintegrity.org/",    :target => "_blank" %>
+        <%= link_to image_tag("logos/indigo.png", :border=>0),            "http://indigotrust.wordpress.com/",  :target => "_blank" %>
+        <%= link_to image_tag("logos/alliance.png", :border=>0),          "http://www.aidsalliance.org/",       :target => "_blank" %>
       </div>
     </section>
   </div>
@@ -108,7 +108,7 @@
 
 <!-- Transparent -->
 <section class="transparent center">
-  <%= link_to t('index.transparent'), "#", :class => "bold bigger title" %>
+  <%= link_to t('index.transparent'), new_user_path, :class => "bold bigger title" %>
 </section>
 
 <%= render :partial => 'layouts/footer' %>
