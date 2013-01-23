@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def get_user
+    if params[:user_id]
+      @user = User.find_by_id(params[:user_id])
+    end
+  end
 end

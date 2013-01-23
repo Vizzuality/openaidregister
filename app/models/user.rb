@@ -9,13 +9,11 @@ class User < CartodbModel
   validates :password, :presence => true
 
   def self.with_credentials(email, password)
-    user_record = User.where(:email => email, :password => password).first
-    User.new(user_record)
+    User.where(:email => email, :password => password).first
   end
 
   def self.find_by_name(name)
-    user_record = User.where(:name => name).first
-    User.new(user_record)
+    User.where(:name => name).first
   end
 
   def projects

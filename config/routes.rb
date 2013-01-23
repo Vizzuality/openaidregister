@@ -1,6 +1,8 @@
 Openaidregister::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :projects
+  end
   resources :sessions
 
   resources :projects

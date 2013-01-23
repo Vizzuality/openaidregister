@@ -1,4 +1,13 @@
 class ProjectsController < ApplicationController
+  before_filter :get_user, :only => :index
+
+  def index
+    @projects = if @user.present? && @user.persisted?
+                  @user.projects
+                else
+                  []
+                end
+  end
 
   def show
 

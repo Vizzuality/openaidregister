@@ -26,7 +26,7 @@ describe "IATI basic form", :type => :feature do
   describe 'Project ID On your Org. field' do
     subject { find('.field.id_in_organization') }
 
-    it { should_have_hint "This is a globally unique organization's identifier for this project/activity. If the organization doesnt use identifiers for projects, it can be also just a number starting in 1,2,3... " }
+    it { should have_hint "This is a globally unique organization's identifier for this project/activity. If the organization doesnt use identifiers for projects, it can be also just a number starting in 1,2,3... " }
   end
 
   it { should have_field 'Project description' }
@@ -118,13 +118,13 @@ describe "IATI basic form", :type => :feature do
       select '$USD',             :from => 'project_budget_currency'
 
       fill_in 'project_url',            :with => 'http://www.myiatiproject.org'
-      fill_in 'project_contact_person', :with => 'You'
 
       expect do
         click_on 'Save project'
       end.to change{ Project.all.size }.by(1)
 
       created_project = Project.all.first
+      created_project.user.cartodb_id.should    be == @user.cartodb_id
       created_project.name.should               be == 'IATI test project'
       created_project.id_in_organization.should be == 123456789
       created_project.description.should        be == lorem_ipsum
@@ -136,9 +136,8 @@ describe "IATI basic form", :type => :feature do
       created_project.end_date.should           be == ''
       created_project.budget.should             be == 100000
       created_project.budget_currency.should    be == 1
-      created_project.contact_person.should     be == 'You'
+      created_project.contact_person.should     be_nil
       created_project.url.should                be == 'http://www.myiatiproject.org'
-
 
     end
 

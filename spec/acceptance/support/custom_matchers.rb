@@ -5,9 +5,8 @@ module CustomMatchers
     have_selector('label', :text => text)
   end
 
-  def should_have_hint(text)
-    hint = find('.hint')
-    hint['data-description'].should be == text
+  def have_hint(text)
+    have_css(%Q{.hint[data-description="#{text}"]})
   end
 
   def have_sector(sector, subsector)

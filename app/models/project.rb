@@ -1,6 +1,7 @@
 class Project < CartodbModel
 
-  attr_accessor :name,
+  attr_accessor :user_id,
+                :name,
                 :id_in_organization,
                 :description,
                 :organization_role,
@@ -18,18 +19,18 @@ class Project < CartodbModel
                 :flow_type,
                 :finance_type,
                 :url,
-                :lat,
-                :lon
+                :the_geom
 
   def self.for_user(user_id)
-    result = CartoDB::Connection.query(<<-SQL)
+    query(<<-SQL)
       SELECT *
       FROM projects
       WHERE user_id = #{user_id};
     SQL
+  end
 
-    return result.rows || [] if result
-    []
+  def user
+    User.find_by_id(user_id)
   end
 
   def state
@@ -43,7 +44,7 @@ class Project < CartodbModel
   end
 
   def coords
-    "#{lat}, #{lon}"
+    "#{[*-90..90].sample}, #{[*-180..180].sample}"
   end
 
   def to_param
