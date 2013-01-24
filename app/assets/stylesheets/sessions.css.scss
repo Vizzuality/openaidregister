@@ -39,6 +39,7 @@
     padding:50px;
     z-index:2;
 
+    // LOGIN
     div.field {
       input[type="password"].med,
       input[type="text"].med,
@@ -46,9 +47,68 @@
       input[type="submit"] {padding:10px 22px; margin-left:138px;}
     }
     &.small {width:377px;}
-    &.med {width:747px; padding:50px 0;}
+    &.med {width:737px; padding:50px 0;}
 
-    div.user, div.organization {padding:0 50px;}
+
+
+    // SIGN UP
+    div.signup {
+      display:block;
+      height:320px;
+      overflow:hidden;
+
+      div.user, div.organization {padding:0 50px;}
+
+      div.field {
+        input[type="password"].med,
+        input[type="text"].med,
+        input[type="email"].med {width:355px;}
+        input[type="submit"], button {padding:10px 22px; margin-left:252px;}
+      }
+
+      div.organization {
+        input[type="submit"] {margin-left:290px;}
+      }
+    }
+    
+
+    // Progress
+    div.progress {
+      display:block;
+      padding:38px 50px;
+      background: #F2F2F2;
+      border-top:1px solid #DDDDDD;
+      border-bottom:1px solid #DDDDDD;
+      
+      div.progress_bar {
+        display:block;
+        height:12px;
+        padding:1px;
+        border:1px solid #999999;
+        background:white;
+        @include border-radius(10px);
+
+        span.bar {
+          position:relative;
+          display:block;
+          width:50%;
+          height:100%;
+          @include background(linear-gradient(left,#26C9FF,#A3D900));
+          @include border-radius(10px);
+          &:after {
+            content:'';
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            border:1px solid rgba(black,0.08);
+            @include border-radius(10px);
+
+          }
+        }
+      }
+    }
   }
 
 

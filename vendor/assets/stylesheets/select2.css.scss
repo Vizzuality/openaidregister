@@ -226,9 +226,13 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 }
 
 .select2-results .select2-result-label {
-    padding: 1px 0 1px;
+    padding: 1px 0 12px;
     margin: 0;
     cursor: pointer;
+}
+
+.select2-result:last-child .select2-result-label {
+    padding-bottom:1px;
 }
 
 .select2-results .select2-highlighted {

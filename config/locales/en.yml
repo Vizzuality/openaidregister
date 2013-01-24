@@ -201,7 +201,11 @@ en:
         website: "Organization's website"
         type_id: "Organization's type"
         country_id: "Organization's country"
-        government_id: "Government ID"
+        government_id:
+          title: "Government ID"
+          desc: ""
+          url: ""
+          examples: ""
       continue: 'Continue'
       save: 'Save'
   sessions:

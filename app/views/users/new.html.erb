@@ -1,11 +1,7 @@
-<% content_for(:page_title) do %>OpenAidRegister | Login<% end %>
+<% content_for(:page_title) do %>OpenAidRegister | Sign up<% end %>
 
-<%= content_for(:js) do %>
-  <%#= javascript_include_tag :application, :sessions %>
-<% end %>
-
-<%= content_for(:css) do %>
-  <%#= stylesheet_link_tag :application, :sessions, :media => 'all' %>
+<%= content_for(:extra_assets) do %>
+  <%= stylesheet_link_tag :sessions, :media => 'all' %>
 <% end %>
 
 <div class="bkg"><div class="mesh"></div></div>
@@ -17,65 +13,87 @@
     <h3 class="center block upper darker"><span class="title_line"></span><%= t('.create_your_account') %><span class="title_line"></span></h3>
 
     <%= form_for(@user) do |f| %>
-
-      <div class="user margin50">
-        <div class="field">
-          <%= f.label :name, t('.name') %>
-          <%= f.text_field :name, :autofocus => true, :class => "med" %>
-        </div>
-
-        <div class="field margin25">
-          <%= f.label :email, t('.email') %>
-          <%= f.email_field :email, :class => "med" %>
-        </div>
-
-        <div class="field margin margin25">
-          <%= f.label :password, t('.password') %>
-          <%= f.password_field :password, :class => "short" %>
-        </div>
-
-        <div class="field margin50">
-          <%= f.button t('.continue'), :type => 'button', :class => "red round button" %>
+      <div class="progress margin40">
+        <div class="progress_bar">
+          <span class="bar"></span>
         </div>
       </div>
 
-      <div class="organization">
-        <%= f.fields_for @user.organization do |ff| %>
+      <div class="signup">
+        <div class="user margin50">
           <div class="field">
-            <%= ff.label :name, t('.organization.name') %>
-            <%= ff.text_field :name %>
+            <%= error_message(@user, :name) %>
+            <%= f.label :name, t('.name') %>
+            <%= f.text_field :name, :autofocus => true, :class => "med" %>
           </div>
 
-          <div class="field">
-            <%= ff.label :website, t('.organization.website') %>
-            <%= ff.text_field :website %>
+          <div class="field margin25">
+            <%= error_message(@user, :email) %>
+            <%= f.label :email, t('.email') %>
+            <%= f.email_field :email, :class => "med" %>
           </div>
 
-          <div class="field">
-            <%= ff.label :type_id, t('.organization.type_id') %>
-            <div class="select_wrapper">
-              <%= ff.select :type_id, to_select_options(@organization_types), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+          <div class="field margin margin25">
+            
+            <%= f.label :password, t('.password') %>
+            <%= error_message(@user, :password) %>
+            <%= f.password_field :password, :class => "short" %>
+          </div>
+
+          <div class="field margin50">
+            <%= f.button t('.continue'), :type => 'button', :class => "red round button continue" %>
+          </div>
+        </div>
+
+        <div class="organization margin50">
+          <%= f.fields_for @user.organization do |ff| %>
+            <div class="field">
+              <%= error_message(@user, :name) %>
+              <%= ff.label :name, t('.organization.name') %>
+              <%= ff.text_field :name, :class => "med" %>
             </div>
-          </div>
 
-          <div class="field">
-            <%= ff.label :country_id, t('.organization.country_id') %>
-            <div class="select_wrapper">
-              <%= ff.select :country_id, to_select_options(@countries), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+            <div class="field margin">
+              <%= error_message(@user, :website) %>
+              <%= ff.label :website, t('.organization.website') %>
+              <%= ff.text_field :website, :class => "short" %>
             </div>
-          </div>
 
-          <div class="field">
-            <%= ff.label :government_id, t('.organization.government_id') %>
-            <%= ff.text_field :government_id %>
-          </div>
-        <% end %>
+            <div class="field short margin20">
+              <%= error_message(@user, :type_id) %>
+              <%= ff.label :type_id, t('.organization.type_id') %>
+              <div class="select_wrapper">
+                <%= ff.select :type_id, to_select_options(@organization_types), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+              </div>
+            </div>
 
-        <div class="field">
-          <%= f.submit t('.save'), :class => "red round button" %>
+            <div class="field margin20 margin med">
+              <%= error_message(@user, :country_id) %>
+              <%= ff.label :country_id, t('.organization.country_id') %>
+              <div class="select_wrapper med">
+                <%= ff.select :country_id, to_select_options(@countries), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+              </div>
+            </div>
+
+            <div class="field margin20">
+              <%= error_message(@user, :government_id) %>
+              <div class="block">
+                <%= ff.label :government_id, t('.organization.government_id.title'), :class => "with_hint" %>
+                <span class="hint"
+                  data-title="<%= t('.organization.government_id.title') %>"
+                  data-description="<%= t('.organization.government_id.desc') %>"
+                  data-url="<%= t('.organization.government_id.url') %>"
+                  data-examples="<%= t('.organization.government_id.examples') %>"></span>
+              </div>
+              <%= ff.text_field :government_id, :class => "short" %>
+            </div>
+          <% end %>
+
+          <div class="field block margin40">
+            <%= f.submit t('.save'), :class => "red round button" %>
+          </div>
         </div>
       </div>
-
     <% end %>
 
   </section>

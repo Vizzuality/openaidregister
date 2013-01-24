@@ -68,6 +68,7 @@
         font:bold 15px $title_fonts;
         color:#333333;
 
+        em {font-size:13px; font-weight:normal;}
         &.with_hint {@include inline-block();}
       }
 
@@ -196,11 +197,20 @@
       &.block {width:100%;}
 
       &.error {
+        label {
+          color:$error_color;
+          &.placeholder {color:#CCC;}
+        }
+
+        div.select_wrapper {
+          border-color: $error_color;
+        }
+
         input {
-          color:red;
-          border-color:red;
+          color:$error_color;
+          border-color:$error_color;
           &:focus {
-            border-color:red;
+            border-color:$error_color;
           }
         }
       }
