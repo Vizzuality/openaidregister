@@ -15,11 +15,22 @@ class CartodbModel
     end
   end
 
+  def table_name
+    self.class.name.tableize
+  end
+
   def save
     return false unless valid?
 
-    inserted_row = CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
-    self.cartodb_id = inserted_row.cartodb_id
+    prepared_attributes = prepare_data_for_table(table_name, attributes)
+
+    if persisted?
+      CartoDB::Connection.update_row(table_name, prepared_attributes)
+    else
+      row = CartoDB::Connection.insert_row(table_name, prepared_attributes.except('cartodb_id'))
+      self.cartodb_id = row.cartodb_id
+    end
+
     self
   end
 
@@ -60,11 +71,11 @@ class CartodbModel
       SELECT *
       FROM #{name.tableize}
       WHERE cartodb_id = #{id};
-    SQL
+      SQL
 
-    if result && result.rows && result.rows.first
-      self.new(result.rows.first)
-    end
+      if result && result.rows && result.rows.first
+        self.new(result.rows.first)
+      end
   end
 
   def self.where(filters)
@@ -87,5 +98,26 @@ class CartodbModel
   def as_json(options = {})
     options[:except] ||= [:attributes]
     attributes.as_json(options)
+  end
+
+  private
+
+  def prepare_data_for_table(table_name, attributes)
+    table = CartoDB::Connection.table(table_name)
+    table.schema.each do |column_name, colum_type|
+      attributes[column_name] = format_value_for_type(colum_type, attributes[column_name])
+    end
+    attributes
+  end
+
+  def format_value_for_type(type, value)
+    case type
+    when 'number'
+      value = Float(value) rescue nil
+    when 'date'
+      value = Date.parse(value) rescue nil
+    else
+      value
+    end
   end
 end

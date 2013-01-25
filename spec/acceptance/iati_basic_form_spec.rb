@@ -148,6 +148,12 @@ describe "IATI basic form", :type => :feature do
 
     end
 
+    it 'can be saved when empty' do
+      expect do
+        click_on 'Save project'
+      end.to change{ Project.all.size }.by(1)
+    end
+
   end
 
 end
