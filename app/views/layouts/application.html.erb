@@ -7,7 +7,8 @@
   <title><%= yield :page_title %></title>
   <meta name="description" content="">
   <meta name = "viewport" content = "width = 1020">
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Open+Sans:400,700" %>
+  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Open+Sans:400,700", :media => 'all' %>
+  <%= stylesheet_link_tag "https://www.google.com/cse/style/look/default.css", :media => 'all' %>
   <%= stylesheet_link_tag :application,    :media => 'all' %>
   <%= stylesheet_link_tag controller_name, :media => 'all' %>
   <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places' %>

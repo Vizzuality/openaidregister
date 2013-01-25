@@ -74,6 +74,12 @@
         &.white {padding:7px 15px;}
       }
 
+      &.long-round {
+        padding-left:20px;
+        padding-right:20px;
+        @include border-radius(30px);
+      }
+
       &.disabled {
         border-color:#CCCCCC;
         color:#CCCCCC;

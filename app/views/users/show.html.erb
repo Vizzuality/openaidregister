@@ -1,17 +1,15 @@
 <% content_for(:page_title) do %>OpenAidRegister | <%= current_user.name %><% end %>
 
-<% if flash[:info] %>
-  <script type="text/javascript">
-    var newProjectFormPath = '<%= flash[:info] %>';
-  </script>
-<% end %>
+<script type="text/javascript">
+  <% if flash[:info] %>var newProjectFormPath = '<%= flash[:info] %>'<% end %>;
+</script>
 
 <%= render :partial => 'header' %>
 
 <!-- edit tools -->
 <div class="inner">
   <section class="compact borders tools">
-    <%= link_to t('users.publish.add_new_project'), '#', :class => 'left button uppercase round red small' %>
+    <%= link_to t('users.publish.add_new_project'), new_project_path, :class => 'left button uppercase round red small new' %>
     <div class="publishing-tools right">
       <label class="small dark left"><%= t('users.publish.publishing_tools') %></label>
       <%= link_to t('users.publish.export'), '#', :class => 'button uppercase round white small left export' %>
@@ -26,7 +24,7 @@
   <div id="zoom"><a class="zoom_in">+</a><a class="zoom_out">-</a></div>
   <div class="empty_map">
     <p class="darker center bold bigger left"><%= t('users.map.empty.title') %></p>
-    <p class="center left margin15"><a href="#add" class="button red round"><%= t('users.map.empty.button') %></a></p>
+    <p class="center left margin15"><%= link_to t('users.map.empty.button'), new_project_path, :class => "button red round new" %></p>
   </div>
 </section>
 

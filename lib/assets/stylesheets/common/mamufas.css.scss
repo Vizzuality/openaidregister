@@ -1,0 +1,96 @@
+
+  /**
+   *  Mamufas styles
+   */
+
+  div.dialog {
+    position:absolute;
+    display:none;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:50;
+  }
+
+  div.mamufas {
+    position:relative;
+    width:100%;
+    margin:0;
+    padding:150px 0 100px;
+    @include background(image-url('layout/black_bkg.png')); // IE
+    background:rgba(black,0.5);
+
+    section.modal {
+      position:relative;
+      width:600px;
+      margin:0 auto;
+      padding:0;
+      background:white;
+
+      div.head {
+        padding:50px 0;
+        border-bottom:1px solid #DDD;
+      }
+
+      div.content {
+        .padding {
+          display:block;
+          padding:50px;
+        }
+
+        a.button.long-round,
+        button.long-round {
+          width:83px;
+          &.margin {margin-left:10px;}
+        }
+
+        button, a.button {
+          &.hover {background:#F44848; text-decoration:underline;}
+          &.active {background:#DC4141;}
+        }
+
+        p.loader {
+          display:block;
+          padding-bottom:50px;
+          @include background(image-url('layout/ajax-loader.gif') no-repeat center bottom);
+        }
+
+        textarea {
+          display:block;
+          width:407px;
+          padding:11px 20px;
+          margin-top:8px;
+          min-height:128px;
+          max-height:128px;
+          font:normal 15px $text_fonts;
+          line-height:normal;
+          color:#333333;
+          border:1px solid #CCCCCC;
+          @include border-radius(20px);
+          resize:none;
+          @include text-focus();
+        }
+      }
+
+      a.close {
+        position:absolute;
+        top:-15px;
+        right:-15px;
+        width:33px;
+        height:34px;
+        text-indent:-9999px;
+        font-size:0;
+        line-height: 0;
+        @include icons-sprite(close);
+        &:hover {@include icons-sprite(close, $offset-y:-34px);}
+
+        z-index:5;
+        &:focus, &:hover {
+          outline:none;
+          color:black;
+          text-decoration:none;
+        }
+      }
+    }
+  }

@@ -1,31 +1,22 @@
-<% content_for(:page_title) do %>OpenAidRegister | New project<% end %>
 
-
-<%= content_for(:js) do %>
-  <%= javascript_include_tag controller_name if request.xhr? %>
-  <%#= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :application, :new %>
-<% end %>
-
-<%= content_for(:css) do %>
-  <%= stylesheet_link_tag controller_name, :media => 'all' if request.xhr? %>
-  <%#= stylesheet_link_tag :application, 'https://www.google.com/cse/style/look/default.css', :new, :media => 'all' %>
-<% end %>
+<%= javascript_include_tag controller_name if request.xhr? %>
+<%= stylesheet_link_tag controller_name, :media => 'all' if request.xhr? %>
 
 <div class="form_inner">
-  <section class="borders">
+  <section>
     <div>
       <h3 class="center upper"><span class="title_line"></span><%= t('.title') %><span class="title_line"></span></h1>
     </div>
   </section>
 
-  <section class="borders grey_section">
+  <section class="grey_section">
     <div class="center">
       <h4 class="dark"><%= t('.info.title') %></h4>
       <p class="description margin5"><%= t('.info.description') %></p>
     </div>
   </section>
 
-  <section class="borders">
+  <section>
     <%= render 'form_basic' %>
   </section>
 </div>
