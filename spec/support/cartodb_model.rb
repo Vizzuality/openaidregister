@@ -28,7 +28,12 @@ class CartodbModel
   end
 
   def save
+    return false unless valid?
+
     self.cartodb_id = self.attributes[:cartodb_id] = self.class.count + 1
-    self.class.records << CartoDB::Types::Metadata.from_hash(self.attributes)
+    model = CartoDB::Types::Metadata.from_hash(self.attributes)
+    self.class.records << model
+
+    self.class.new(model)
   end
 end

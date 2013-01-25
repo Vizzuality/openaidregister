@@ -5,7 +5,8 @@ class ProjectResult < CartodbModel
                 :target,
                 :start_date,
                 :end_date,
-                :description
+                :description,
+                :project_id
 
   def start_date
     @start_date = nil

@@ -112,8 +112,8 @@ task :setup => :environment do
 
     unless Rails.env.production?
       user = User.create( :name     => 'pepe smith',
-                         :email    => 'pepe@wadus.com',
-                         :password => 'wadus' )
+                          :email    => 'pepe@wadus.com',
+                          :password => 'wadus' )
       10.times do |i|
         Project.create(
           :user_id    => user.cartodb_id,

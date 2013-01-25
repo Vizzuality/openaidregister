@@ -6,14 +6,15 @@ class Transaction < CartodbModel
                 :value_currency,
                 :provider,
                 :receiver,
-                :description
+                :description,
+                :project_id
 
   def transaction_type
-    (TransactionType.all.select{|t| t.cartodb_id == type.to_i} || []).first if type
+    TransactionType.find_by_id(type)
   end
 
   def currency
-    (Currency.all.select{|c| c.cartodb_id == value_currency.to_i} || []).first if value_currency
+    Currency.find_by_id(value_currency)
   end
 
   def date

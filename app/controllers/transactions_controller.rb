@@ -1,9 +1,10 @@
 class TransactionsController < ApplicationController
+  acts_as_project_resource
 
   def new
-    @transaction       = Transaction.new
-    @transaction_types = TransactionType.all
-    @currencies        = Currency.all
+    @transaction       = Transaction.new(:project_id => @project.id)
+    @transaction_types = OpenAidRegister::TRANSACTION_TYPES
+    @currencies        = OpenAidRegister::CURRENCIES
   end
 
   def create

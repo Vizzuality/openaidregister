@@ -23,7 +23,7 @@ module CapybaraHelpers
 
     click_on 'sign in'
 
-    page.should have_content 'Sign in '
+    page.should have_content /Sign in/i
 
     page.should have_link "Don't have an account yet? Sign up"
 

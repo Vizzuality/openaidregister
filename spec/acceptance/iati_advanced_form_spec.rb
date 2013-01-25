@@ -3,7 +3,21 @@ require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
 describe "IATI advanced form", :type => :feature do
 
   before do
-    visit edit_project_path(:id => 1)
+    @user = User.create( :name     => 'pepe smith',
+                         :email    => 'pepe@wadus.com',
+                         :password => 'wadus' )
+    log_in_as @user
+
+    @project =  Project.create(
+        :user_id    => @user.cartodb_id,
+        :name       => "Wadus project",
+        :start_date => 1.year.ago.to_date,
+        :end_date   => [1.day.since, 1.day.ago, Time.now].sample.to_date,
+        :lat        => [*-90..90].sample,
+        :lon        => [*-180..180].sample
+      )
+
+    visit edit_project_path(@project)
   end
 
   it do
@@ -48,6 +62,14 @@ describe "IATI advanced form", :type => :feature do
     end
 
     click_on 'Save changes'
+
+    project = Project.all.last
+
+    project.collaboration_type.should be == 1
+    project.tied_status.should        be == 3
+    project.aid_type.should           be == 1
+    project.flow_type.should          be == 1
+    project.finance_type.should       be == 1
 
   end
 

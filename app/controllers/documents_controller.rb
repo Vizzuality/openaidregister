@@ -1,7 +1,9 @@
 class DocumentsController < ApplicationController
+  acts_as_project_resource
+
   def new
-    @document = Document.new
-    @types    = DocumentType.all
+    @document = Document.new(:project_id => @project.id)
+    @types    = OpenAidRegister::TYPES
   end
 
   def create

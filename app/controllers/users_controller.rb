@@ -8,23 +8,22 @@ class UsersController < ApplicationController
   def new
     @user               = User.new
     @user.organization  = Organization.new
-    @organization_types = OrganizationType.all
-    @countries          = Country.all
+    @organization_types = OpenAidRegister::ORGANIZATION_TYPES
+    @countries          = OpenAidRegister::COUNTRIES
   end
 
   def create
     @user = User.new(params[:user])
 
-    if @user.valid?
-      @user.save
+    if @user.save
 
       warden.set_user(@user)
 
       flash[:info] = new_project_path
       redirect_to @user
     else
-      @organization_types = OrganizationType.all
-      @countries          = Country.all
+      @organization_types = OpenAidRegister::ORGANIZATION_TYPES
+      @countries          = OpenAidRegister::COUNTRIES
       render :new
     end
   end

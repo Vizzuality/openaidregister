@@ -1,19 +1,21 @@
 RSpec.configure do |config|
 
   config.before do
-    Sector.stub(:all)            { [OpenStruct.new(:cartodb_id => 1, :name => 'Agriculture')]              }
-    Subsector.stub(:all)         { [OpenStruct.new(:cartodb_id => 1, :name => 'Food security')]            }
-    OrganizationRole.stub(:all)  { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus')]                    }
-    Language.stub(:all)          { [OpenStruct.new(:cartodb_id => 1, :name => 'English')]                  }
-    TransactionType.stub(:all)   { [OpenStruct.new(:cartodb_id => 1, :name => 'Acquisition')]              }
-    Currency.stub(:all)          { [OpenStruct.new(:cartodb_id => 1, :name => '$USD')]                     }
-    DocumentType.stub(:all)      { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]               }
-    OrganizationType.stub(:all)  { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]               }
-    Country.stub(:all)           { [OpenStruct.new(:cartodb_id => 1, :name => 'Spain')]                    }
-    CollaborationType.stub(:all) { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus collaboration type')] }
-    AidType.stub(:all)           { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus aid type')]           }
-    FlowType.stub(:all)          { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus flow type')]          }
-    FinanceType.stub(:all)       { [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus finance type')]       }
+    class OpenAidRegister
+      SECTORS             = [OpenStruct.new(:cartodb_id => 1, :name => 'Agriculture')]
+      SUBSECTORS          = [OpenStruct.new(:cartodb_id => 1, :name => 'Food security')]
+      ORGANIZATION_ROLES  = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus')]
+      LANGUAGES           = [OpenStruct.new(:cartodb_id => 1, :name => 'English')]
+      TRANSACTION_TYPES   = [OpenStruct.new(:cartodb_id => 1, :name => 'Acquisition')]
+      CURRENCIES          = [OpenStruct.new(:cartodb_id => 1, :name => '$USD')]
+      TYPES               = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]
+      ORGANIZATION_TYPES  = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus type')]
+      COUNTRIES           = [OpenStruct.new(:cartodb_id => 1, :name => 'Spain')]
+      COLLABORATION_TYPES = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus collaboration type')]
+      AID_TYPES           = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus aid type')]
+      FLOW_TYPES          = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus flow type')]
+      FINANCE_TYPES       = [OpenStruct.new(:cartodb_id => 1, :name => 'Wadus finance type')]
+    end
 
     CartodbModel.records = nil
 

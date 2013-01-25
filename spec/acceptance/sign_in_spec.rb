@@ -17,7 +17,7 @@ describe "OpenAidRegister", :type => :feature do
 
     current_path.should be == '/users/1'
 
-    page.should have_content @user.name
+    page.should have_content 'your profile'
   end
 
   it "doesn't allow unregistered users to login" do
@@ -32,7 +32,7 @@ describe "OpenAidRegister", :type => :feature do
   it "allows logged in users to log out" do
     log_in_as @user
 
-    click_on 'remove'
+    click_on 'logout'
 
     current_path.should be == '/'
 

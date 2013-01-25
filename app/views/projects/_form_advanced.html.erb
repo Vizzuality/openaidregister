@@ -1,4 +1,4 @@
-<%= form_for :project do |f| %>
+<%= form_for @project do |f| %>
 
   <section class="header borders grey_section">
     <div class="center">
@@ -19,25 +19,25 @@
         <h4><%= t('.transactions.title') %></h4>
         <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
         <div class="no-results"><%= t('.transactions.no_records') %></div>
-        <%= link_to t('.transactions.add'), new_transaction_path %>
+        <%= link_to t('.transactions.add'), new_project_transaction_path(@project) %>
       </li>
       <li class="involved-organizations">
         <h4><%= t('.involved_organizations.title') %></h4>
         <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
         <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
-        <%= link_to t('.involved_organizations.add'), new_external_organization_path %>
+        <%= link_to t('.involved_organizations.add'), new_project_external_organization_path(@project) %>
       </li>
       <li class="related-documents">
         <h4><%= t('.related_documents.title') %></h4>
         <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
         <div class="no-results"><%= t('.related_documents.no_records') %></div>
-        <%= link_to t('.related_documents.add'), new_document_path %>
+        <%= link_to t('.related_documents.add'), new_project_document_path(@project) %>
       </li>
       <li class="project-results">
         <h4><%= t('.project_results.title') %></h4>
         <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
         <div class="no-results"><%= t('.project_results.no_records') %></div>
-        <%= link_to t('.project_results.add'), new_project_result_path %>
+        <%= link_to t('.project_results.add'), new_project_project_result_path(@project) %>
       </li>
     </ul>
   </section>
