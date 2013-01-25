@@ -7,6 +7,7 @@ class User < CartodbModel
 
   validates :email, :presence => true, :email => true
   validates :password, :presence => true
+  validate :email_uniqueness
 
   def self.with_credentials(email, password)
     User.where(:email => email, :password => password).first
@@ -33,5 +34,13 @@ class User < CartodbModel
                     else
                       Organization.new(organization_attributes)
                     end
+  end
+
+  private
+
+  def email_uniqueness
+    if User.where(:email => email).length > 0
+      errors.add :email,    'already exists'
+    end
   end
 end

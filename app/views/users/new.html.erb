@@ -21,20 +21,20 @@
 
       <div class="signup">
         <div class="user margin50">
-          <div class="field">
+          <div class="name field">
             <%= error_message(@user, :name) %>
             <%= f.label :name, t('.name') %>
             <%= f.text_field :name, :autofocus => true, :class => "med" %>
           </div>
 
-          <div class="field margin25">
+          <div class="email field margin25">
             <%= error_message(@user, :email) %>
             <%= f.label :email, t('.email') %>
             <%= f.email_field :email, :class => "med" %>
           </div>
 
-          <div class="field margin margin25">
-            
+          <div class="password field margin margin25">
+
             <%= f.label :password, t('.password') %>
             <%= error_message(@user, :password) %>
             <%= f.password_field :password, :class => "short" %>
@@ -47,19 +47,19 @@
 
         <div class="organization margin50">
           <%= f.fields_for @user.organization do |ff| %>
-            <div class="field">
+            <div class="organization_name field">
               <%= error_message(@user, :name) %>
               <%= ff.label :name, t('.organization.name') %>
               <%= ff.text_field :name, :class => "med" %>
             </div>
 
-            <div class="field margin">
+            <div class="organization_website field margin">
               <%= error_message(@user, :website) %>
               <%= ff.label :website, t('.organization.website') %>
               <%= ff.text_field :website, :class => "short" %>
             </div>
 
-            <div class="field short margin20">
+            <div class="organization_type_id field short margin20">
               <%= error_message(@user, :type_id) %>
               <%= ff.label :type_id, t('.organization.type_id') %>
               <div class="select_wrapper">
@@ -67,7 +67,7 @@
               </div>
             </div>
 
-            <div class="field margin20 margin med">
+            <div class="organization_country_id field margin20 margin med">
               <%= error_message(@user, :country_id) %>
               <%= ff.label :country_id, t('.organization.country_id') %>
               <div class="select_wrapper med">
@@ -75,7 +75,7 @@
               </div>
             </div>
 
-            <div class="field margin20">
+            <div class="organization_government_id field margin20">
               <%= error_message(@user, :government_id) %>
               <div class="block">
                 <%= ff.label :government_id, t('.organization.government_id.title'), :class => "with_hint" %>
