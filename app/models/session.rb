@@ -21,14 +21,11 @@ class Session
   private
 
   def credentials_must_be_valid
-    if email.present? && password.present?
+    self.user = User.with_credentials(email, password)
 
-      self.user = User.with_credentials(email, password)
-
-      unless self.user.present? && self.user.persisted?
-        errors.add :email,    'Invalid email'
-        errors.add :password, 'Invalid password'
-      end
+    unless self.user.present? && self.user.persisted?
+      errors.add :email,    'Invalid email'
+      errors.add :password, 'Invalid password'
     end
   end
 end
