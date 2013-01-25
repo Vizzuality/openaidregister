@@ -5,11 +5,12 @@ Openaidregister::Application.routes.draw do
   end
   resources :sessions
 
-  resources :projects
-  resources :transactions
-  resources :external_organizations
-  resources :documents
-  resources :project_results
+  resources :projects do
+    resources :transactions
+    resources :external_organizations
+    resources :documents
+    resources :project_results
+  end
 
   root :to     => 'home#index'
   get '/faq'   => 'home#faq'

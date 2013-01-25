@@ -15,12 +15,29 @@ class CartodbModel
     end
   end
 
+  def save
+    return false unless valid?
+
+    inserted_row = CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
+    self.cartodb_id = inserted_row.cartodb_id
+    self
+  end
+
+  def update_attributes(attributes = {})
+    if attributes.present?
+      attributes.each do |name, value|
+        self.attributes[name] = value
+        send("#{name}=", value) rescue nil
+      end
+      save
+    end
+  end
+
   def self.create(params)
     model = self.new(params)
-    if model.valid?
-      model.save
-      return model
-    end
+
+    return model if model.save
+
     false
   end
 
@@ -61,12 +78,6 @@ class CartodbModel
     result = query("SELECT count(cartodb_id) as count FROM #{self.name.tableize}")
     return result.first['count'] || 0 if result.present?
     0
-  end
-
-  def save
-    inserted_row = CartoDB::Connection.insert_row(self.class.name.tableize, attributes)
-    self.cartodb_id = inserted_row.cartodb_id
-    self
   end
 
   def attributes

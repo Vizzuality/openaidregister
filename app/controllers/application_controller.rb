@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  extend ActAsProjectResource
+
   protect_from_forgery
 
   before_filter :login_required

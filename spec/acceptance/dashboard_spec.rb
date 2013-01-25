@@ -13,8 +13,8 @@ describe "Dashboard", :type => :feature do
         Project.create(
           :user_id    => @user.cartodb_id,
           :name       => "Wadus #{i}",
-          :start_date => 1.year.ago,
-          :end_date   => [1.day.since, 1.day.ago, Time.now].sample,
+          :start_date => 1.year.ago.to_date,
+          :end_date   => [1.day.since, 1.day.ago, Time.now].sample.to_date,
           :lat        => [*-90..90].sample,
           :lon        => [*-180..180].sample
         )

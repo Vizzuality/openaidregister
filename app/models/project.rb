@@ -21,7 +21,8 @@ class Project < CartodbModel
                 :url,
                 :the_geom,
                 :lat,
-                :lon
+                :lon,
+                :transaction
 
   def initialize(attributes = {})
     super(attributes)
@@ -51,7 +52,7 @@ class Project < CartodbModel
 
   def state
     if end_date.present?
-      if end_date > Time.now
+      if end_date.to_time > Time.now
         return 'ongoing'
       else
         return 'past'

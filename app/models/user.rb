@@ -21,8 +21,10 @@ class User < CartodbModel
   end
 
   def save
-    super
-    organization.save if organization
+    if user = super
+      organization.save if organization
+    end
+    user
   end
 
   def organization=(organization_attributes)

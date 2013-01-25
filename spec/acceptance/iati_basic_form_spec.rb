@@ -123,6 +123,13 @@ describe "IATI basic form", :type => :feature do
         click_on 'Save project'
       end.to change{ Project.all.size }.by(1)
 
+      within '.header' do
+        page.should have_subtitle 'Congrats, your projects has been registered!'
+        page.should have_content 'The basic information has been registered. However, we encorage you to provide more.'
+        page.should have_link 'complete information'
+        page.should have_link 'add another project'
+      end
+
       created_project = Project.all.first
       created_project.user.cartodb_id.should    be == @user.cartodb_id
       created_project.name.should               be == 'IATI test project'
