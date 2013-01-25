@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
 
   def new
     @document = Document.new(:project_id => @project.id)
-    @types    = DocumentType.all
+    @types    = OpenAidRegister::TYPES
   end
 
   def create

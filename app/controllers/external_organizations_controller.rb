@@ -3,7 +3,7 @@ class ExternalOrganizationsController < ApplicationController
 
   def new
     @organization = ExternalOrganization.new(:project_id => @project.id)
-    @roles        = OrganizationRole.all
+    @roles        = OpenAidRegister::ORGANIZATION_ROLES
   end
 
   def create
