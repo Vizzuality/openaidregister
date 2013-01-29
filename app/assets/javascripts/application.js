@@ -3,5 +3,4 @@
 //= require selectivizr.min
 //= require underscore.min
 //= require backbone.min
-
 //= require select2

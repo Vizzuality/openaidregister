@@ -1,7 +1,7 @@
 <% content_for(:page_title) do %>OpenAidRegister | <%= current_user.name %><% end %>
 
 <script type="text/javascript">
-  <% if flash[:info] %>var newProjectFormPath = '<%= flash[:info] %>'<% end %>;
+  <% if flash[:info] %>var newProjectFormPath = '<%= flash[:info] %>';<% end %>
 </script>
 
 <%= render :partial => 'header' %>
