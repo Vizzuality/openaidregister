@@ -65,6 +65,7 @@
           max-height:128px;
           font:normal 15px $text_fonts;
           line-height:normal;
+          overflow:auto;
           color:#333333;
           border:1px solid #CCCCCC;
           @include border-radius(20px);

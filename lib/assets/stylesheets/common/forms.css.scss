@@ -110,6 +110,7 @@
         line-height:normal;
         color:#333333;
         border:1px solid #CCCCCC;
+        overflow:auto;
         @include border-radius(20px);
         resize:none;
         @include text-focus();
