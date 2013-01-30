@@ -117,10 +117,27 @@
         <%= f.text_field :url, :class => "med" %>
       </div>
 
-      <div class="field contact_person med margin20">
-        <%= f.label :contact_person, t('.contact_person') %>
-        <span><%= t('.you') %></span>
-        <%= link_to t('.someone_different'), '#' %>
+      <div class="field contact_person long margin20">
+        <div class="block">
+          <%= f.label :contact_person, t('.contact_person.title'), :class => "with_hint" %>
+          <p class="small light right margin5 you"><%= link_to t('.contact_person.question'), '#you?' %></p>
+        </div>
+        
+        <div class="select_wrapper">
+          <span class="light"><%= t('.you') %></span>
+          <%= link_to t('.someone_different'), '#change', :class => "different right" %>
+        </div>
+        
+        <div class="contact_form">
+          <div class="field">
+            <label><%= t('.contact_person.name') %></label>
+            <input type="text" id="contact_person_name" value="<%= current_user.name %>" />
+          </div>
+          <div class="field margin">
+            <label><%= t('.contact_person.email') %></label>
+            <input type="text" id="contact_person_email" value="<%= current_user.email %>" />
+          </div>
+        </div>
       </div>
 
       <div class="field long margin40">

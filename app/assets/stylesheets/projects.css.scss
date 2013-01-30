@@ -194,6 +194,33 @@
       }
     }
 
+    &.contact_person {
+      p.you {
+        margin-right:20px;
+      }
+
+      div.select_wrapper {
+        width:360px;
+        background:#EBEBEB;
+        border: none;
+        padding-left:20px;
+        padding-right:20px;
+      }
+
+      .contact_form {
+        padding:18px;
+        margin-top:8px;
+        background:#EBEBEB;
+        @include border-radius(30px);
+        
+        div.field {
+          width:294px;
+          label {color:#666;}
+          input {width:248px;}
+          &.margin {margin-left:8px;}
+        }
+      }
+    }
   }
 
 

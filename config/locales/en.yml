@@ -80,7 +80,11 @@ en:
         add_button: 'Add'
         start_end_date: 'Project start / end dates'
         budget: 'Budget'
-        contact_person: 'Contact person'
+        contact_person:
+          title: 'Contact person'
+          name: 'Name'
+          email: 'Email'
+          question: 'Are you the contact person?'
         location:
           label: ''
           desc: 'Click on the map to add them. Specify as many locations as you need'

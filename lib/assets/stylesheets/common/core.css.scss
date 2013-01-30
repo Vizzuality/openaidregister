@@ -7,7 +7,7 @@
   body {background:white; font-family: $text_fonts; font-size:15px;}
   p {font:normal 15px $text_fonts; color:#545454;}
   a {color:#FF4C4C; text-decoration:none;}
-  a:hover {text-decoration:underline;}
+  a:hover,a:focus {outline:none; text-decoration:underline;}
 
   h1, h2, h3, h4, h5, h6 {font-family: $title_fonts; font-weight:bold;}
   h1 {font-size:23px; font-weight:normal; letter-spacing:-1px}
