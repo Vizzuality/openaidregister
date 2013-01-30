@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project            = Project.new
+    @project            = Project.new(:sectors => '40,41,42', :subsectors => '199,203,206')
     @url                = projects_path
     @organization_roles = OpenAidRegister::ORGANIZATION_ROLES
     @languages          = OpenAidRegister::LANGUAGES
@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    require 'debugger'; debugger
     @project = Project.new(params[:project])
 
     if @project.save

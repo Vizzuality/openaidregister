@@ -1,6 +1,7 @@
 module TransactionsHelper
 
   def transaction_type(transaction)
+    require 'debugger'; debugger
     type = transaction.transaction_type.name
     at   = l(transaction.date, :format => :month_day_year)
     t('.transaction_type', :type => type, :at => at)

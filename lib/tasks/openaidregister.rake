@@ -83,9 +83,21 @@ task :setup => :environment do
      {:name => 'government_id', :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('organizations')
 
+  CartoDB::Connection.create_table 'sectors', [
+     {:name => 'code',        :type => 'text'},
+     {:name => 'name',        :type => 'text'},
+     {:name => 'description', :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('sectors')
+
+  CartoDB::Connection.create_table 'subsectors', [
+     {:name => 'code',        :type => 'text'},
+     {:name => 'name',        :type => 'text'},
+     {:name => 'description', :type => 'text'},
+     {:name => 'sector_id',   :type => 'numeric'},
+     {:name => 'sector_code', :type => 'text'}
+  ] unless tables_list.tables.map(&:name).include?('subsectors')
+
   %w(
-    sectors
-    subsectors
     organization_roles
     languages
     transaction_types
@@ -125,23 +137,7 @@ task :setup => :environment do
     end
 
 
-    CartoDB::Connection.insert_row 'sectors', {
-      'cartodb_id' => 1,
-      'name'       => ''
-    }
-
-
-
-
-
-    CartoDB::Connection.insert_row 'subsectors', {
-      'cartodb_id' => 1,
-      'name'       => 'Food security'
-    }
-
-
-
-
+    load_sectors_and_subsectors
 
     CartoDB::Connection.insert_row 'organization_roles', {
       'cartodb_id' => 1,
@@ -640,8 +636,6 @@ task :drop_all_tables => :environment do
     project_results
     users
     organizations
-    sectors
-    subsectors
     organization_roles
     languages
     transaction_types
@@ -655,6 +649,8 @@ task :drop_all_tables => :environment do
     organization_document_types
     organization_types
     countries
+    sectors
+    subsectors
   ).each do |table_name|
     begin
       CartoDB::Connection.drop_table(table_name) if account_tables.include?(table_name)
@@ -663,3 +659,33 @@ task :drop_all_tables => :environment do
   end
 end
 
+
+def load_sectors_and_subsectors
+  iati_sectors_subsectors_csv_path = Rails.root.join('db/data/iati_sectors_subsectors.csv')
+
+  sectors = {}
+  CSV.foreach(iati_sectors_subsectors_csv_path, :headers => true) do |row|
+    sectors[row['sector_id']] ||= begin
+                                    sector = Sector.where(:code => row['sector_id']).first
+                                    if sector.blank?
+                                      inserted_sector = CartoDB::Connection.insert_row 'sectors', {
+                                        'code' => row['sector_id'],
+                                        'name' => row['sector_name'].try(:capitalize),
+                                        'description' => row['sector_description']
+                                      }
+                                      sector = Sector.find_by_id(inserted_sector[:cartodb_id])
+                                    end
+                                    sector
+                                  end
+
+    sector = sectors[row['sector_id']]
+    subsector = CartoDB::Connection.insert_row 'subsectors', {
+      'code'        => row['subsector_id'],
+      'name'        => row['subsector_name'],
+      'description' => row['subsector_description'],
+      'sector_id'   => sector.cartodb_id,
+      'sector_code' => sector.code,
+    }
+    puts subsector
+  end
+end

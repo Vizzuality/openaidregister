@@ -6,8 +6,8 @@ class Project < CartodbModel
                 :description,
                 :organization_role,
                 :language,
-                :sector,
-                :subsector,
+                :sectors,
+                :subsectors,
                 :start_date,
                 :end_date,
                 :budget,
@@ -22,12 +22,37 @@ class Project < CartodbModel
                 :the_geom,
                 :lat,
                 :lon,
-                :transaction
+                :transaction,
+                :sectors_list
+
+  validates :name,               :presence => true
+  validates :id_in_organization, :presence => true
 
   def initialize(attributes = {})
     super(attributes)
     self.lat = the_geom.y if the_geom.present?
     self.lon = the_geom.x if the_geom.present?
+  end
+
+  def sectors=(value)
+    @sectors = (value || '').split(',').map(&:to_i)
+  end
+
+  def subsectors=(value)
+    @subsectors = (value || '').split(',').map(&:to_i)
+  end
+
+  def sectors
+    (@sectors || []).map{|s| OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s}.first}
+  end
+
+  def subsectors
+    (@subsectors || []).map{|s| OpenAidRegister::SUBSECTORS.select{|ss| ss.cartodb_id == s}.first}
+  end
+
+  def sectors_list
+    require 'debugger'; debugger
+    (subsectors || []).map{|s| ["#{OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s.sector_id}.first.name}, #{s.name}}", "#{s.sector_id},#{s.cartodb_id}"]}
   end
 
   def lat=(value)
@@ -36,6 +61,17 @@ class Project < CartodbModel
 
   def lon=(value)
     attributes[:lon] = value
+  end
+
+  def sectors_list=(values)
+    sectors    = []
+    subsectors = []
+    values.each do |value|
+      sectors << value.split.first
+      subsectors << value.split.last
+    end
+    @sectors    = sectors
+    @subsectors = subsectors
   end
 
   def self.for_user(user_id)

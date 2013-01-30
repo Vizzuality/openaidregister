@@ -49,18 +49,16 @@
         <div class="grey_wrapper">
           <div class="select_wrapper">
             <div class="column">
-              <%= f.select :sector, to_select_options(@sectors),       { :include_blank => 'Not specified' }, { 'data-placeholder' => "Sector..." } %>
+              <%= select_tag :sector, options_from_collection_for_select(@sectors, 'id', 'name'),       { :include_blank => 'Not specified' , 'data-placeholder' => "Sector..." } %>
               <span class="sptor"></span>
             </div>
             <div class="column">
-              <%= f.select :subsector, to_select_options(@subsectors), { :include_blank => 'Not specified' }, { 'data-placeholder' => "Subsector..." } %>
+              <%= select_tag :subsector, options_from_collection_for_select(@subsectors, 'id', 'name'), { :include_blank => 'Not specified', 'data-placeholder' => "Subsector..." } %>
             </div>
           </div>
           <%= f.button t('.add_button'), :class => "round grey right add" %>
         </div>
-        <select id="sectors_list" multiple>
-          <!--option value="Agriculture,Food Security" selected>Agriculture,Food Security</option-->
-        </select>
+        <%= f.select :sectors_list, @project.sectors_list, {:include_blank => false}, { :multiple => true, :id => 'sectors_list' } %>
       </div>
 
       <div class="field start_date long margin20">
