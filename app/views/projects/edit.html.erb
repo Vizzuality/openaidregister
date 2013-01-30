@@ -1,18 +1,27 @@
-<% content_for(:page_title) do %>OpenAidRegister | New project<% end %>
-
-<%= content_for(:js) do %>
-  <%#= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', :application, :new %>
-<% end %>
-
-<%= content_for(:css) do %>
-  <%#= stylesheet_link_tag :application, 'https://www.google.com/cse/style/look/default.css', :new, :media => 'all' %>
-<% end %>
+<%= javascript_include_tag controller_name if request.xhr? %>
+<%= stylesheet_link_tag controller_name, :media => 'all' if request.xhr? %>
 
 
-<section class="borders">
-  <div class="inner">
-    <h3 class="center upper"><span class="title_line"></span><%= t('.info.title') %><span class="title_line"></span></h1>
-  </div>
-</section>
+<div class="form_inner">
+  <section>
+    <div>
+      <h3 class="center upper"><span class="title_line"></span><%= t('projects.info.title') %><span class="title_line"></span></h3>
+    </div>
+  </section>
 
-<%= render 'form_advanced' %>
+  <section class="header borders grey_section">
+    <div class="center">
+      <h4 class="dark"><%= t('projects.header.congrats') %></h4>
+      <p class="margin5"><%= t('projects.header.basic_information') %></p>
+    </div>
+    <div class="center margin40">
+      <%= link_to t('projects.header.complete_information'), "", :class => "button round red" %>
+      <span><%= t('.header.or') %></span>
+      <%= link_to t('projects.header.add_another_project'), "", :class => "button round light-grey uppercase" %>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'form_advanced' %>
+  </section>
+</div>

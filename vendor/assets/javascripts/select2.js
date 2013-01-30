@@ -1025,6 +1025,8 @@ the specific language governing permissions and limitations under the Apache Lic
             if (this.search.val() === " ") { this.search.val(""); }
 
             this.container.addClass("select2-dropdown-open").addClass("select2-container-active");
+            this.opts.element.trigger($.Event("active"));
+
 
             this.updateResults(true);
 
@@ -1057,6 +1059,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.dropdown.hide();
             this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
+            this.opts.element.trigger($.Event("inactive"));
             this.results.empty();
             this.clearSearch();
 
@@ -1330,6 +1333,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.close();
             this.container.removeClass("select2-container-active");
+            this.opts.element.trigger($.Event("inactive"));
             this.dropdown.removeClass("select2-drop-active");
             // synonymous to .is(':focus'), which is available in jquery >= 1.6
             if (this.search[0] === document.activeElement) { this.search.blur(); }
@@ -1539,7 +1543,10 @@ the specific language governing permissions and limitations under the Apache Lic
                 this.selection.attr("tabIndex", "-1");
             }));
             this.search.bind("blur", this.bind(function() {
-                if (!this.opened()) this.container.removeClass("select2-container-active");
+                if (!this.opened()) {
+                    this.container.removeClass("select2-container-active");
+                    this.opts.element.trigger($.Event("inactive"));
+                }
                 window.setTimeout(this.bind(function() {
                     // restore original tab index
                     var ti=this.opts.element.attr("tabIndex") || 0;
@@ -1577,6 +1584,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             selection.bind("focus", this.bind(function() {
                 this.container.addClass("select2-container-active");
+                this.opts.element.trigger($.Event("active"));
                 // hide the search so the tab key does not focus on it
                 this.search.attr("tabIndex", "-1");
             }));
@@ -1584,6 +1592,7 @@ the specific language governing permissions and limitations under the Apache Lic
             selection.bind("blur", this.bind(function() {
                 if (!this.opened()) {
                     this.container.removeClass("select2-container-active");
+                    this.opts.element.trigger($.Event("inactive"));
                 }
                 window.setTimeout(this.bind(function() { this.search.attr("tabIndex", this.opts.element.attr("tabIndex") || 0); }), 10);
             }));
@@ -1616,6 +1625,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.search.bind("focus", this.bind(function() {
                 this.container.addClass("select2-container-active");
+                this.opts.element.trigger($.Event("active"));
             }));
         },
 
@@ -1923,6 +1933,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.search.bind("blur", this.bind(function(e) {
                 this.container.removeClass("select2-container-active");
+                this.opts.element.trigger($.Event("inactive"));
                 this.search.removeClass("select2-focused");
                 this.clearSearch();
                 e.stopImmediatePropagation();
@@ -1943,6 +1954,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.container.delegate(selector, "focus", this.bind(function () {
                 if (!this.enabled) return;
                 this.container.addClass("select2-container-active");
+                this.opts.element.trigger($.Event("active"));
                 this.dropdown.addClass("select2-drop-active");
                 this.clearPlaceholder();
             }));
@@ -2144,6 +2156,7 @@ the specific language governing permissions and limitations under the Apache Lic
               })).bind("focus", this.bind(function () {
                   if (!this.enabled) return;
                   this.container.addClass("select2-container-active");
+                  this.opts.element.trigger($.Event("active"));
                   this.dropdown.addClass("select2-drop-active");
               }));
             }

@@ -137,6 +137,15 @@
         border:1px solid #CCCCCC;
         @include border-radius(20px);
         background:white;
+        @include transform-style("linear");
+        @include transition-property("border,box-shadow");
+        @include transition-duration(300ms);
+
+        &.focus {
+          outline:none;
+          border-color:#AAA;
+          @include box-shadow(rgba(black,0.1) 0 0 5px 3px);
+        }
       }
 
       // Hint

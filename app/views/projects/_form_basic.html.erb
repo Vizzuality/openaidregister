@@ -1,4 +1,4 @@
-  <%= form_for :project, :url => @url, :method => (@method || :post) do |f| %>
+  <%= form_for :project, :url => @url, :html => {:class => 'new_basic'}, :method => (@method || :post) do |f| %>
 
     <div class="form_wrapper">
       <div class="field name long">
@@ -59,12 +59,15 @@
           <%= f.button t('.add_button'), :class => "round grey right add" %>
         </div>
         <select id="sectors_list" multiple>
-          <option value="Agriculture,Food Security" selected>Agriculture,Food Security</option>
+          <!--option value="Agriculture,Food Security" selected>Agriculture,Food Security</option-->
         </select>
       </div>
 
       <div class="field start_date long margin20">
-        <%= f.label :start_date, t('.start_end_date') %>
+        <%= f.label(:start_date) do %>
+          <%= t('.start_end_date') %> <em class="light">(MM/DD/YYYY)</em>
+        <% end %>
+
         <div class="select_wrapper">
           <div class="column">
             <%= f.text_field :start_date, :class => 'short inner_input' %>
@@ -102,9 +105,9 @@
       <div id="locations_map"></div>
       <input type="hidden" id="location" />
       <select id="locations_list" multiple>
-        <option value="43.001,-3.00" selected>(43.001,-3.00)</option>
+        <!--option value="43.001,-3.00" selected>(43.001,-3.00)</option>
         <option value="5.001,43.00" selected>(5.001,43.00)</option>
-        <option value="8.001,3.00" selected>(8.001,3.00)</option>
+        <option value="8.001,3.00" selected>(8.001,3.00)</option-->
       </select>
     </div>
 
@@ -121,7 +124,7 @@
       </div>
 
       <div class="field long margin40">
-        <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
+        <%= link_to t('.cancel'), '#', :class => "margin15 left cancel" %>
         <%= f.submit t('.save'), :class => "button round red right" %>
       </div>
     </div>

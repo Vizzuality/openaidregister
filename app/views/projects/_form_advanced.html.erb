@@ -1,18 +1,4 @@
 <%= form_for @project do |f| %>
-
-  <section class="header borders grey_section">
-    <div class="center">
-      <h4 class="dark"><%= t('.header.congrats') %></h4>
-      <p class="margin5"><%= t('.header.basic_information') %></p>
-    </div>
-    <div class="center margin40">
-      <%= link_to t('.header.complete_information'), "", :class => "button round red" %>
-      <span><%= t('.header.or') %></span>
-      <%= link_to t('.header.add_another_project'), "", :class => "button round light-grey uppercase" %>
-    </div>
-  </section>
-
-
   <section class="form_center">
     <ul>
       <li class="transactions">

@@ -19,12 +19,13 @@
       color:white;
 
       &:hover {cursor:pointer;}
+      &:focus {outline:none;}
 
       // Grey type
       &.grey {
         background:#444444;
         font:bold 15px $button_fonts;
-        &:hover {background:#343434;}
+        &:hover, &:focus {background:#343434;}
         &:active {background:#121212;}
       }
 
@@ -33,7 +34,7 @@
         background:#FF4D4D;
         font:bold 19px $text_fonts;
         letter-spacing: -1px;
-        &:hover {background:#F44848;}
+        &:hover, &:focus {background:#F44848;}
         &:active {background:#DC4141;}
       }
 
@@ -43,7 +44,7 @@
         font:bold 15px $text_fonts;
         color:#333;
         letter-spacing: -1px;
-        &:hover {background:#BABABA;}
+        &:hover, &:focus {background:#BABABA;}
         &:active {background:#AAA;} 
       }
 
@@ -55,7 +56,7 @@
         color:#FF4C4C;
         letter-spacing: -1px;
         border:1px solid #FF4C4C;
-        &:hover {color:#F44848; border-color:#F44848;}
+        &:hover, &:focus {color:#F44848; border-color:#F44848;}
         &:active {color:#DC4141; border-color:#DC4141;} 
         &.selected {color:#666666; border-color:#666666; cursor:default; text-decoration:none;}
       }
