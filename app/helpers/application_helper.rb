@@ -10,4 +10,5 @@ module ApplicationHelper
       content_tag :span, error.first, :class => 'error'
     end
   end
+
 end

@@ -4,14 +4,14 @@ class Project < CartodbModel
                 :name,
                 :id_in_organization,
                 :description,
-                :organization_role,
-                :language,
+                :organization_role_id,
+                :language_id,
                 :sectors,
                 :subsectors,
                 :start_date,
                 :end_date,
                 :budget,
-                :budget_currency,
+                :budget_currency_id,
                 :contact_person,
                 :collaboration_type,
                 :tied_status,
@@ -42,6 +42,18 @@ class Project < CartodbModel
 
   def subsectors
     (@subsectors || []).map{|s| OpenAidRegister::SUBSECTORS.select{|ss| ss.cartodb_id == s}.first}
+  end
+
+  def budget_currency
+    OpenAidRegister::CURRENCIES.select{|ss| ss.cartodb_id == @budget_currency_id}.first
+  end
+
+  def language
+    OpenAidRegister::LANGUAGES.select{|ss| ss.cartodb_id == @language_id}.first
+  end
+
+  def organization_role
+    OpenAidRegister::ORGANIZATION_ROLES.select{|ss| ss.cartodb_id == @organization_role_id}.first
   end
 
   def sectors_list
@@ -95,12 +107,12 @@ class Project < CartodbModel
   end
 
   def state
-    if end_date.present?
-      if end_date.to_time > Time.now
-        return 'ongoing'
-      else
-        return 'past'
-      end
+    if (start_date <=> Date.current) == 1
+      return [1, 'Pipeline']
+    elsif (end_date == nil) || (end_date <=> Date.current) == 1
+      return [2, 'Implementing']
+    else
+      return [3, 'Completion']
     end
   end
 

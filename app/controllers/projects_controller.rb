@@ -5,11 +5,8 @@ class ProjectsController < ApplicationController
   layout :layout_if_ajax?
 
   def index
-    @projects = if @user.present? && @user.persisted?
-                  @user.projects
-                else
-                  []
-                end
+    @projects = current_user.projects
+    @organization = current_user.organization || Organization.new
   end
 
   def show

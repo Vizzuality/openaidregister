@@ -3,7 +3,7 @@ class CartodbModel
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :cartodb_id, :name
+  attr_accessor :cartodb_id, :name, :created_at, :updated_at
   alias :id :cartodb_id
 
   def initialize(attributes = {})
@@ -25,8 +25,10 @@ class CartodbModel
     prepared_attributes = prepare_data_for_table(table_name, attributes)
 
     if persisted?
+      prepared_attributes['updated_at'] = Time.now
       CartoDB::Connection.update_row(table_name, prepared_attributes)
     else
+      prepared_attributes['created_at'] = prepared_attributes['updated_at'] = Time.now
       row = CartoDB::Connection.insert_row(table_name, prepared_attributes.except('cartodb_id'))
       self.cartodb_id = row.cartodb_id
     end

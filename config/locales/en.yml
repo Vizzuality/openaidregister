@@ -5,6 +5,9 @@ en:
   date:
     formats:
       month_day_year: '%b %e, %Y'
+  time:
+    formats:
+      dashed: '%Y-%m-%d'
   custom_ammounts:
     thousand:
       one: 'K'
