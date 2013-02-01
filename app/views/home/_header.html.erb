@@ -1,10 +1,14 @@
 <header>
   <h1 class="left"><%= link_to t('title_for_html'), "/" %></h1>
   <nav class="right">
-    <%= link_to t('header.home'),           "/", :class => 'upper bold small' %>
+    <%= link_to t('header.home'),               "/", :class => 'upper bold small' %>
     <!--<%= link_to t('header.organizations'),  "#", :class => 'upper bold small' %>-->
-    <%= link_to t('header.blog'),           'http://blog.openaidregister.org', :class => 'upper bold small' %>
-    <%= link_to t('header.about'),          about_path, :class => 'upper bold small' %>
-    <%= link_to t('header.sign_in'),        new_session_path, :class => 'upper bold small round' %>
+    <%= link_to t('header.blog'),               'http://blog.openaidregister.org', :class => 'upper bold small' %>
+    <%= link_to t('header.about'),              about_path, :class => 'upper bold small' %>
+    <% if current_user %>
+      <%= link_to t('header.dashboard'),        user_path(current_user), :class => 'upper bold small round' %>
+    <% else %>
+      <%= link_to t('header.sign_in'),          new_session_path, :class => 'upper bold small round' %>
+    <% end %>
   </nav>
 </header>

@@ -46,7 +46,7 @@ describe "Dashboard", :type => :feature do
       all('ul#projects_list li').length.should be == 10
 
       Project.all.each do |project|
-        find("ul li#project_#{project.cartodb_id}")['data-position'].should be == project.coords
+        find("ul li#project_#{project.cartodb_id}")['data-positions'].should be == project.coords
         find("ul li#project_#{project.cartodb_id}")
         within "ul li#project_#{project.cartodb_id}" do
           page.should have_css '.name',   :text => project.name

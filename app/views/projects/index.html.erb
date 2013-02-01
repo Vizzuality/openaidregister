@@ -1,5 +1,8 @@
+<% content_for(:page_title) do %>OpenAidRegister<% end %>
+
 <script type="text/javascript">
-  var projects = <%= @projects.to_json.html_safe %>;
+  var projects = <%= @projects.to_json.html_safe %>
+    , current_user;
 </script>
 
 <div id="embed_map">

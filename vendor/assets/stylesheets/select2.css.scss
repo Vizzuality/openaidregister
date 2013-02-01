@@ -168,6 +168,12 @@ Version: @@ver@@ Timestamp: @@timestamp@@
             box-shadow: none;
 }
 
+.select2-search input:focus {
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 5px 3px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 0 5px 3px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 5px 3px;
+}
+
 .select2-drop.select2-drop-above .select2-search input {
     margin-top: 4px;
 }
@@ -250,8 +256,11 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 .select2-results .select2-no-results,
 .select2-results .select2-searching,
 .select2-results .select2-selection-limit {
-    background: #f4f4f4;
+    padding:10px 0 3px;
+    background: none;
     display: list-item;
+    color:#ABABAB;
+    text-align:center;
 }
 
 /*

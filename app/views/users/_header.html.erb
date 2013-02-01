@@ -3,13 +3,14 @@
     <header>
       <h1 class="left"><%= link_to t('title_for_html'), "/" %></h1>
       <nav class="right">
-        <%= link_to t('header.home'),           "/", :class => 'upper bold small' %>
-        <!--<%= link_to t('header.organizations'),  "#", :class => 'upper bold small' %>-->
-        <%= link_to t('header.blog'),           'http://blog.openaidregister.org', :class => 'upper bold small' %>
-        <%= link_to t('header.about'),          about_path, :class => 'upper bold small' %>
+        <%= link_to t('header.home'),           "/",                                :class => 'upper bold small' %>
+        <!--<%= link_to t('header.organizations'),  "#",                            :class => 'upper bold small' %>-->
+        <%= link_to t('header.blog'),           'http://blog.openaidregister.org',  :class => 'upper bold small' %>
+        <%= link_to t('header.about'),          about_path,                         :class => 'upper bold small' %>
         <span class="user_options">
-          <%= link_to t('header.your_profile'), user_path(current_user), :class => 'upper bold small' %>
-          <%= button_to "logout",               session_path(current_user), :method => :delete, :class => '' %>
+          <%= link_to t('header.dashboard'),    user_path(current_user),            :class => 'upper bold small' %>
+          <%= link_to t('header.your_profile'), "#profile",                         :class => 'upper bold small' %>
+          <%= button_to "logout",               session_path(current_user),         :method => :delete, :class => '' %>
         </span>
       </nav>
     </header>
