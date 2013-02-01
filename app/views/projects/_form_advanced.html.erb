@@ -28,59 +28,73 @@
     </ul>
   </section>
 
-  <section class="organization-information">
-    <h3><%= t('.organization_information.title') %></h3>
 
-    <div class="field collaboration_type">
+  <div class="form_wrapper">
+    <h3 class="upper"><%= t('.organization_information.title') %></h3>
+
+    <div class="field collaboration_type long margin50">
       <%= f.label :collaboration_type, t('.organization_information.collaboration_type') %>
-      <div class="select_wrapper">
+      <div class="select_wrapper med">
         <%= f.select :collaboration_type, to_select_options(@collaboration_types), { :include_blank => 'Not specified' } %>
       </div>
     </div>
 
-    <div class="field tied_status">
+    <div class="field tied_status long margin25">
       <fieldset>
         <legend><%= t('.organization_information.tied_status.legend') %></legend>
 
-        <%= f.radio_button :tied_status, 1 %>
-        <%= f.label :tied_status_1, t('.organization_information.tied_status.unknown') %>
+        <div class="choices">
+          <div class="radio">
+            <%= f.radio_button :tied_status, 1 %>
+            <%= link_to '1', '#radio', :class => "radio" %>
+            <%= f.label :tied_status_1, t('.organization_information.tied_status.unknown') %>
+          </div>
 
-        <%= f.radio_button :tied_status, 2 %>
-        <%= f.label :tied_status_2, t('.organization_information.tied_status.partially_tied') %>
+          <div class="radio">
+            <%= f.radio_button :tied_status, 2 %>
+            <%= link_to '2', '#radio', :class => "radio" %>
+            <%= f.label :tied_status_2, t('.organization_information.tied_status.partially_tied') %>
+          </div>
 
-        <%= f.radio_button :tied_status, 3 %>
-        <%= f.label :tied_status_3, t('.organization_information.tied_status.tied') %>
+          <div class="radio">
+            <%= f.radio_button :tied_status, 3 %>
+            <%= link_to '3', '#radio', :class => "radio" %>
+            <%= f.label :tied_status_3, t('.organization_information.tied_status.tied') %>
+          </div>
 
-        <%= f.radio_button :tied_status, 4 %>
-        <%= f.label :tied_status_4, t('.organization_information.tied_status.untied') %>
+          <div class="radio">
+            <%= f.radio_button :tied_status, 4 %>
+            <%= link_to '4', '#radio', :class => "radio" %>
+            <%= f.label :tied_status_4, t('.organization_information.tied_status.untied') %>
+          </div>
+        </div>
       </fieldset>
     </div>
 
-    <div class="field aid_type">
+    <div class="field aid_type long margin25">
       <%= f.label :aid_type, t('.organization_information.aid_type') %>
-      <div class="select_wrapper">
+      <div class="select_wrapper med">
         <%= f.select :aid_type, to_select_options(@aid_types), { :include_blank => 'Not specified' } %>
       </div>
     </div>
 
-    <div class="field flow_type">
+    <div class="field flow_type long margin25">
       <%= f.label :flow_type, t('.organization_information.flow_type') %>
-      <div class="select_wrapper">
+      <div class="select_wrapper med">
         <%= f.select :flow_type, to_select_options(@flow_types), { :include_blank => 'Not specified' } %>
       </div>
     </div>
 
-    <div class="field finance_type">
+    <div class="field finance_type long margin25">
       <%= f.label :finance_type, t('.organization_information.finance_type') %>
-      <div class="select_wrapper">
-        <%= f.select :finance_type, to_select_options(@finance_types), { :include_blank => 'Not specified' } %>
+      <div class="select_wrapper med">
+        <%= f.select :finance_type, to_select_options(@finance_types), { :include_blank => 'Not specified'} %>
       </div>
     </div>
 
-    <div class="field long margin40">
+    <div class="field long margin50">
       <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
       <%= f.submit t('.save_changes'), :class => "button round red right" %>
     </div>
-  </section>
-
+  </div>
 <% end %>

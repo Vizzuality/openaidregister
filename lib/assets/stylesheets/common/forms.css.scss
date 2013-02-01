@@ -62,7 +62,7 @@
       span.error {display:none;}
 
       // Label
-      label {
+      label,legend {
         display:block;
         padding-left:20px;
         font:bold 15px $title_fonts;
@@ -129,6 +129,52 @@
         z-index:1;
       }
 
+      // Fieldset
+      fieldset {
+        display:block;
+
+        legend {margin-bottom:8px;}
+        
+        div.choices {
+          display:table;
+          table-layout:fixed;
+          width:100%;
+          margin:0;
+          padding:18px 20px;
+          background:#EDEDED;
+          @include border-radius(30px);
+
+          div.radio {
+            display:table-cell;
+
+            input[type="radio"] {display:none;}
+
+            a.radio {
+              position:relative;
+              @include inline-block();
+              vertical-align: middle;
+              width:16px;
+              height:16px;
+              @include icons-sprite(radiobutton, $offset-y:-20);
+              text-indent:-9999px;
+            }
+            
+            label {
+              @include inline-block();
+              vertical-align: middle;
+              padding:0; 
+              margin:0;
+              font-weight:normal;
+              color:#999;
+            }
+
+            &.selected {
+              label {color:#333;}
+            }
+          }
+        }
+      }
+
       // Select wrapper
       div.select_wrapper {
         display:block;
@@ -140,6 +186,11 @@
         @include transform-style("linear");
         @include transition-property("border,box-shadow");
         @include transition-duration(300ms);
+
+        &.tiny  {width:100px;}
+        &.short {width:178px;}
+        &.med   {width:355px;}
+        &.long  {width:594px;}
 
         &.focus {
           outline:none;

@@ -95,6 +95,7 @@ en:
         cancel: 'Cancel'
     form_advanced:
       header:
+        title: 'Create new project'
         congrats: 'Congrats, your projects has been registered!'
         basic_information: 'The basic information has been registered. However, we encorage you to provide more.'
         complete_information: 'complete information'
