@@ -51,7 +51,6 @@ class Project < CartodbModel
   end
 
   def sectors_list
-    require 'debugger'; debugger
     (subsectors || []).map{|s| ["#{OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s.sector_id}.first.name}, #{s.name}}", "#{s.sector_id},#{s.cartodb_id}"]}
   end
 

@@ -1,1 +1,48 @@
-about
+<% content_for(:page_title) do %>OpenAidRegister | About<% end %>
+
+<!-- Intro -->
+<section class="bkg">
+  <div class="mesh">
+    <div class="inner">
+      <%= render :partial => 'header' %>
+    </div>
+  </div>
+</section>
+
+<div class="inner">
+  <!-- EXAMPLE OF TWO COLUMNS EXPLANATION -->
+  <section class="borders">
+    <h3 class="center block upper darker"><span class="title_line"></span><%= t('index.goal.title') %><span class="title_line"></span></h3>
+    <div class="columns margin45">
+      <div class="column2">
+        <p class="big dark"><%= t('index.goal.p1') %></p>
+      </div>
+      <div class="column2">
+        <p class="big dark"><%= t('index.goal.p2') %></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<section class="grey_section">
+  <div class="inner">
+    <section class="borders">
+      <h3 class="center block upper dark"><span class="title_line"></span><%= t('index.using') %><span class="title_line"></span></h3>
+      <div class="using_it">
+        <%= link_to image_tag("logos/publish.png", :border=>0),           "http://www.publishwhatyoufund.org/", :target => "_blank" %>
+        <%= link_to image_tag("logos/engineers.png", :border=>0),         "http://www.ewb.ca/",                 :target => "_blank" %>
+        <%= link_to image_tag("logos/global_integrity.png", :border=>0),  "http://www.globalintegrity.org/",    :target => "_blank" %>
+        <%= link_to image_tag("logos/indigo.png", :border=>0),            "http://indigotrust.wordpress.com/",  :target => "_blank" %>
+        <%= link_to image_tag("logos/alliance.png", :border=>0),          "http://www.aidsalliance.org/",       :target => "_blank" %>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- Transparent -->
+<section class="transparent center">
+  <%= link_to t('index.transparent'), new_user_path, :class => "bold bigger title" %>
+</section>
+
+<%= render :partial => 'layouts/footer' %>

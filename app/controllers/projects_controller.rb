@@ -27,7 +27,6 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    require 'debugger'; debugger
     @project = Project.new(params[:project])
 
     if @project.save
