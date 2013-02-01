@@ -1,8 +1,15 @@
 desc 'Setups the environment'
-task :setup => :environment do
+task :setup do
+  require 'active_support/core_ext'
   require 'fileutils'
 
   config_path = File.expand_path('../../../config', __FILE__)
+
+  require File.join(config_path, '/initializers/cartodb.rb')
+  require File.expand_path('../../../app/models/cartodb_model.rb', __FILE__)
+  Dir[File.expand_path('../../../app/models/*.rb', __FILE__)].each do |model_path|
+    require model_path
+  end
 
   unless File.exists?("#{config_path}/cartodb_config.development.yml")
 
@@ -23,7 +30,7 @@ task :setup => :environment do
   tables_list = CartoDB::Connection.tables
 
   CartoDB::Connection.create_table 'projects', [
-    {:name => 'the_geom',            :type => 'geometry' } ,
+    {:name => 'the_geom',           :type => 'geometry' } ,
     {:name => 'user_id',            :type => 'numeric'   } ,
     {:name => 'name',               :type => 'text'      } ,
     {:name => 'id_in_organization', :type => 'numeric'   } ,
@@ -38,7 +45,7 @@ task :setup => :environment do
     {:name => 'budget_currency',    :type => 'numeric'   } ,
     {:name => 'contact_person',     :type => 'text'      } ,
     {:name => 'url',                :type => 'text'      }
-  ] unless tables_list.tables.map(&:name).include?('projects')
+  ], 'geometry' unless tables_list.tables.map(&:name).include?('projects')
 
   CartoDB::Connection.create_table 'transactions', [
     {:name => 'type',           :type => 'numeric'},
@@ -123,16 +130,19 @@ task :setup => :environment do
   puts 'Generating seed data...'
 
     unless Rails.env.production?
-      user = User.create( :name     => 'pepe smith',
-                          :email    => 'pepe@wadus.com',
-                          :password => 'wadus' )
+      user = User.create( 'name'     => 'pepe smith',
+                          'email'    => 'pepe@wadus.com',
+                          'password' => 'wadus' )
       10.times do |i|
-        Project.create(
-          :user_id    => user.cartodb_id,
-          :name       => "Wadus #{i}",
-          :start_date => 1.year.ago,
-          :end_date   => [1.day.since, 1.day.ago, Time.now].sample
+        project = Project.new(
+          'user_id'            => user.cartodb_id,
+          'name'               => "Wadus #{i}",
+          'id_in_organization' => "00000000#{i}",
+          'start_date'         => 1.year.ago,
+          'end_date'           => [1.day.since, 1.day.ago, Time.now].sample,
+          'the_geom'           => RGeo::GeoJSON.decode('{"type":"MultiPoint","coordinates":[[-3.00, 43.001], [43.00, 5.001], [3.00, 8.001]]}', :json_parser => :json, :geo_factory => ::RGeo::Cartesian.simple_factory(:srid => 4326))
         )
+        project.save
       end
     end
 
@@ -661,6 +671,7 @@ end
 
 
 def load_sectors_and_subsectors
+  require 'csv'
   iati_sectors_subsectors_csv_path = Rails.root.join('db/data/iati_sectors_subsectors.csv')
 
   sectors = {}
@@ -686,6 +697,6 @@ def load_sectors_and_subsectors
       'sector_id'   => sector.cartodb_id,
       'sector_code' => sector.code,
     }
-    puts subsector
+    print '.'
   end
 end

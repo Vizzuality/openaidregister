@@ -102,11 +102,7 @@
       </div>
       <div id="locations_map"></div>
       <input type="hidden" id="location" />
-      <select id="locations_list" multiple>
-        <!--option value="43.001,-3.00" selected>(43.001,-3.00)</option>
-        <option value="5.001,43.00" selected>(5.001,43.00)</option>
-        <option value="8.001,3.00" selected>(8.001,3.00)</option-->
-      </select>
+      <%= f.select :locations_list, @project.locations_list, {:include_blank => false}, { :multiple => true, :id => 'locations_list' } %>
     </div>
 
     <div class="form_wrapper">
@@ -120,12 +116,12 @@
           <%= f.label :contact_person, t('.contact_person.title'), :class => "with_hint" %>
           <p class="small light right margin5 you"><%= link_to t('.contact_person.question'), '#you?' %></p>
         </div>
-        
+
         <div class="select_wrapper">
           <span class="light"><%= t('.you') %></span>
           <%= link_to t('.someone_different'), '#change', :class => "different right" %>
         </div>
-        
+
         <div class="contact_form">
           <div class="field">
             <label><%= t('.contact_person.name') %></label>

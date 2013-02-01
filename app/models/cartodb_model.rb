@@ -92,7 +92,7 @@ class CartodbModel
   end
 
   def attributes
-    @attributes || {}
+    @attributes ||= {}
   end
 
   def as_json(options = {})

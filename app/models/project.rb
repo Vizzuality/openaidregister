@@ -28,12 +28,6 @@ class Project < CartodbModel
   validates :name,               :presence => true
   validates :id_in_organization, :presence => true
 
-  def initialize(attributes = {})
-    super(attributes)
-    self.lat = the_geom.y if the_geom.present?
-    self.lon = the_geom.x if the_geom.present?
-  end
-
   def sectors=(value)
     @sectors = (value || '').split(',').map(&:to_i)
   end
@@ -54,6 +48,10 @@ class Project < CartodbModel
     (subsectors || []).map{|s| ["#{OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s.sector_id}.first.name}, #{s.name}}", "#{s.sector_id},#{s.cartodb_id}"]}
   end
 
+  def locations_list
+    (the_geom || []).map {|point| ["(#{point.y}, #{point.x})", [point.y, point.x].join(',')] }
+  end
+
   def lat=(value)
     attributes[:lat] = value
   end
@@ -71,6 +69,17 @@ class Project < CartodbModel
     end
     @sectors    = sectors
     @subsectors = subsectors
+  end
+
+  def locations_list=(coordinates)
+    return if coordinates.blank?
+
+    geojson = {:type => 'MultiPoint', :coordinates => coordinates.select(&:'present?').map{|c| c.split(',')}}.to_json
+    @the_geom = RGeo::GeoJSON.decode(geojson,
+                                     :json_parser => :json,
+                                     :geo_factory => ::RGeo::Cartesian.simple_factory(:srid => 4326)
+                                    )
+    attributes[:the_geom] = @the_geom
   end
 
   def self.for_user(user_id)

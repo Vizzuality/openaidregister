@@ -17,7 +17,11 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project            = Project.new(:sectors => '40,41,42', :subsectors => '199,203,206')
+    #@project            = Project.new(:sectors    => '40,41,42',
+                                      #:subsectors => '199,203,206',
+                                      #:the_geom   => RGeo::GeoJSON.decode('{"type":"MultiPoint","coordinates":[[-3.00, 43.001], [43.00, 5.001], [3.00, 8.001]]}', :json_parser => :json))
+
+    @project            = Project.new
     @url                = projects_path
     @organization_roles = OpenAidRegister::ORGANIZATION_ROLES
     @languages          = OpenAidRegister::LANGUAGES

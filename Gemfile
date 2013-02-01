@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.11'
 
-gem 'cartodb-rb-client'
+gem 'cartodb-rb-client', :path => 'vendor/gems/cartodb-rb-client-0.4.4'
 
 gem 'rails_warden'
 gem 'valid_email'
