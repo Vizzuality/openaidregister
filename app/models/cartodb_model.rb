@@ -103,6 +103,7 @@ class CartodbModel
   private
 
   def prepare_data_for_table(table_name, attributes)
+    require 'debugger'; debugger
     table = CartoDB::Connection.table(table_name)
     table.schema.each do |column_name, colum_type|
       attributes[column_name] = format_value_for_type(colum_type, attributes[column_name])
@@ -115,7 +116,7 @@ class CartodbModel
     when 'number'
       value = Float(value) rescue nil
     when 'date'
-      value = Date.parse(value) rescue nil
+      value = value.to_date rescue Date.parse(value) rescue nil
     else
       value
     end

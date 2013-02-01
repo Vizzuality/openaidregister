@@ -105,7 +105,7 @@ class Project < CartodbModel
   end
 
   def coords
-    the_geom.map{|point| [point.y, point.x]}.to_json
+    the_geom.map{|point| [point.y, point.x]}
   end
 
   def to_param
@@ -113,12 +113,12 @@ class Project < CartodbModel
   end
 
   def as_json(options = {})
-    options[:only] ||= [:cartodb_id,
-                        :name,
-                        :start_date,
-                        :end_date,
-                        :lat,
-                        :lon]
-    super(options)
+    {
+      :cartodb_id => cartodb_id,
+      :name       => name,
+      :start_date => start_date,
+      :end_date   => end_date,
+      :coords     => coords
+    }
   end
 end
