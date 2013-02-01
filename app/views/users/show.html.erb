@@ -46,7 +46,7 @@
   <section class="borders bottom list">
     <ul id="projects_list">
       <% @projects.each do |project| %>
-        <li id="project_<%= project.cartodb_id %>" data-position="<%= project.coords %>">
+        <li id="project_<%= project.cartodb_id %>" data-position="<%= project.coords.html_safe %>">
           <p class="name"><%= link_to project.name, edit_project_path(project) %></p>
           <p class="status <%= project.state %>"><%= project.state %></p>
         </li>

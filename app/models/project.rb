@@ -105,7 +105,7 @@ class Project < CartodbModel
   end
 
   def coords
-    "#{lat}, #{lon}"
+    the_geom.map{|point| [point.y, point.x]}.to_json
   end
 
   def to_param
