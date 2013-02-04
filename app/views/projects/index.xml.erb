@@ -30,60 +30,45 @@
         <%= @organization.try(:name) %>
       </participating-org>
 
+      <% @external_organizations[project.id].each do |external_organization| %>
+        <participating-org role="<%= external_organization.role.name %>" type="" ref="">
+          <%= external_organization.name %>
+        </participating-org>
+      <% end %>
+
+      <% @related_documentation[project.id].each do |related_document| %>
+        <document-link url="<%= related_document.file.url %>" format="" xml:lang="">
+          <category code="<%= related_document.type.name %>"></category>
+        </document-link>
+      <% end %>
+
+      <% if project.url.present? %>
+        <activity-website><%= project.url %></activity-website>
+      <% end %>
+
+      <% @sectors[project.id].each do |sector| %>
+        <sector vocabulary="DAC" code="<%= sector.code %>">
+          <%= sector.name %>
+        </sector>
+      <% end %>
+
+      <% if project.id_in_organization.present? %>
+        <related-activity type="1" ref="<%= project.id_in_organization %>"></related-activity>
+      <% end %>
+
       <% if false %>
-        <% @other_orgs.each do |other_orgs| %>
-          <% if other_orgs[:project_id] == project.cartodb_id %>
-            <% counter= 0 %>
-            <% other_orgs[:other_org_names].each do |other_org_name| %>
-              <participating-org role="<%= other_orgs[:other_org_roles][counter] %>" type="" ref="">
-                <%= other_org_name %>
-              </participating-org>
-              <% counter += 1 %>
-            <% end %>
-          <% end %>
+        <% if project.other_iati_project_identifier.blank? %>
+          <other-identifier owner-ref="" owner-name=""><%= project.other_iati_project_identifier %></other-identifier>
         <% end %>
+      <% end %>
 
-        <% @related_docs.each do |related_docs| %>
-          <% if related_docs[:project_id] == project.cartodb_id %>
-            <document-link url="<%= related_docs[:doc_url] %>" format="" xml:lang="">
-              <category code="<%= related_docs[:doc_type] %>"></category>
-            </document-link>
-          <% end %>
-        <% end %>
-
-        <% if !project.website.blank? %>
-          <activity-website><%= project.website %></activity-website>
-        <% end %>
-
-        <% @sectors.each do |project_sector| %>
-          <% if project_sector[:project_id] == project.cartodb_id %>
-            <% project_sector[:sector_id].each do |sector| %>
-              <% @sector_names.each do |sector_name| %>
-                <% if sector_name[:sector_id] == sector %>
-                  <sector vocabulary="DAC" code="<%= sector_name.sector_code %>">
-                    <%= sector_name.name %>
-                  </sector>
-                  <% break %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <% if !project.program_guid.blank? %>
-          <related-activity type="1" ref="<%= project.program_guid %>"></related-activity>
-        <% end %>
-
-<% if !project.other_iati_project_identifier.blank? %>
-  <other-identifier owner-ref="" owner-name=""><%= project.other_iati_project_identifier %></other-identifier>
-<% end %>
-
-  <% if !project.budget.blank? %>
+  <% if project.budget.preset? %>
     <budget>
-      <value currency="<%= project.budget_currency %>" value-date="<%= format_date_dash(project.start_date) %>"><%= project.budget.to_i %></value>
+      <value currency="<%= project.budget_currency.name %>" value-date="<%= format_date_dash(project.start_date) %>"><%= project.budget.to_i %></value>
     </budget>
   <% end %>
 
+  <% if false %>
   <% @geo_projects.each do |geo_project| %>
     <% if geo_project[:project_id] == project.cartodb_id %>
       <% if geo_project[:level_detail] == "country"%>
@@ -115,7 +100,7 @@
     <% end %>
   <% end %>
 
-  <% if !project.result_title.blank? %>
+  <% if project.result_title.present? %>
     <result type="output">
       <title><%=project.result_title %></title>
       <% if !project.result_description.blank? %>

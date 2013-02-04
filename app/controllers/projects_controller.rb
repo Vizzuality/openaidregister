@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects
     @organization = current_user.organization || Organization.new
+    @external_organizations = ExternalOrganization.grouped_by_project_id(@projects)
   end
 
   def show

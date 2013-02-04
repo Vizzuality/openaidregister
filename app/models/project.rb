@@ -56,6 +56,10 @@ class Project < CartodbModel
     OpenAidRegister::ORGANIZATION_ROLES.select{|ss| ss.cartodb_id == @organization_role_id}.first
   end
 
+  def external_organizations
+    InvolvedOrganizations.where(:project_id => self.id)
+  end
+
   def sectors_list
     (subsectors || []).map{|s| ["#{OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s.sector_id}.first.name}, #{s.name}}", "#{s.sector_id},#{s.cartodb_id}"]}
   end

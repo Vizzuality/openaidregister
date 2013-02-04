@@ -1,0 +1,28 @@
+<% fields = %w(
+cartodb_id
+user_id
+name
+id_in_organization
+description
+organization_role_id
+language_id
+sectors
+subsectors
+start_date
+end_date
+budget
+budget_currency_id
+contact_person
+collaboration_type
+tied_status
+aid_type
+flow_type
+finance_type
+url
+coords
+transaction
+) %><%= fields.join(',') %>
+<% @projects.each do |project| %>
+  <%= fields.map{|f| project.send(f)}.join(',') %>
+<% end %>
+

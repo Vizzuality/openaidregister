@@ -5,7 +5,12 @@ class ExternalOrganization < CartodbModel
                 :project_id
 
   def role
-    (OrganizationRole.all.select{|t| t.cartodb_id == role_id.to_i} || []).first if role_id
+    OpenAidRegister::ORGANIZATION_ROLES.select{|ss| ss.cartodb_id == @role_id}.first
+  end
+
+  def self.grouped_by_project_id(projects)
+    external_organizations = query("SELECT * FROM #{name.tableize} WHERE project_id IN (#{projects.map(&:id)})")
+    external_organizations.group_by{|eo| eo.project_id}
   end
 
 end
