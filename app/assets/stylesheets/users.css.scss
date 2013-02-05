@@ -8,7 +8,9 @@
   @import "common/forms";
   @import "common/vars";
   @import "common/maps";
+  @import "common/confirmation_tooltip";
   @import "common/mamufas";
+  @import "select2";
 
 
   // Default form
@@ -16,6 +18,7 @@
 
   // Whole list with its filters and search
   .inner.list {
+    position:relative;
     display:none;
   }
 
@@ -62,10 +65,11 @@
     // List filters
     &.list_filters {
       padding:35px 50px;
-      div.field input[type="text"] {width:520px; margin:0;}
+      div.field input[type="text"] {width:500px; margin:0;}
+
       div.filter_selector {
-        margin-top:5px;
-        label {text-transform:capitalize; margin:9px 10px 0 0;}
+        label {text-transform:capitalize; margin:15px 15px 0 0;}
+        div.select_wrapper {width:242px; margin-top:0;}
         a {
           margin-right:8px;
           &:last-child {margin-right:0px;} 
@@ -103,8 +107,21 @@
             }
 
             &.status {
+              width:192px;
               text-transform: capitalize;
-              &.past {color:#CCCCCC;}
+              &.Completion, &.completion {color:#CCCCCC;}
+            }
+          }
+
+          form {
+            @include inline-block();
+            @include opacity(0);
+            input {
+              border:none;
+              font:bold 19px $text-fonts;
+              color:#999999;
+              background:none;
+              &:hover {color:#666666; cursor:pointer;}
             }
           }
 
@@ -113,6 +130,7 @@
           }
 
           &:last-child {border:none;}
+          &:hover form {@include opacity(1)}
         }
       }
     }

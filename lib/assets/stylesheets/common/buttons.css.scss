@@ -32,10 +32,21 @@
       // Red type
       &.red {
         background:#FF4D4D;
-        font:bold 19px $text_fonts;
+        font:bold 15px $text_fonts;
         letter-spacing: -1px;
         &:hover, &:focus {background:#F44848;}
         &:active {background:#DC4141;}
+      }
+
+      // Inverse type
+      &.inverse {
+        background:none;
+        font:bold 15px $text_fonts;
+        letter-spacing: -1px;
+        color:white;
+        border:1px solid white;
+        &:hover, &:focus {background:none;}
+        &:active {background:none;}
       }
 
       // Light grey
@@ -91,6 +102,8 @@
           text-decoration:none;
         }
       }
+
+      &.bigger {font-size:19px;}
     }
 
   }

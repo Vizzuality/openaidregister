@@ -1,0 +1,40 @@
+
+
+  /**
+   *  Confirmation tooltip styles
+   */
+
+  @import "compass";
+
+  .confirmation_tooltip {
+    position:absolute;
+    top:0;
+    right:0;
+    padding:25px;
+    background:#111111;
+    background:rgba(#111, 0.96);
+    @include border-radius(20px);
+
+    p {
+      font:bold 15px $text_fonts;
+      color:white;
+    }
+
+    a.button {
+      padding:5px 18px!important;
+      &:first-child {
+        margin-right:8px;
+      } 
+    }
+
+    span.b {
+      position:absolute;
+      bottom:-10px;
+      left:50%;
+      margin-left:-10px;
+      border-left:10px solid transparent;
+      border-right:10px solid transparent;
+      border-top:10px solid #111111; // IE
+      border-top:10px solid rgba(#111, 0.96);
+    }
+  }

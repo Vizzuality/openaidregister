@@ -22,9 +22,9 @@
       <p class="margin5"><%= t('projects.form_advanced.header.basic_information') %></p>
     </div>
     <div class="center margin40">
-      <%= link_to t('projects.form_advanced.header.complete_information'), "", :class => "button round red" %>
-      <span><%= t('projects.form_advanced.header.or') %></span>
-      <%= link_to t('projects.form_advanced.header.add_another_project'), "", :class => "button round light-grey uppercase" %>
+      <%= link_to t('projects.form_advanced.header.complete_information'), "#complete_information", :class => "button round red uppercase continue_form" %>
+      <span class="light">&nbsp;<%= t('projects.form_advanced.header.or') %>&nbsp;</span>
+      <%= link_to t('projects.form_advanced.header.add_another_project'), new_project_path, :class => "button round light-grey uppercase new_project" %>
     </div>
   </section>
 

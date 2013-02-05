@@ -37,9 +37,21 @@
       </div>
       <div class="right filter_selector">
         <label class="dark small left"><%= t('users.filters.label') %></label>
-        <a href="#" class="selected uppercase button round white small left"><%= t('users.filters.all') %></a>
+
+        <div class="field">
+          <div class="select_wrapper">
+          <select>
+            <option>All</option>
+            <option>Implementing</option>
+            <option>Pipeline</option>
+            <option>Completion</option>
+          </select>
+          </div>
+        </div>
+
+        <!-- <a href="#" class="selected uppercase button round white small left"><%= t('users.filters.all') %></a>
         <a href="#ongoing" class="button uppercase round white small left"><%= t('users.filters.ongoing') %></a>
-        <a href="#past" class="button uppercase round white small left"><%= t('users.filters.past') %></a>
+        <a href="#past" class="button uppercase round white small left"><%= t('users.filters.past') %></a> -->
       </div>
     </form>
   </section>
@@ -48,7 +60,8 @@
       <% @projects.each do |project| %>
         <li id="project_<%= project.cartodb_id %>" data-positions="<%= project.coords.to_json.html_safe %>">
           <p class="name"><%= link_to project.name, edit_project_path(project) %></p>
-          <p class="status <%= project.state.last %>"><%= project.state.last %></p>
+          <p class="status <%= project.state.last.downcase %>"><%= project.state.last %></p>
+          <%= button_to "x", project_path(project), :method =>:delete %>
         </li>
       <% end %>
     </ul>
