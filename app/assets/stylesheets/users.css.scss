@@ -89,12 +89,16 @@
 
         li {
           display:block;
+          letter-spacing: -4px;
+          word-spacing: -4px;
           width:100%;
           padding:25px 0;
           border-bottom:1px solid #DDDDDD;
 
           p {
             @include inline-block();
+            letter-spacing: 0;
+            word-spacing: 0px;
             
             &.name {
               width:640px;
@@ -107,7 +111,7 @@
             }
 
             &.status {
-              width:192px;
+              width:200px;
               text-transform: capitalize;
               &.Completion, &.completion {color:#CCCCCC;}
             }
@@ -115,8 +119,11 @@
 
           form {
             @include inline-block();
+            letter-spacing: 0;
+            word-spacing: 0px;
             @include opacity(0);
             input {
+              padding:0;
               border:none;
               font:bold 19px $text-fonts;
               color:#999999;
