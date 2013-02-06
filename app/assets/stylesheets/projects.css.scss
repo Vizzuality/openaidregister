@@ -90,6 +90,11 @@
       }
     }
 
+    // Description
+    &.description {
+      textarea { width:594px!important; }
+    }
+
     // Dates
     &.start_date {
       div.select_wrapper {
