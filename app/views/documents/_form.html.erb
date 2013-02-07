@@ -1,4 +1,4 @@
-<%= form_for @document, :multipart => true, :html => {:class => "#{action_name}-document"} do |f| %>
+<%= form_for @record_for_form, :multipart => true, :html => {:class => "#{action_name}-document"} do |f| %>
 
   <div class="field file">
     <%= f.label :file, t('.file') %>

@@ -2,7 +2,13 @@ Openaidregister::Application.routes.draw do
 
   resources :users do
     resources :projects
+    resources :organizations do
+      resources :budgets
+      resources :documents
+      resources :administrators
+    end
   end
+
   resources :sessions
 
   resources :projects do

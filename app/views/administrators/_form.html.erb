@@ -1,0 +1,33 @@
+<%= form_for [@user, @organization, @administrator], :multipart => true, :html => {:class => "#{action_name}-budget"} do |f| %>
+
+  <div class="user margin50">
+    <div class="name field">
+      <%= error_message(@user, :name) %>
+      <%= f.label :name, t('.name') %>
+      <%= f.text_field :name, :autofocus => true, :class => "med" %>
+    </div>
+
+    <div class="email field margin25">
+      <%= error_message(@user, :email) %>
+      <%= f.label :email, t('.email') %>
+      <%= f.email_field :email, :class => "med" %>
+    </div>
+
+    <div class="password field margin margin25">
+
+      <%= f.label :password, t('.password') %>
+      <%= error_message(@user, :password) %>
+      <%= f.password_field :password, :class => "short" %>
+    </div>
+
+    <div class="field margin50">
+      <%= f.button t('.save_changes'), :type => 'button', :class => "red round button continue" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>

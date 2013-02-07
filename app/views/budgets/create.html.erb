@@ -1,0 +1,15 @@
+<li class="budget">
+  <%= form_for @user do |f| %>
+    <%= f.fields_for @user.organization do |ff| %>
+      <%= ff.fields_for @budget do |fff| %>
+        <%= fff.hidden_field :start_date %>
+        <%= fff.hidden_field :end_date %>
+        <%= fff.hidden_field :value %>
+        <%= fff.hidden_field :currency_type_id %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <span class="value"><%= transaction_value(@budget) %></span>
+  <span class="dates"><%= l(@budget.start_date, :format => :month_day_year) %> to <%= l(@budget.end_date, :format => :month_day_year) %></span>
+  <%= link_to '', '#', :id => 'remove' %>
+</li>

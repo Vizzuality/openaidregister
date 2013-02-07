@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  extend ActAsProjectResource
+  extend ActsAsProjectResource
+  extend ActsAsOrganizationResource
 
   protect_from_forgery
 

@@ -216,6 +216,30 @@ en:
           examples: ""
       continue: 'Continue'
       save: 'Save'
+    edit:
+      profile: 'Profile'
+      account_data: 'Account data'
+      organization_data: 'Organization data'
+      name: 'Your name'
+      email: 'Your email'
+      password: 'Your password'
+      organization:
+        name: "Organization's name"
+        website: "Organization's website"
+        type_id: "Organization's type"
+        country_id: "Organization's country"
+        government_id:
+          title: "Government ID"
+          desc: ""
+          url: ""
+          examples: ""
+        budgets:
+          no_records: 'No budget provided yet'
+        documents:
+          no_records: 'No documents provided yet'
+        administrators:
+          no_records: 'No administrators provided yet'
+      save_changes: 'Save changes'
   sessions:
     new:
       sign_in: 'Sign in'

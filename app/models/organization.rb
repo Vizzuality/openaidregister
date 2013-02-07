@@ -7,6 +7,18 @@ class Organization < CartodbModel
                 :government_id
 
   def country
-    OpenAidRegister::COUNTRIES.select{|ss| ss.cartodb_id == @country_id}.first
+    OpenAidRegister::COUNTRIES.by_id(@country_id)
+  end
+
+  def budgets
+    @budgets ||= Budget.where(:organization_id => id)
+  end
+
+  def documents
+    @documents ||= Document.where(:organization_id => id)
+  end
+
+  def administrators
+    @administrators ||= Administrator.where(:organization_id => id)
   end
 end

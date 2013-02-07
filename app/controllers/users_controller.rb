@@ -28,4 +28,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user               = current_user
+    @user.organization  ||= Organization.new
+    @organization_types = OpenAidRegister::ORGANIZATION_TYPES
+    @countries          = OpenAidRegister::COUNTRIES
+  end
+
+  def update
+    @user = current_user
+
+    if @user.update_attributes(params[:user])
+
+      redirect_to @user
+    else
+      @user.organization  ||= Organization.new
+      @organization_types = OpenAidRegister::ORGANIZATION_TYPES
+      @countries          = OpenAidRegister::COUNTRIES
+      render :edit
+    end
+  end
 end

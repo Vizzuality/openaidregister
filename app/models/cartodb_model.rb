@@ -26,10 +26,10 @@ class CartodbModel
 
     if persisted?
       prepared_attributes['updated_at'] = Time.now
-      CartoDB::Connection.update_row(table_name, prepared_attributes)
+      CartoDB::Connection.update_row(table_name, id, prepared_attributes)
     else
       prepared_attributes['created_at'] = prepared_attributes['updated_at'] = Time.now
-      row = CartoDB::Connection.insert_row(table_name, prepared_attributes.except('cartodb_id'))
+      row = CartoDB::Connection.insert_row(table_name, prepared_attributes)
       self.cartodb_id = row.cartodb_id
     end
 
@@ -69,6 +69,8 @@ class CartodbModel
   end
 
   def self.find_by_id(id)
+    return nil if id.blank?
+
     result = CartoDB::Connection.query(<<-SQL)
       SELECT *
       FROM #{name.tableize}
@@ -81,7 +83,7 @@ class CartodbModel
   end
 
   def self.where(filters)
-    sql = "SELECT * FROM #{name.tableize}"
+    sql = "SELECT * FROM #{table_name}"
     sql << " WHERE #{filters.map{|k, v| "#{k} = '#{v}'"}.join(' AND ')};"
 
     query(sql)
@@ -93,6 +95,10 @@ class CartodbModel
     0
   end
 
+  def self.table_name
+    name.tableize
+  end
+
   def attributes
     @attributes ||= {}
   end
@@ -102,14 +108,26 @@ class CartodbModel
     attributes.as_json(options)
   end
 
+  protected
+
+  def parse_date(date)
+    date_components = date.split('/').map(&:to_i)
+    Date.new(date_components[2], date_components[0], date_components[1])
+  end
+
   private
 
   def prepare_data_for_table(table_name, attributes)
     table = CartoDB::Connection.table(table_name)
+
+    prepared_attributes = {}
+
     table.schema.each do |column_name, colum_type|
-      attributes[column_name] = format_value_for_type(colum_type, attributes[column_name])
+      next unless attributes.keys.include?(column_name)
+      prepared_attributes[column_name] = format_value_for_type(colum_type, attributes[column_name])
     end
-    attributes
+
+    prepared_attributes.except('cartodb_id')
   end
 
   def format_value_for_type(type, value)

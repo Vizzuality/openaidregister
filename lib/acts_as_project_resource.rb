@@ -1,4 +1,4 @@
-module ActAsProjectResource
+module ActsAsProjectResource
 
   def acts_as_project_resource
     include InstanceMethods

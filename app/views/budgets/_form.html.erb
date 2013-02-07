@@ -1,0 +1,37 @@
+<%= form_for [@user, @organization, @budget], :multipart => true, :html => {:class => "#{action_name}-budget"} do |f| %>
+
+  <div class="field start_date long margin20">
+    <%= f.label(:start_date) do %>
+      <%= t('.start_end_date') %> <em class="light">(MM/DD/YYYY)</em>
+    <% end %>
+
+    <div class="select_wrapper">
+      <div class="column">
+        <%= f.text_field :start_date, :class => 'short inner_input' %>
+        <span class="sptor"></span>
+      </div>
+      <div class="column">
+        <%= f.text_field :end_date, :class => 'short inner_input' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field budget short margin20">
+    <%= f.label :value, t('.value') %>
+    <div class="select_wrapper">
+      <div class="column">
+        <%= f.text_field :value, :class => 'tiny inner_input' %>
+        <span class="sptor"></span>
+      </div>
+      <div class="column">
+        <%= f.select :currency_type_id, to_select_options(@currencies), :style => "width:30px" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.submit t('.add') %>
+    <%= link_to t('.cancel'), '#' %>
+  </div>
+
+<% end %>

@@ -63,8 +63,10 @@ task :setup do
   ] unless tables_list.tables.map(&:name).include?('external_organizations')
 
   CartoDB::Connection.create_table 'documents', [
-    {:name => 'file',    :type => 'text'},
-    {:name => 'tipe_id', :type => 'numeric'}
+    {:name => 'file',            :type => 'text'},
+    {:name => 'tipe_id',         :type => 'numeric'},
+    {:name => 'project_id',      :type => 'numeric'},
+    {:name => 'organization_id', :type => 'numeric'}
   ] unless tables_list.tables.map(&:name).include?('documents')
 
   CartoDB::Connection.create_table 'project_results', [
@@ -77,9 +79,10 @@ task :setup do
   ] unless tables_list.tables.map(&:name).include?('project_results')
 
   CartoDB::Connection.create_table 'users', [
-     {:name => 'email',    :type => 'text'},
-     {:name => 'password', :type => 'text'},
-     {:name => 'name',     :type => 'text'}
+     {:name => 'email',           :type => 'text'},
+     {:name => 'password',        :type => 'text'},
+     {:name => 'name',            :type => 'text'},
+     {:name => 'organization_id', :type => 'numeric'}
   ] unless tables_list.tables.map(&:name).include?('users')
 
   CartoDB::Connection.create_table 'organizations', [
@@ -103,6 +106,14 @@ task :setup do
      {:name => 'sector_id',   :type => 'numeric'},
      {:name => 'sector_code', :type => 'text'}
   ] unless tables_list.tables.map(&:name).include?('subsectors')
+
+  CartoDB::Connection.create_table 'budgets', [
+     {:name => 'start_date',       :type => 'date'},
+     {:name => 'end_date',         :type => 'date'},
+     {:name => 'value',            :type => 'numeric'},
+     {:name => 'currency_type_id', :type => 'numeric'},
+     {:name => 'organization_id',  :type => 'numeric'}
+  ] unless tables_list.tables.map(&:name).include?('budgets')
 
   %w(
     organization_roles
@@ -661,6 +672,7 @@ task :drop_all_tables => :environment do
     countries
     sectors
     subsectors
+    budgets
   ).each do |table_name|
     begin
       CartoDB::Connection.drop_table(table_name) if account_tables.include?(table_name)

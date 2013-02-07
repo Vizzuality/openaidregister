@@ -3,7 +3,7 @@ class User < CartodbModel
   attr_accessor :email,
                 :password,
                 :name,
-                :organization
+                :organization_id
 
   validates :email, :presence => true, :email => true
   validates :password, :presence => true
@@ -22,10 +22,18 @@ class User < CartodbModel
   end
 
   def save
-    if user = super
-      organization.save if organization
+    if self.valid?
+      if organization && organization.valid?
+        attributes['organization_id'] = organization.save.cartodb_id
+        super
+      end
     end
-    user
+
+    self
+  end
+
+  def organization
+    @organization ||= Organization.find_by_id(@organization_id)
   end
 
   def organization=(organization_attributes)
@@ -39,6 +47,8 @@ class User < CartodbModel
   private
 
   def email_uniqueness
+    return true if persisted?
+
     if User.where(:email => email).length > 0
       errors.add :email,    'already exists'
     end

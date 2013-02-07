@@ -11,4 +11,14 @@ module ApplicationHelper
     end
   end
 
+  def list_for_collection(collection, &block)
+    if collection.blank?
+      content_tag :div, :class => 'no-results' do
+        yield if block_given?
+      end
+    else
+      render collection
+    end
+  end
+
 end
