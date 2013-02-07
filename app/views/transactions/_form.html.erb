@@ -1,4 +1,4 @@
-<%= form_for [@project, @transaction], :html => {:class => "#{action_name}-transaction"} do |f| %>
+<%= form_for [@project, @transaction], :html => {:class => "#{action_name}-transaction transaction_form"} do |f| %>
   <%= f.hidden_field :project_id %>
 
   <div class="field type">
@@ -34,7 +34,7 @@
 
   <div class="field">
     <%= f.submit t('.add') %>
-    <%= link_to t('.cancel'), '#' %>
+    <%= link_to t('.cancel'), '#cancel', :class => "cancel_subform" %>
   </div>
 
 <% end %>

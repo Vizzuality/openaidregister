@@ -3,6 +3,8 @@ module ActAsProjectResource
   def acts_as_project_resource
     include InstanceMethods
 
+    layout false
+    
     before_filter :get_project
   end
 

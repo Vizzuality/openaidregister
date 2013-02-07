@@ -49,6 +49,10 @@
     // Define form wrapper padding
     div.form_wrapper {
       padding:0 $padding;
+      &.border {
+        padding-bottom:50px;
+        border-bottom:1px solid #DDDDDD;
+      }
     }
 
     // Field customization
@@ -275,6 +279,29 @@
             border-color:$error_color;
           }
         }
+      }
+
+      // SUBFORM
+      div.subform {
+
+        ul.results {
+          display:block;
+          
+          li {
+            display:block;
+            height:50px;
+            @include border-radius(30px);
+
+            &.empty {
+              padding:0 20px;
+              @include background(image-url('layout/empty_result.png') repeat 0 0);
+              line-height:50px;
+              color:#333;
+            }
+          }
+
+        }
+
       }
 
     } /* div.field */

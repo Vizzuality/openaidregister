@@ -1,35 +1,53 @@
 <%= form_for @project do |f| %>
-  <section class="form_center">
-    <ul>
-      <li class="transactions">
-        <h4><%= t('.transactions.title') %></h4>
-        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-        <div class="no-results"><%= t('.transactions.no_records') %></div>
-        <%= link_to t('.transactions.add'), new_project_transaction_path(@project) %>
-      </li>
-      <li class="involved-organizations">
-        <h4><%= t('.involved_organizations.title') %></h4>
-        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-        <div class="no-results"><%= t('.involved_organizations.no_records') %></div>
-        <%= link_to t('.involved_organizations.add'), new_project_external_organization_path(@project) %>
-      </li>
-      <li class="related-documents">
-        <h4><%= t('.related_documents.title') %></h4>
-        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-        <div class="no-results"><%= t('.related_documents.no_records') %></div>
-        <%= link_to t('.related_documents.add'), new_project_document_path(@project) %>
-      </li>
-      <li class="project-results">
-        <h4><%= t('.project_results.title') %></h4>
-        <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-        <div class="no-results"><%= t('.project_results.no_records') %></div>
-        <%= link_to t('.project_results.add'), new_project_project_result_path(@project) %>
-      </li>
-    </ul>
-  </section>
+  <div class="form_wrapper border">
+
+    <div class="field long transactions">
+      <label><%= t('.transactions.title') %></label>
+      <div class="subform">
+        <ul class="results">
+          <li class="empty"><%= t('.transactions.no_records') %></li>
+        </ul>
+        <div class="form"></div>
+        <%= link_to t('.transactions.add'), new_project_transaction_path(@project), :class => 'round grey button upper add_form margin10' %>
+      </div>
+    </div>
+
+    <div class="field long involved-organizations margin50">
+      <label><%= t('.organizations.title') %></label>
+      <div class="subform">
+        <ul class="results">
+          <li class="empty"><%= t('.organizations.no_records') %></li>
+        </ul>
+        <div class="form"></div>
+        <%= link_to t('.involved_organizations.add'), new_project_external_organization_path(@project), :class => 'round grey button upper add_form margin10' %>
+      </div>
+    </div>
+
+    <div class="field long related_documents margin50">
+      <label><%= t('.related_documents.title') %></label>
+      <div class="subform">
+        <ul class="results">
+          <li class="empty"><%= t('.related_documents.no_records') %></li>
+        </ul>
+        <div class="form"></div>
+        <%= link_to t('.related_documents.add'), new_project_document_path(@project), :class => 'round grey button upper add_form margin10' %>
+      </div>
+    </div>
+
+    <div class="field long project-results margin50">
+      <label><%= t('.project_results.title') %></label>
+      <div class="subform">
+        <ul class="results">
+          <li class="empty"><%= t('.project_results.no_records') %></li>
+        </ul>
+        <div class="form"></div>
+        <%= link_to t('.project_results.add'), new_project_project_result_path(@project), :class => 'round grey button upper add_form margin10' %>
+      </div>
+    </div>
+  </div>
 
 
-  <div class="form_wrapper">
+  <div class="form_wrapper margin50">
     <h3 class="upper"><%= t('.organization_information.title') %></h3>
 
     <div class="field collaboration_type long margin40">
