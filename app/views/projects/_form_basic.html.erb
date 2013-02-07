@@ -1,4 +1,6 @@
-  <%= form_for :project, :url => @url, :html => {:class => 'new_basic'}, :method => (@method || :post) do |f| %>
+  <%= form_for @project, :html => {:class => 'new_basic'} do |f| %>
+
+    <%= f.hidden_field :user_id %>
 
     <div class="form_wrapper">
       <div class="field name long">
