@@ -1,12 +1,12 @@
 class ProjectsController < ApplicationController
-  before_filter :get_user, :only => :index
+  before_filter :get_user,    :only => :index
   before_filter :get_project, :only => [:show, :edit, :update, :destroy]
 
   layout :layout_if_ajax?
 
   def index
-    @projects = current_user.projects
-    @organization = current_user.organization || Organization.new
+    @projects               = current_user.projects
+    @organization           = current_user.organization || Organization.new
     @external_organizations = ExternalOrganization.grouped_by_project_id(@projects)
   end
 
@@ -37,12 +37,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project            = Project.find_by_id(params[:id])
-    @organization_roles = OpenAidRegister::ORGANIZATION_ROLES
-    @languages          = OpenAidRegister::LANGUAGES
-    @sectors            = OpenAidRegister::SECTORS
-    @subsectors         = OpenAidRegister::SUBSECTORS
-    @currencies         = OpenAidRegister::CURRENCIES
+    @organization_roles  = OpenAidRegister::ORGANIZATION_ROLES
+    @languages           = OpenAidRegister::LANGUAGES
+    @sectors             = OpenAidRegister::SECTORS
+    @subsectors          = OpenAidRegister::SUBSECTORS
+    @currencies          = OpenAidRegister::CURRENCIES
     @collaboration_types = OpenAidRegister::COLLABORATION_TYPES
     @aid_types           = OpenAidRegister::AID_TYPES
     @flow_types          = OpenAidRegister::FLOW_TYPES
@@ -50,7 +49,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-
     if @project.update_attributes(params[:project])
       flash[:info] = new_project_path
       redirect_to current_user
@@ -61,7 +59,12 @@ class ProjectsController < ApplicationController
       @finance_types       = OpenAidRegister::FINANCE_TYPES
       render :edit
     end
+  end
 
+  def destroy
+    @project.destroy
+
+    render :nothing => true
   end
 
   private

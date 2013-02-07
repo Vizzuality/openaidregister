@@ -36,6 +36,10 @@ class CartodbModel
     self
   end
 
+  def destroy
+    CartoDB::Connection.delete_row(table_name, cartodb_id);
+  end
+
   def update_attributes(attributes = {})
     if attributes.present?
       attributes.each do |name, value|
