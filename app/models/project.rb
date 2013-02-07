@@ -121,7 +121,7 @@ class Project < CartodbModel
   end
 
   def coords
-    the_geom.map{|point| [point.y, point.x]}
+    the_geom.map{|point| [point.y, point.x]} if the_geom.present?
   end
 
   def to_param
@@ -129,12 +129,14 @@ class Project < CartodbModel
   end
 
   def as_json(options = {})
-    {
+    options.merge({
       :cartodb_id => cartodb_id,
       :name       => name,
       :start_date => start_date,
       :end_date   => end_date,
-      :coords     => coords
-    }
+      :coords     => coords,
+      :state =>     state,
+      :positions => coords
+    })
   end
 end
