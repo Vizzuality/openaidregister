@@ -1,4 +1,4 @@
-<%= form_for [@project, @project_result], :html => {:class => "#{action_name}-project-result project_result_form"} do |f| %>
+<%= form_for [@project, @project_result], :html => {:class => "#{action_name}-project-result project_results_form"} do |f| %>
   <%= f.hidden_field :project_id %>
 
   <div class="field concept">
@@ -33,9 +33,9 @@
     <%= f.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= f.submit t('.add') %>
-    <%= link_to t('.cancel'), '#' %>
+  <div class="field long margin20">
+    <%= f.submit t('.add'), :class => "left button round upper red" %>
+    <%= link_to t('.cancel'), '#cancel', :class => "right margin15 cancel_subform" %>
   </div>
 
 <% end %>

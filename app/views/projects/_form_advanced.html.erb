@@ -1,6 +1,3 @@
-<script type="text/javascript">
-  var new_project = <%= json_for_new_project(@project) %>;
-</script>
 <%= form_for @project do |f| %>
   <div class="form_wrapper border">
 
@@ -16,10 +13,10 @@
     </div>
 
     <div class="field long involved-organizations margin50">
-      <label><%= t('.organizations.title') %></label>
+      <label><%= t('.involved_organizations.title') %></label>
       <div class="subform">
         <ul class="results">
-          <li class="empty"><%= t('.organizations.no_records') %></li>
+          <li class="empty"><%= t('.involved_organizations.no_records') %></li>
         </ul>
         <div class="form"></div>
         <%= link_to t('.involved_organizations.add'), new_project_external_organization_path(@project), :class => 'round grey button upper add_form margin10' %>
@@ -110,7 +107,7 @@
     </div>
 
     <div class="field long margin50">
-      <%= link_to t('.cancel'), '#', :class => "margin15 left" %>
+      <%= link_to t('.cancel'), '#', :class => "margin15 left cancel" %>
       <%= f.submit t('.save_changes'), :class => "button round red bigger right" %>
     </div>
   </div>

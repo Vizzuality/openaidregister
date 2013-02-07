@@ -11,9 +11,9 @@
     <%= f.select :role_id, to_select_options(@roles) %>
   </div>
 
-  <div class="field">
-    <%= f.submit t('.add') %>
-    <%= link_to t('.cancel'), '#' %>
+  <div class="field long margin20">
+    <%= f.submit t('.add'), :class => "left button round upper red" %>
+    <%= link_to t('.cancel'), '#cancel', :class => "right margin15 cancel_subform" %>
   </div>
 
 <% end %>

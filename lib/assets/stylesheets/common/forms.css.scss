@@ -284,7 +284,25 @@
       // SUBFORM
       div.subform {
 
+        div.form {
+          display:none;
+          margin-top:10px;
+          padding:20px;
+          background:#EDEDED;
+          @include border-radius(20px);
+
+          div.field {
+            a.cancel_subform {margin-right:20px;}
+
+            &.long {width:596px;}
+            &.med {width:360px;}
+            &.shor {width:220px;}
+            &.tiny {width:118px;}
+          }
+        }
+
         ul.results {
+          margin-top:20px;
           display:block;
           
           li {

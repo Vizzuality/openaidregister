@@ -1,40 +1,49 @@
-<%= form_for [@project, @transaction], :html => {:class => "#{action_name}-transaction transaction_form"} do |f| %>
+<%= form_for [@project, @transaction], :html => {:class => "#{action_name}-transaction transactions_form"} do |f| %>
   <%= f.hidden_field :project_id %>
 
-  <div class="field type">
+  <div class="field short type">
     <%= f.label :type, t('.type') %>
-    <%= f.select :type, to_select_options(@transaction_types) %>
+    <div class="select_wrapper short">
+      <%= f.select :type, to_select_options(@transaction_types) %>
+    </div>
   </div>
 
-  <div class="field date">
+  <div class="field tiny date">
     <%= f.label :date, t('.date') %>
-    <%= f.date_select :date %>
+    <%= f.text_field :date, :class => "tiny" %>
   </div>
 
-  <div class="field value">
+  <div class="field short value">
     <%= f.label :value, t('.value') %>
-    <%= f.text_field :value %>
-    <%= f.select :value_currency, to_select_options(@currencies) %>
+    <div class="select_wrapper">
+      <div class="column">
+        <%= f.text_field :value, :class => 'tiny inner_input' %>
+        <span class="sptor"></span>
+      </div>
+      <div class="column">
+        <%= f.select :value_currency, to_select_options(@currencies), :style => "width:30px" %>
+      </div>
+    </div>
   </div>
 
-  <div class="field provider">
+  <div class="field long provider">
     <%= f.label :provider, t('.provider') %>
     <%= f.text_field :provider %>
   </div>
 
-  <div class="field receiver">
+  <div class="field long receiver">
     <%= f.label :receiver, t('.receiver') %>
     <%= f.text_field :receiver %>
   </div>
 
-  <div class="field description">
+  <div class="field long description">
     <%= f.label :description, t('.description') %>
     <%= f.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= f.submit t('.add') %>
-    <%= link_to t('.cancel'), '#cancel', :class => "cancel_subform" %>
+  <div class="field long margin20">
+    <%= f.submit t('.add'), :class => "left button round upper red" %>
+    <%= link_to t('.cancel'), '#cancel', :class => "right margin15 cancel_subform" %>
   </div>
 
 <% end %>
