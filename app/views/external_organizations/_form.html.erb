@@ -1,4 +1,5 @@
-<%= form_for @organization, :html => {:class => "#{action_name}-organization"} do |f| %>
+<%= form_for [@project, @organization], :html => {:class => "#{action_name}-organization organization_form"} do |f| %>
+  <%= f.hidden_field :project_id %>
 
   <div class="field name">
     <%= f.label :name, t('.name') %>

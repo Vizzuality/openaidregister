@@ -1,4 +1,5 @@
-<%= form_for @project_result, :html => {:class => "#{action_name}-project-result"} do |f| %>
+<%= form_for [@project, @project_result], :html => {:class => "#{action_name}-project-result project_result_form"} do |f| %>
+  <%= f.hidden_field :project_id %>
 
   <div class="field concept">
     <%= f.label :concept, t('.concept') %>

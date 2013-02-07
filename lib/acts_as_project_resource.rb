@@ -4,7 +4,7 @@ module ActsAsProjectResource
     include InstanceMethods
 
     layout false
-    
+
     before_filter :get_project
   end
 

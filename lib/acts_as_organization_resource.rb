@@ -3,6 +3,8 @@ module ActsAsOrganizationResource
   def acts_as_organization_resource
     include InstanceMethods
 
+    layout false
+
     before_filter :get_user
     before_filter :get_organization
   end
