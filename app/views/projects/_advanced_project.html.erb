@@ -1,0 +1,35 @@
+<script type="text/javascript">
+  var current_user = {
+        name: '<%= current_user.name %>',
+        email: '<%= current_user.email %>'
+      }
+    , projects
+    , project = {};
+</script>
+<%= javascript_include_tag controller_name if request.xhr? %>
+<%= stylesheet_link_tag controller_name, :media => 'all' if request.xhr? %>
+
+
+<div class="form_inner">
+  <section>
+    <div>
+      <h3 class="center upper"><span class="title_line"></span><%= t('projects.form_advanced.header.title') %><span class="title_line"></span></h3>
+    </div>
+  </section>
+
+  <section class="header borders grey_section">
+    <div class="center">
+      <h4 class="dark"><%= t('projects.form_advanced.header.congrats') %></h4>
+      <p class="margin5"><%= t('projects.form_advanced.header.basic_information') %></p>
+    </div>
+    <div class="center margin40">
+      <%= link_to t('projects.form_advanced.header.complete_information'), "#complete_information", :class => "button round red uppercase continue_form" %>
+      <span class="light">&nbsp;<%= t('projects.form_advanced.header.or') %>&nbsp;</span>
+      <%= link_to t('projects.form_advanced.header.add_another_project'), new_project_path, :class => "button round light-grey uppercase new_project" %>
+    </div>
+  </section>
+
+  <section>
+    <%= render 'form_advanced' %>
+  </section>
+</div>
