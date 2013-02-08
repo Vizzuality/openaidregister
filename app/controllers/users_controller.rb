@@ -33,6 +33,8 @@ class UsersController < ApplicationController
     @user.organization  ||= Organization.new
     @organization_types = OpenAidRegister::ORGANIZATION_TYPES
     @countries          = OpenAidRegister::COUNTRIES
+
+    render :layout => false
   end
 
   def update

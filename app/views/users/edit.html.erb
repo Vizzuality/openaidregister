@@ -1,126 +1,143 @@
-<%= t('.profile') %>
+<%= javascript_include_tag :edit_users if request.xhr? %>
 
-<%= link_to t('.account_data'), '#' %>
-<%= link_to t('.organization_data'), '#' %>
-
-<%= form_for(@user) do |f| %>
-
-  <div class="user margin50">
-    <div class="name field">
-      <%= error_message(@user, :name) %>
-      <%= f.label :name, t('.name') %>
-      <%= f.text_field :name, :autofocus => true, :class => "med" %>
+<div class="form_inner edit_user">
+  <section>
+    <div>
+      <h3 class="center upper"><span class="title_line"></span><%= t('.profile') %><span class="title_line"></span></h3>
     </div>
+  </section>
 
-    <div class="email field margin25">
-      <%= error_message(@user, :email) %>
-      <%= f.label :email, t('.email') %>
-      <%= f.email_field :email, :class => "med" %>
+  <section class="header borders">
+    <div class="center">
+      <%= link_to t('.account_data'), "#account_data", :class => "selected button round white account_data uppercase" %>
+      <%= link_to t('.organization_data'), "#organization_data", :class => "button round white organization_data uppercase" %>
     </div>
+  </section>
 
-    <div class="password field margin margin25">
+  <section class="edit_user_forms">
+    <div class="form_wrapper">
+      
+      <%= form_for(@user) do |f| %>
+        <div class="user">
+          <div class="name field">
+            <%= error_message(@user, :name) %>
+            <%= f.label :name, t('.name') %>
+            <%= f.text_field :name, :autofocus => true, :class => "med" %>
+          </div>
 
-      <%= f.label :password, t('.password') %>
-      <%= error_message(@user, :password) %>
-      <%= f.password_field :password, :class => "short" %>
-    </div>
+          <div class="email field margin25">
+            <%= error_message(@user, :email) %>
+            <%= f.label :email, t('.email') %>
+            <%= f.email_field :email, :class => "med" %>
+          </div>
 
-    <div class="field margin50">
-      <%= f.button t('.save_changes'), :type => 'button', :class => "red round button continue" %>
-    </div>
-  </div>
+          <div class="password field margin margin25">
+            <%= f.label :password, t('.password') %>
+            <%= error_message(@user, :password) %>
+            <%= f.password_field :password, :class => "short", :readonly => "readonly", :value => "thisisnotthepass" %>
+          </div>
 
-
-
-<% end %>
-
-<%= form_for(@user) do |f| %>
-
-  <div class="organization margin50">
-    <%= f.fields_for @user.organization do |ff| %>
-      <div class="organization_name field">
-        <%= error_message(@user, :name) %>
-        <%= ff.label :name, t('.organization.name') %>
-        <%= ff.text_field :name, :class => "med" %>
-      </div>
-
-      <div class="organization_website field margin">
-        <%= error_message(@user, :website) %>
-        <%= ff.label :website, t('.organization.website') %>
-        <%= ff.text_field :website, :class => "short" %>
-      </div>
-
-      <div class="organization_type_id field short margin20">
-        <%= error_message(@user, :type_id) %>
-        <%= ff.label :type_id, t('.organization.type_id') %>
-        <div class="select_wrapper">
-          <%= ff.select :type_id, to_select_options(@organization_types), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+          <div class="field margin50">
+            <%= f.button t('.save_changes'), :type => 'button', :class => "red round button bigger save" %>
+          </div>
         </div>
-      </div>
-
-      <div class="organization_country_id field margin20 margin med">
-        <%= error_message(@user, :country_id) %>
-        <%= ff.label :country_id, t('.organization.country_id') %>
-        <div class="select_wrapper med">
-          <%= ff.select :country_id, to_select_options(@countries), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
-        </div>
-      </div>
-
-      <div class="organization_government_id field margin20">
-        <%= error_message(@user, :government_id) %>
-        <div class="block">
-          <%= ff.label :government_id, t('.organization.government_id.title'), :class => "with_hint" %>
-          <span class="hint"
-            data-title="<%= t('.organization.government_id.title') %>"
-            data-description="<%= t('.organization.government_id.desc') %>"
-            data-url="<%= t('.organization.government_id.url') %>"
-            data-examples="<%= t('.organization.government_id.examples') %>"></span>
-        </div>
-        <%= ff.text_field :government_id, :class => "short" %>
-      </div>
-
-
-      <% if @user.organization.persisted? %>
-        <section class="form_center">
-          <ul>
-
-            <li class="budget">
-              <h4><%= t('.organization.budgets.title') %></h4>
-              <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-              <%= list_for_collection(@user.organization.budgets) do %>
-                <%= t('.organization.budgets.no_records') %>
-              <% end %>
-              <%= link_to t('.organization.budgets.add'), new_user_organization_budget_path(@user, @user.organization) %>
-            </li>
-
-            <li class="documents">
-              <h4><%= t('.organization.documents.title') %></h4>
-              <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-              <%= list_for_collection(@user.organization.documents) do %>
-                <%= t('.organization.documents.no_records') %>
-              <% end %>
-              <div class="no-results"></div>
-              <%= link_to t('.organization.documents.add'), new_user_organization_document_path(@user, @user.organization) %>
-            </li>
-
-            <li class="administrators">
-              <h4><%= t('.organization.administrators.title') %></h4>
-              <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
-              <%= list_for_collection(@user.organization.administrators) do %>
-                <%= t('.organization.administrators.no_records') %>
-              <% end %>
-              <div class="no-results"></div>
-              <%= link_to t('.organization.administrators.add'), new_user_organization_administrator_path(@user, @user.organization) %>
-            </li>
-
-          </ul>
-        </section>
       <% end %>
 
-    <% end %>
+      <%= form_for(@user) do |f| %>
+        <div class="organization">
+          <%= f.fields_for @user.organization do |ff| %>
+            <div class="organization_name field">
+              <%= error_message(@user, :name) %>
+              <%= ff.label :name, t('.organization.name') %>
+              <%= ff.text_field :name, :class => "med" %>
+            </div>
 
-    <div class="field block margin40">
-      <%= f.submit t('.save_changes'), :class => "red round button" %>
+            <div class="organization_website field margin">
+              <%= error_message(@user, :website) %>
+              <%= ff.label :website, t('.organization.website') %>
+              <%= ff.text_field :website, :class => "short" %>
+            </div>
+
+            <div class="organization_type_id field short margin20">
+              <%= error_message(@user, :type_id) %>
+              <%= ff.label :type_id, t('.organization.type_id') %>
+              <div class="select_wrapper">
+                <%= ff.select :type_id, to_select_options(@organization_types), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+              </div>
+            </div>
+
+            <div class="organization_country_id field margin20 margin med">
+              <%= error_message(@user, :country_id) %>
+              <%= ff.label :country_id, t('.organization.country_id') %>
+              <div class="select_wrapper med">
+                <%= ff.select :country_id, to_select_options(@countries), { :include_blank => true }, { 'data-placeholder' => "Not defined..." } %>
+              </div>
+            </div>
+
+            <div class="organization_government_id field margin20">
+              <%= error_message(@user, :government_id) %>
+              <div class="block">
+                <%= ff.label :government_id, t('.organization.government_id.title'), :class => "with_hint" %>
+                <span class="hint"
+                  data-title="<%= t('.organization.government_id.title') %>"
+                  data-description="<%= t('.organization.government_id.desc') %>"
+                  data-url="<%= t('.organization.government_id.url') %>"
+                  data-examples="<%= t('.organization.government_id.examples') %>"></span>
+              </div>
+              <%= ff.text_field :government_id, :class => "short" %>
+            </div>
+
+
+            <% if @user.organization.persisted? %>
+              <section class="form_center">
+                <ul>
+
+                  <li class="budget">
+                    <h4><%= t('.organization.budgets.title') %></h4>
+                    <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+                    <%= list_for_collection(@user.organization.budgets) do %>
+                      <%= t('.organization.budgets.no_records') %>
+                    <% end %>
+                    <%= link_to t('.organization.budgets.add'), new_user_organization_budget_path(@user, @user.organization) %>
+                  </li>
+
+                  <li class="documents">
+                    <h4><%= t('.organization.documents.title') %></h4>
+                    <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+                    <%= list_for_collection(@user.organization.documents) do %>
+                      <%= t('.organization.documents.no_records') %>
+                    <% end %>
+                    <div class="no-results"></div>
+                    <%= link_to t('.organization.documents.add'), new_user_organization_document_path(@user, @user.organization) %>
+                  </li>
+
+                  <li class="administrators">
+                    <h4><%= t('.organization.administrators.title') %></h4>
+                    <a class="hint" href="#hint" data-hint="Wadus" tabIndex="-1"></a>
+                    <%= list_for_collection(@user.organization.administrators) do %>
+                      <%= t('.organization.administrators.no_records') %>
+                    <% end %>
+                    <div class="no-results"></div>
+                    <%= link_to t('.organization.administrators.add'), new_user_organization_administrator_path(@user, @user.organization) %>
+                  </li>
+
+                </ul>
+              </section>
+            <% end %>
+
+          <% end %>
+
+          <div class="field block margin40">
+            <%= f.submit t('.save_changes'), :class => "red round bigger save button" %>
+          </div>
+        </div>
+        
+      <% end %>
     </div>
-  </div>
-<% end %>
+  </section>
+</div>
+
+
+
+
+

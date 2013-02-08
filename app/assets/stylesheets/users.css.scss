@@ -143,3 +143,44 @@
     }
   }
 
+
+
+  // Edit user
+  div.edit_user {
+
+    .header {
+      padding-top:24px;
+      padding-bottom:24px;
+      border-top:1px solid #DDDDDD;
+      border-bottom:1px solid #DDDDDD;
+
+      a {
+        width:169px;
+        text-align: center; 
+        &:last-child {margin-left:10px;}
+      }
+    }
+
+
+    section.edit_user_forms {
+ 
+      .form_wrapper {
+        padding:0 50px;
+
+        button.save,
+        input.save {
+          margin-left:240px;
+        }
+
+        // Show user details
+        div.user {
+          display:block;
+        }
+
+        // Organization details
+        div.organization {
+          display:none;
+        }
+      }
+    }
+  } 

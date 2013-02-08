@@ -9,7 +9,7 @@
         <%= link_to t('header.about'),          about_path,                         :class => 'upper bold small' %>
         <span class="user_options">
           <%= link_to t('header.dashboard'),    user_path(current_user),            :class => 'upper bold small' %>
-          <%= link_to t('header.your_profile'), edit_user_path(current_user),                         :class => 'upper bold small' %>
+          <%= link_to t('header.your_profile'), edit_user_path(current_user),       :class => 'upper bold small profile' %>
           <%= button_to "logout",               session_path(current_user),         :method => :delete, :class => '' %>
         </span>
       </nav>
