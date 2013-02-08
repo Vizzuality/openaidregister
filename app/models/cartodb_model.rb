@@ -128,7 +128,7 @@ class CartodbModel
 
     table.schema.each do |column_name, colum_type|
       next unless attributes.keys.include?(column_name)
-      prepared_attributes[column_name] = format_value_for_type(colum_type, attributes[column_name])
+      prepared_attributes[column_name] = format_value_for_type(colum_type, attributes.symbolize_keys[column_name.to_sym])
     end
 
     prepared_attributes.except('cartodb_id')

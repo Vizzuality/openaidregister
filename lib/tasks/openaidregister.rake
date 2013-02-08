@@ -30,7 +30,6 @@ task :setup do
   tables_list = CartoDB::Connection.tables
 
   CartoDB::Connection.create_table 'projects', [
-    {:name => 'the_geom',           :type => 'geometry' } ,
     {:name => 'user_id',            :type => 'numeric'   } ,
     {:name => 'name',               :type => 'text'      } ,
     {:name => 'id_in_organization', :type => 'numeric'   } ,
@@ -46,6 +45,12 @@ task :setup do
     {:name => 'contact_person',     :type => 'text'      } ,
     {:name => 'url',                :type => 'text'      }
   ], 'geometry' unless tables_list.tables.map(&:name).include?('projects')
+
+  CartoDB::Connection.create_table 'project_locations', [
+    {:name => 'project_id', :type => 'numeric'  } ,
+    {:name => 'location',   :type => 'text'     } ,
+    {:name => 'the_geom',   :type => 'geometry' }
+  ], 'geometry' unless tables_list.tables.map(&:name).include?('project_locations')
 
   CartoDB::Connection.create_table 'transactions', [
     {:name => 'type',           :type => 'numeric'},
@@ -115,6 +120,7 @@ task :setup do
      {:name => 'currency_type_id', :type => 'numeric'},
      {:name => 'organization_id',  :type => 'numeric'}
   ] unless tables_list.tables.map(&:name).include?('budgets')
+
 
   %w(
     organization_roles

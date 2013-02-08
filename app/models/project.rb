@@ -19,11 +19,11 @@ class Project < CartodbModel
                 :flow_type,
                 :finance_type,
                 :url,
-                :the_geom,
                 :lat,
                 :lon,
                 :transaction,
-                :sectors_list
+                :sectors_list,
+                :project_locations
 
   validates :name,               :presence => true
   validates :id_in_organization, :presence => true
@@ -57,15 +57,19 @@ class Project < CartodbModel
   end
 
   def external_organizations
-    InvolvedOrganizations.where(:project_id => self.id)
+    InvolvedOrganizations.where(:project_id => id)
   end
 
   def sectors_list
     (subsectors || []).map{|s| ["#{OpenAidRegister::SECTORS.select{|ss| ss.cartodb_id == s.sector_id}.first.name}, #{s.name}}", "#{s.sector_id},#{s.cartodb_id}"]}
   end
 
+  def project_locations
+    @projects_locations ||= ProjectLocation.where(:project_id => id.to_i)
+  end
+
   def locations_list
-    (the_geom || []).map {|point| ["(#{point.y}, #{point.x})", [point.y, point.x].join(',')] }
+    project_locations.map {|point| ["(#{point.y}, #{point.x})", [point.y, point.x].join(',')] }
   end
 
   def lat=(value)
@@ -90,12 +94,32 @@ class Project < CartodbModel
   def locations_list=(coordinates)
     return if coordinates.blank?
 
-    geojson = {:type => 'MultiPoint', :coordinates => coordinates.select(&:'present?').map{|c| c.split(',')}}.to_json
-    @the_geom = RGeo::GeoJSON.decode(geojson,
-                                     :json_parser => :json,
-                                     :geo_factory => ::RGeo::Cartesian.simple_factory(:srid => 4326)
-                                    )
-    attributes[:the_geom] = @the_geom
+    self.project_locations = coordinates.map do |coordinate|
+      next if coordinate.blank?
+
+      lat, lon, location = */([^,]*),([^(]*)(?:\((.*)\))?/.match(coordinate).captures
+
+
+      point = RGeo::GeoJSON.decode({:type        => 'Point', :coordinates => [lon, lat]}.to_json,
+                                    :json_parser => :json,
+                                    :geo_factory => ::RGeo::Cartesian.simple_factory(:srid => 4326)
+                                  )
+
+      ProjectLocation.new('project'  => self,
+                          'location' => location,
+                          'the_geom' => point)
+    end.compact
+  end
+
+  def save
+    if self.valid?
+      super
+      if @project_locations.present? && @project_locations.valid?
+        @project_locations.save
+      end
+    end
+
+    self
   end
 
   def self.for_user(user_id)
@@ -121,7 +145,7 @@ class Project < CartodbModel
   end
 
   def coords
-    the_geom.map{|point| [point.y, point.x]} if the_geom.present?
+    project_locations.map{|point| point.to_coord} if project_locations.present?
   end
 
   def to_param
