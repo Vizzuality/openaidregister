@@ -10,5 +10,9 @@
     <% end %>
   <% end %>
   <span class="email"><%= administrator.email %></span>
-  <%= link_to '', '#', :id => 'remove' %>
+  <% if administrator.persisted? %>
+    <%= button_to "x", administrator_path([@user, @user.organization, administrator]), :method =>:delete %>
+  <% else %>
+    <%= link_to '', '#', :id => 'remove' %>
+  <% end %>
 </li>
