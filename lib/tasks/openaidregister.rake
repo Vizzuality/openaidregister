@@ -59,7 +59,8 @@ task :setup do
 
   CartoDB::Connection.create_table 'external_organizations', [
     {:name => 'name',    :type => 'text'},
-    {:name => 'role_id', :type => 'numeric'}
+    {:name => 'role_id', :type => 'numeric'},
+    {:name => 'project_id', :type => 'numeric'}
   ] unless tables_list.tables.map(&:name).include?('external_organizations')
 
   CartoDB::Connection.create_table 'documents', [
