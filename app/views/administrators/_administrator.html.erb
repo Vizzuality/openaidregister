@@ -1,17 +1,12 @@
 <li class="administrator">
-  <%= form_for @user do |f| %>
-    <%= f.fields_for @user.organization do |ff| %>
-      <%= ff.fields_for administrator do |fff| %>
-        <%= fff.hidden_field :cartodb_id %>
-        <%= fff.hidden_field :name %>
-        <%= fff.hidden_field :email %>
-        <%= fff.hidden_field :password %>
-      <% end %>
-    <% end %>
+  <% unless administrator.persisted? %>
+    <%= hidden_field_tag 'user[organization][administrator][name][]'       , administrator.name,       :id => nil %>
+    <%= hidden_field_tag 'user[organization][administrator][email][]'      , administrator.email,      :id => nil %>
+    <%= hidden_field_tag 'user[organization][administrator][password][]'   , administrator.password,   :id => nil %>
   <% end %>
   <span class="email"><%= administrator.email %></span>
   <% if administrator.persisted? %>
-    <%= button_to "x", administrator_path([@user, @user.organization, administrator]), :method =>:delete %>
+    <%= link_to "x", [@user, @user.organization, administrator], :confirm => "Are you sure?", :method => :delete %>
   <% else %>
     <%= link_to '', '#', :id => 'remove' %>
   <% end %>
