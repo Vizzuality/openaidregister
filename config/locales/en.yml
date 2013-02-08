@@ -170,6 +170,13 @@ en:
       type_id: 'Document type'
       add: 'Add'
       cancel: 'Cancel'
+  administrators:
+    form:
+      name: 'Name'
+      email: 'Email'
+      password: 'Password'
+      add: 'Add'
+      cancel: 'Cancel'
   project_results:
     form:
       concept: 'Concept'
@@ -234,11 +241,25 @@ en:
           url: ""
           examples: ""
         budgets:
+          title: "Budget"
           no_records: 'No budget provided yet'
+          desc: ""
+          url: ""
+          examples: ""
         documents:
+          title: "Documents"
           no_records: 'No documents provided yet'
+          desc: ""
+          url: ""
+          examples: ""
         administrators:
+          title: "Other authorized administrators"
           no_records: 'No administrators provided yet'
+          desc: ""
+          url: ""
+          examples: ""
+        add: 'add'
+        cancel: 'cancel'
       save_changes: 'Save changes'
   sessions:
     new:

@@ -151,6 +151,7 @@
     .header {
       padding-top:24px;
       padding-bottom:24px;
+      border:none;
       border-top:1px solid #DDDDDD;
       border-bottom:1px solid #DDDDDD;
 
@@ -166,21 +167,28 @@
  
       .form_wrapper {
         padding:0 50px;
-
-        button.save,
-        input.save {
-          margin-left:240px;
-        }
-
-        // Show user details
-        div.user {
-          display:block;
-        }
-
-        // Organization details
-        div.organization {
-          display:none;
-        }
       }
+
+      button.save,
+      input.save {
+        margin-left:240px;
+      }
+
+      section.border {
+        margin-top:50px;
+        padding:50px 0 0 0;
+        border-top:1px solid #DDDDDD;
+      }
+
+      // Show user details
+      div.user {
+        display:block;
+      }
+
+      // Organization details
+      div.organization {
+        display:none;
+      }
+    
     }
   } 

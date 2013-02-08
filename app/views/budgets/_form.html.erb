@@ -1,4 +1,4 @@
-<%= form_for [@user, @organization, @budget], :multipart => true, :html => {:class => "#{action_name}-budget"} do |f| %>
+<%= form_for [@user, @organization, @budget], :multipart => true, :html => {:class => "#{action_name}-budget budget_form"} do |f| %>
 
   <div class="field start_date long margin20">
     <%= f.label(:start_date) do %>
@@ -31,7 +31,7 @@
 
   <div class="field">
     <%= f.submit t('.add') %>
-    <%= link_to t('.cancel'), '#' %>
+    <%= link_to t('.cancel'), '#', :class => "cancel_subform" %>
   </div>
 
 <% end %>
