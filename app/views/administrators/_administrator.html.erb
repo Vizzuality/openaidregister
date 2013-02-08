@@ -1,7 +1,12 @@
 <li class="administrator">
+  <% unless administrator.persisted? %>
+    <%= hidden_field_tag 'user[organization][administrator][name][]'       , administrator.name,       :id => nil %>
+    <%= hidden_field_tag 'user[organization][administrator][email][]'      , administrator.email,      :id => nil %>
+    <%= hidden_field_tag 'user[organization][administrator][password][]'   , administrator.password,   :id => nil %>
+  <% end %>
   <span class="email"><%= administrator.email %></span>
   <% if administrator.persisted? %>
-    <%= link_to "x", [@user, @user.organization, administrator], :class => "destroy_item", :method => :delete %>
+    <%= link_to "x", [@user, @user.organization, administrator], :confirm => "Are you sure?", :method => :delete %>
   <% else %>
     <%= link_to '', '#', :id => 'remove', :class => "remove_item" %>
   <% end %>
