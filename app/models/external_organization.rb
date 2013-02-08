@@ -9,7 +9,7 @@ class ExternalOrganization < CartodbModel
   end
 
   def self.grouped_by_project_id(projects)
-    external_organizations = query("SELECT * FROM #{name.tableize} WHERE project_id IN (#{projects.map(&:id)})")
+    external_organizations = query("SELECT * FROM #{table_name} WHERE project_id IN (#{projects.map(&:id).join(',')})")
     external_organizations.group_by{|eo| eo.project_id}
   end
 

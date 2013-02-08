@@ -55,7 +55,7 @@
               <span class="sptor"></span>
             </div>
             <div class="column">
-              <%= select_tag :subsector, options_from_collection_for_select(@subsectors, 'id', 'name'), { :include_blank => 'Not specified', 'data-placeholder' => "Subsector..." } %>
+              <%= select_tag :subsector, options_from_collection_for_select_with_attributes(@subsectors, 'cartodb_id', 'name', :'data-sector-id' => 'sector_id'), { :include_blank => 'Not specified', 'data-placeholder' => "Subsector..." } %>
             </div>
           </div>
           <%= f.button t('.add_button'), :class => "round grey right add" %>
